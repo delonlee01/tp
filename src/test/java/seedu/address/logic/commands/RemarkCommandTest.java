@@ -23,7 +23,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 import seedu.address.testutil.PersonBuilder;
 
-public class RemarkCommandTest {private static final String REMARK_STUB = "Some remark";
+public class RemarkCommandTest {
+    private static final String REMARK_STUB = "Some remark";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
