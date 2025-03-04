@@ -11,51 +11,53 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### James Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/twhjames.jpg" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities: Deliverables
+* Responsibilities: Scheduling
 
-### Jane Doe
+### Delon Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/delonlee01.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Integration
 
-### Johnny Doe
+### Aisyah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aisyahally.png" width="200px">
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Testing
 
-### Jean Doe
+### Kylie
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
+<img src="images/kylieluk88.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation
+
+### Kar Kuen
+
+<img src="images/karkuen.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Code quality
