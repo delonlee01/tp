@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Teo Wee How James
+### James Teo
 
 <img src="images/twhjames.png" width="200px">
 
@@ -20,6 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/twhjames.md)]
 
 * Role: Team Lead
+* Responsibilities: Deliverables and Deadlines, Scheduling and Tracking
 
 ### Jane Doe
 
