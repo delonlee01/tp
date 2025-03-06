@@ -331,6 +331,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: UC-002 - List Candidate**
+
+**MSS**
+
+1. User decides to list all candidates in the system by entering the command “list”, allowing user to view their name
+   , phone number, email, and address.
+2. RecruitTrackPro lists every candidate in the system with their fields visible.
+
+   Use case ends.
+
 **Use case: UC-004 - Find Candidates**
 
 **MSS**
