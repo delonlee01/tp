@@ -306,7 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `RecruitTrackPro` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -336,10 +336,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User decides to list all candidates in the system by entering the command “list”, allowing user to view their name
-    , phone number, email, and address.
+   , phone number, email, and address.
 2. RecruitTrackPro lists every candidate in the system with their fields visible.
 
+   Use case ends.
+
+**Use case: UC-004 - Find Candidates**
+
+**MSS**
+
+1. User requests to search for candidates by a field and value.
+2. RecruitTrackPro shows the list of matching candidates.
+
     Use case ends.
+
+**Extensions**
+
+* 1a. User did not enter a search field or value.
+    * 1a1. RecruitTrackPro shows an error message.
+
+      Use case ends.
+
+* 1b. User enters an invalid search field.
+    * 1b1. RecruitTrackPro shows an error message.
+
+      Use case ends.
+  
+* 1c. User searches by phone number but enters an invalid phone number.
+    * 1c1. RecruitTrackPro shows an error message.
+
+      Use case ends.
+
+* 1d. User searches by email but enters an invalid email address.
+    * 1d1. RecruitTrackPro shows an error message. 
+
+      Use case ends.
 
 
 ### Non-Functional Requirements
