@@ -274,33 +274,44 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* HR recruiters who handle a high volume of applicants.
+* Prefer desktop applications over web or mobile alternatives.
+* Type quickly and favor keyboard shortcuts over mouse navigation.
+* Prioritize speed and efficiency in tracking and managing applicant details.
+* Comfortable with command-line interfaces to some extent.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: RecruitTrackPro streamlines applicant tracking, ensures quick data retrieval, and reduces administrative workload, making recruitment management more efficient.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                                                    | So that I can…​                                                        |
-|----------|-----------|-----------------------------------------------------------------|------------------------------------------------------------------------|
-| `* *`    | Recruiter | sort the candidate list by name                                 | I can see them in alphabetical order for easier browsing               |
-| `* *`    | Recruiter | find candidates by other fields (e.g., phone, email)            | I can organize the data in the most useful way for my tasks            |
-| `* *`    | Recruiter | filter for candidates by specific skills (ie. tags)             | I can find the most qualified applicants for a role                    |
-| `*`      | Recruiter | update the (optional) reference contact info for each candidate | I have all necessary details for thorough background checks            |
-| `*`      | Recruiter | attach or link a candidate’s resume in their profile            | I can access their CV directly from the application                    |
-| `*`      | Recruiter | count the number of  times I’ve contacted a candidate           | I don’t spam them or lose track of communication attempts              |
-| `*`      | Recruiter | create new tag categories (e.g., “Willing to Relocate”)         | I can capture additional attributes beyond standard fields             |
-| `*`      | Recruiter | mark specific candidates as “High Priority”                     | I can focus on them first for interviews or offers                     |
-| `*`      | Recruiter | view my command history                                         | I can reuse previous commands or correct mistakes                      |
-| `*`      | Recruiter | undo my last command                                            | I can revert an accidental action (e.g., deleting the wrong candidate) |
-| `*`      | Recruiter | redo a command I just undid                                     | I can restore changes if I reverted them by mistake                    |
-| `*`      | New User  | access a help command                                           | I can quickly learn the available features and syntax                  |
+| Priority | As a …​   | I want to …​                                                                                                         | So that I can…​                                                                        |
+|-------|-----------|----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| `* * *` | Recruiter | add a new candidate by specifying their name, phone, and email                                                       | I can store their basic contact information in one place                               |
+| `* * *` | Recruiter | delete a candidate                                                                                                   | I can remove entries for candidates who are no longer relevant                         |
+| `* * *` | Recruiter | list all candidates                                                                                                  | I have a quick overview of everyone in my current pipeline                             |
+| `* * *` | Recruiter | insert tags such as candidate skills and experience in their profile (e.g., “Java Developer,” “University Graduate”) | I can easily identify candidates who meet the required skills or experience for a role |
+| `* * *` | Recruiter | exit the application via a command                                                                                   | I can cleanly close the program when I’m finished                                      |
+| `* * *` | Recruiter | store all application data locally                                                                                   | I can access it even if I’m offline or between network connections                     |
+| `* *` | Recruiter | add free-form notes to a candidate’s record                                                                          | I can capture extra context or personal observations                                   |
+| `* *` | Recruiter | update a candidate’s tags                                                                                            | I can adjust how candidates are categorized over time                                  |
+| `* *` | Recruiter | remove a candidate’s tags                                                                                            | I can adjust how candidates are categorized over time                                  |
+| `* *` | Recruiter | edit a candidate’s details (e.g., phone, email, address)                                                             | I can keep the record accurate when a candidate’s information changes                  |
+| `* *` | Recruiter | find a candidate by name                                                                                             | I can locate a specific person’s details quickly                                       |
+| `* *` | Recruiter | sort the candidate list by name                                                                                      | I can see them in alphabetical order for easier browsing                               |
+| `* *` | Recruiter | find candidates by other fields (e.g., phone, email)                                                                 | I can organize the data in the most useful way for my tasks                            |
+| `* *` | Recruiter | filter for candidates by specific skills (ie. tags)                                                                  | I can find the most qualified applicants for a role                                    |
+| `*`   | Recruiter | update the (optional) reference contact info for each candidate                                                      | I have all necessary details for thorough background checks                            |
+| `*`   | Recruiter | attach or link a candidate’s resume in their profile                                                                 | I can access their CV directly from the application                                    |
+| `*`   | Recruiter | count the number of  times I’ve contacted a candidate                                                                | I don’t spam them or lose track of communication attempts                              |
+| `*`   | Recruiter | create new tag categories (e.g., “Willing to Relocate”)                                                              | I can capture additional attributes beyond standard fields                             |
+| `*`   | Recruiter | mark specific candidates as “High Priority”                                                                          | I can focus on them first for interviews or offers                                     |
+| `*`   | Recruiter | view my command history                                                                                              | I can reuse previous commands or correct mistakes                                      |
+| `*`   | Recruiter | undo my last command                                                                                                 | I can revert an accidental action (e.g., deleting the wrong candidate)                 |
+| `*`   | Recruiter | redo a command I just undid                                                                                          | I can restore changes if I reverted them by mistake                                    |
+| `*`   | New User  | access a help command                                                                                                | I can quickly learn the available features and syntax                                  |
 
 *{More to be added}*
 
