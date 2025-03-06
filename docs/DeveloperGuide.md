@@ -351,6 +351,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. RecruitTrackPro shows an error message.
 
       Use case ends.
+  
+* 1c. User searches by phone number but enters an invalid phone number.
+    * 1c1. RecruitTrackPro shows an error message.
+
+      Use case ends.
+
+* 1d. User searches by email but enters an invalid email address.
+    * 1d1. RecruitTrackPro shows an error message. 
+
+      Use case ends.
+
 
 ### Non-Functional Requirements
 
