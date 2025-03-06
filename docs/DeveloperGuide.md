@@ -325,7 +325,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC-004 - Find candidates**
+**Use case: UC-004 - Find Candidates**
 
 **MSS**
 
