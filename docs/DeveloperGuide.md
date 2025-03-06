@@ -287,14 +287,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​   | I want to …​                                                    | So that I can…​                                                        |
+|----------|-----------|-----------------------------------------------------------------|------------------------------------------------------------------------|
+| `* *`    | Recruiter | sort the candidate list by name                                 | I can see them in alphabetical order for easier browsing               |
+| `* *`    | Recruiter | find candidates by other fields (e.g., phone, email)            | I can organize the data in the most useful way for my tasks            |
+| `* *`    | Recruiter | filter for candidates by specific skills (ie. tags)             | I can find the most qualified applicants for a role                    |
+| `*`      | Recruiter | update the (optional) reference contact info for each candidate | I have all necessary details for thorough background checks            |
+| `*`      | Recruiter | attach or link a candidate’s resume in their profile            | I can access their CV directly from the application                    |
+| `*`      | Recruiter | count the number of  times I’ve contacted a candidate           | I don’t spam them or lose track of communication attempts              |
+| `*`      | Recruiter | create new tag categories (e.g., “Willing to Relocate”)         | I can capture additional attributes beyond standard fields             |
+| `*`      | Recruiter | mark specific candidates as “High Priority”                     | I can focus on them first for interviews or offers                     |
+| `*`      | Recruiter | view my command history                                         | I can reuse previous commands or correct mistakes                      |
+| `*`      | Recruiter | undo my last command                                            | I can revert an accidental action (e.g., deleting the wrong candidate) |
+| `*`      | Recruiter | redo a command I just undid                                     | I can restore changes if I reverted them by mistake                    |
+| `*`      | New User  | access a help command                                           | I can quickly learn the available features and syntax                  |
 
 *{More to be added}*
 
