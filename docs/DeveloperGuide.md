@@ -325,7 +325,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC-004 - Find candidates**
+
+**MSS**
+
+1. User requests to search for candidates by a field and value.
+2. RecruitTrackPro shows the list of matching candidates.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User did not enter a search field or value.
+    * 1a1. RecruitTrackPro shows an error message.
+
+      Use case ends.
+
+* 1b. User enters an invalid search field.
+    * 1b1. RecruitTrackPro shows an error message.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
