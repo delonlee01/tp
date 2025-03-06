@@ -362,7 +362,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-
 **Use case: UC-006 - Add Free-Form Notes to a Candidate**
 
 **MSS**
