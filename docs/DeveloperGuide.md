@@ -371,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 * 1e. User searches by tag but enters an invalid tag.
-    * 1d1. RecruitTrackPro shows an error message. 
+    * 1e1. RecruitTrackPro shows an error message. 
 
       Use case ends.
 
