@@ -274,45 +274,57 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* HR recruiters who handle a high volume of applicants.
+* Prefers desktop applications over web or mobile alternatives.
+* Types quickly and favors keyboard shortcuts over mouse navigation.
+* Prioritizes speed and efficiency in tracking and managing applicant details.
+* Comfortable with command-line interfaces to some extent.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: RecruitTrackPro streamlines applicant tracking, ensures quick data retrieval, and reduces administrative workload, making recruitment management more efficient.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                                                  | So that I can…​                                                    |
-|----------|-----------|---------------------------------------------------------------|--------------------------------------------------------------------|
-| `* *`    | Recruiter | sort the candidate list by name                               | see them in alphabetical order for easier browsing               |
-| `* *`    | Recruiter | find candidates by other fields (e.g., phone, email)          | organize the data in the most useful way for my tasks            |
-| `* *`    | Recruiter | filter for candidates by specific skills (ie. tags)           | find the most qualified applicants for a role                   |
-| `*`      | Recruiter | update the (optional) reference contact info for each candidate | have all necessary details for thorough background checks          |
-| `*`      | Recruiter | attach or link a candidate’s resume in their profile          | access their CV directly from the application                   |
-| `*`      | Recruiter | count the number of  times I’ve contacted a candidate         | don’t spam them or lose track of communication attempts            |
-| `*`      | Recruiter | create new tag categories (e.g., “Willing to Relocate”)       | capture additional attributes beyond standard fields         |
-| `*`      | Recruiter | mark specific candidates as “High Priority”                   | focus on them first for interviews or offers                 |
-| `*`      | Recruiter | view my command history                                       | reuse previous commands or correct mistakes                  |
-| `*`      | Recruiter | undo my last command                                          | revert an accidental action (e.g., deleting the wrong candidate) |
-| `*`      | Recruiter | redo a command I just undid                                   | restore changes if I reverted them by mistake                |
-| `*`      | New User  | access a help command                                         | quickly learn the available features and syntax              |
-| `*`      | Recruiter | create a new job posting (e.g., role title, required skills)	 | track open positions within my organization.                       |
-| `*`      | Recruiter | list all active job openings	                                 | quickly see every position that needs to be filled.                |
-| `*`      | Recruiter | archive a job posting once it’s filled or no longer needed    | keep historical records without cluttering the active list.        |
-| `*`      | Recruiter | assign a candidate to a job posting	                          | track who is applying or being considered for each position.       |
-| `*`      | Recruiter | remove a candidate from a job posting	                        | correct mistakes or reassign them to a more suitable role.         |
-| `*`      | Recruiter | view assigned candidates under job postings	                  | see a focused list of all applicants for a specific position.      |
-| `*`      | Recruiter | view a list of unassigned candidates                   	      | quickly identify who could be matched to newly opened roles.       |
-| `*`      | Recruiter | mark a job posting as “Urgent”	                               | prioritize filling it quickly.                                     |
-| `*`      | New User  | import candidate data from a CSV	                             | quickly populate the system using existing records.                |
-| `*`      | Recruiter | export candidate data to a CSV	                               | create backups or share the list with others.                      |
-| `*`      | New User  | interact with sample data	                                    | see how the app will look like in use.                             |
-| `*`      | New User  | purge all current data	                                       | delete sample data.                                                |
+| Priority | As a …​   | I want to …​                                                                                                         | So that I can…​                                                          |
+|-------|-----------|----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| `* * *` | Recruiter | add a new candidate by specifying their name, phone, and email                                                       | store their basic contact information in one place                       |
+| `* * *` | Recruiter | delete a candidate                                                                                                   | remove entries for candidates who are no longer relevant                 |
+| `* * *` | Recruiter | list all candidates                                                                                                  | have a quick overview of everyone in my current pipeline                 |
+| `* * *` | Recruiter | insert tags such as candidate skills and experience in their profile (e.g., “Java Developer,” “University Graduate”) | easily identify candidates who meet the required skills or experience for a role |
+| `* * *` | Recruiter | exit the application via a command                                                                                   | cleanly close the program when I’m finished                        |
+| `* * *` | Recruiter | store all application data locally                                                                                   | access it even if I’m offline or between network connections       |
+| `* *` | Recruiter | add free-form notes to a candidate’s record                                                                          | capture extra context or personal observations                     |
+| `* *` | Recruiter | update a candidate’s tags                                                                                            | adjust how candidates are categorized over time                    |
+| `* *` | Recruiter | remove a candidate’s tags                                                                                            | adjust how candidates are categorized over time                    |
+| `* *` | Recruiter | edit a candidate’s details (e.g., phone, email, address)                                                             | keep the record accurate when a candidate’s information changes    |
+| `* *` | Recruiter | find a candidate by name                                                                                             | locate a specific person’s details quickly                         |
+| `* *` | Recruiter | sort the candidate list by name                                                                                      | see them in alphabetical order for easier browsing                 |
+| `* *` | Recruiter | find candidates by other fields (e.g., phone, email)                                                                 | organize the data in the most useful way for my tasks              |
+| `* *` | Recruiter | filter for candidates by specific skills (ie. tags)                                                                  | find the most qualified applicants for a role                      |
+| `*`   | Recruiter | update the (optional) reference contact info for each candidate                                                      | have all necessary details for thorough background checks              |
+| `*`   | Recruiter | attach or link a candidate’s resume in their profile                                                                 | access their CV directly from the application                      |
+| `*`   | Recruiter | count the number of  times I’ve contacted a candidate                                                                | keep track of communication attempts without spamming them.                |
+| `*`   | Recruiter | create new tag categories (e.g., “Willing to Relocate”)                                                              | capture additional attributes beyond standard fields               |
+| `*`   | Recruiter | mark specific candidates as “High Priority”                                                                          | focus on them first for interviews or offers                       |
+| `*`   | Recruiter | view my command history                                                                                              | reuse previous commands or correct mistakes                        |
+| `*`   | Recruiter | undo my last command                                                                                                 | revert an accidental action (e.g., deleting the wrong candidate)   |
+| `*`   | Recruiter | redo a command I just undid                                                                                          | restore changes if I reverted them by mistake                      |
+| `*`   | New User  | access a help command                                                                                                | quickly learn the available features and syntax                    |
+| `*`      | Recruiter | create a new job posting (e.g., role title, required skills)	 | track open positions within my organization.                                  |
+| `*`      | Recruiter | list all active job openings	                                 | quickly see every position that needs to be filled.                           |
+| `*`      | Recruiter | archive a job posting once it’s filled or no longer needed    | keep historical records without cluttering the active list.                   |
+| `*`      | Recruiter | assign a candidate to a job posting	                          | track who is applying or being considered for each position.                  |
+| `*`      | Recruiter | remove a candidate from a job posting	                        | correct mistakes or reassign them to a more suitable role.                    |
+| `*`      | Recruiter | view assigned candidates under job postings	                  | see a focused list of all applicants for a specific position.                 |
+| `*`      | Recruiter | view a list of unassigned candidates                   	      | quickly identify who could be matched to newly opened roles.                  |
+| `*`      | Recruiter | mark a job posting as “Urgent”	                               | prioritize filling it quickly.                                                |
+| `*`      | New User  | import candidate data from a CSV	                             | quickly populate the system using existing records.                           |
+| `*`      | Recruiter | export candidate data to a CSV	                               | create backups or share the list with others.                                 |
+| `*`      | New User  | interact with sample data	                                    | see how the app will look like in use.                                        |
+| `*`      | New User  | purge all current data	                                       | delete sample data.                                                           |
+
 
 ### Use cases
 
