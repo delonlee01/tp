@@ -377,6 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. The candidate must already exist in the system.
 
 **MSS**
+
 1. User provides a candidate’s index and specifies one or more tags to add to the candidate’s profile. 
 2. RecruitTrackPro successfully adds the tags to the candidate’s record. 
 
@@ -384,7 +385,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. User enters an invalid candidate index .
+* 1a. User enters an invalid candidate index.
     * 1a1. RecruitTrackPro displays an error message: “The selected candidate  does not exist. Please check the index and try again.”
       Use case ends.
 * 1b. User does not enter any tags.
