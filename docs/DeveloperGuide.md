@@ -328,7 +328,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `RecruitTrackPro` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -392,6 +392,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1d. User searches by email but enters an invalid email address.
     * 1d1. RecruitTrackPro shows an error message. 
 
+      Use case ends.
+
+**Use case: UC-005 - Add Tag(s) to a Candidate**
+
+**Pre-Condition**
+
+1. The candidate must already exist in the system.
+
+**MSS**
+
+1. User provides a candidate’s index and specifies one or more tags to add to the candidate’s profile. 
+2. RecruitTrackPro successfully adds the tags to the candidate’s record. 
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid candidate index.
+    * 1a1. RecruitTrackPro displays an error message: “The selected candidate does not exist. Please check the index and try again.”
+      Use case ends.
+* 1b. User does not enter any tags.
+    * 1b1. RecruitTrackPro displays an error message: “Tag name cannot be empty. Please enter a valid tag.”
+      Use case ends.
+* 1c. User enters a duplicate tag (already exists for the candidate).
+    * 1c1. RecruitTrackPro displays an error message: “Tag already exists for this candidate.”
       Use case ends.
 
 **Use case: UC-006 - Add Free-Form Notes to a Candidate**
