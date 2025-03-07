@@ -386,7 +386,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. User enters an invalid candidate index.
-    * 1a1. RecruitTrackPro displays an error message: “The selected candidate  does not exist. Please check the index and try again.”
+    * 1a1. RecruitTrackPro displays an error message: “The selected candidate does not exist. Please check the index and try again.”
       Use case ends.
 * 1b. User does not enter any tags.
     * 1b1. RecruitTrackPro displays an error message: “Tag name cannot be empty. Please enter a valid tag.”
