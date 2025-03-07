@@ -310,8 +310,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS:**
 1. User provides a candidate’s details, including name, phone number, email, address, and optional tags.
-2. RecruitTrackPro validates the provided information, and the candidate is added to the system.
-3. RecruitTrackPro displays a success message confirming the addition.
+2. RecruitTrackPro validates the provided information.
+3. The candidate is added to the system.
+4. RecruitTrackPro displays a success message confirming the addition.
    Use case ends.
 
 **Extensions:**
