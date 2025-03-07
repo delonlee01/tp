@@ -306,7 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use Case: Add Candidate**
+**Use Case: UC-001 - Add Candidate**
 
 **MSS:**
 1. User provides a candidate’s details, including name, phone number, email, address, and optional tags.
