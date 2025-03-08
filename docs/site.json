@@ -1,7 +1,7 @@
 {
   "baseUrl": "",
-  "titlePrefix": "RecruitTrackPro",
-  "titleSuffix": "AddressBook Level-3",
+  "titlePrefix": "",
+  "titleSuffix": "RecruitTrackPro",
   "faviconPath": "images/SeEduLogo.png",
   "style": {
     "codeTheme": "light"
