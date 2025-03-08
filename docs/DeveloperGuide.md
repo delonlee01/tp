@@ -460,6 +460,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC-007 - Remove Tag(s) from a Candidate**
+
+**MSS**
+
+1. User requests to delete specific tags for a candidate.
+2. RecruitTrackPro verifies that the candidate exists and that the specified tags are assigned to them. 
+3. RecruitTrackPro removes the specified tags from the candidate’s profile. 
+4. The system successfully removes tags from the candidate record and displays a confirmation message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters an invalid candidate index.
+    * 2a1. RecruitTrackPro displays an error message: “The selected candidate does not exist. Please check the index and try again.”
+      Use case ends.
+* 2b. User does not enter any tags.
+    * 2b1. RecruitTrackPro displays an error message: “Tag name cannot be empty. Please enter a valid tag.”
+      Use case ends.
+* 2c. User specifies a tag which does not exist the candidate's record.
+    * 2c1. RecruitTrackPro displays an error message: “Tag does not exist for this candidate. Please enter a valid tag.”
+      Use case ends.
+
+
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
