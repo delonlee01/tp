@@ -441,9 +441,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to delete specific tags for a candidate.
-   RecruitTrackPro verifies that the candidate exists and that the specified tags are assigned to them. 
-2. RecruitTrackPro removes the specified tags from the candidate’s profile. 
-3. The system successfully removes tags from the candidate record and displays a confirmation message.
+2. RecruitTrackPro verifies that the candidate exists and that the specified tags are assigned to them. 
+3. RecruitTrackPro removes the specified tags from the candidate’s profile. 
+4. The system successfully removes tags from the candidate record and displays a confirmation message.
 
    Use case ends.
 
