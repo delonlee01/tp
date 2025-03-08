@@ -351,29 +351,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
 **Use case: UC-002 - List Candidate**
 
 **MSS**
@@ -383,6 +360,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. RecruitTrackPro lists every candidate in the system with their fields visible.
 
    Use case ends.
+
+**Use Case: UC-003 - Delete Candidate**
+
+**MSS**
+
+1. User requests to remove a specified candidate from the address book based on the displayed list index.
+2. Specified contact is removed and a success message is displayed.
+3. RecruitTrackPro updates the displayed list accordingly.
+   
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid index (ie. not a positive integer).
+   * 1a1. RecruitTrackPro shows an error message.
+   
+     Use case ends.
+
+* 1b. User enters an index that is out of bounds.
+   * 1b1. RecruitTrackPro shows an error message.
+      
+     Use case ends.
 
 **Use case: UC-004 - Find Candidates**
 
