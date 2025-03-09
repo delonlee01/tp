@@ -337,26 +337,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. RecruitTrackPro validates the provided information.
 3. The candidate is added to the system.
 4. RecruitTrackPro displays a success message confirming the addition.
+
    Use case ends.
 
 **Extensions:**
 * 2a. User enters a missing required field (name, phone number, email, or address).
-  * 2a1. RecruitTrackPro displays an error message: “[parameter] cannot be empty.”
-    Use case ends. 
-* 2b. User enters an invalid format for any field. 
-  * 2b1. RecruitTrackPro displays an error message based on the invalid field.
-    Use case ends.
-* 2c. User enters a duplicate candidate – same name and phone number as an existing candidate. 
-  * 2c1. RecruitTrackPro displays an error message: “Contact with this name and phone number already exists.”
-    Use case ends.
+    * 2a1. RecruitTrackPro displays an error message: “[parameter] cannot be empty.”
 
+      Use case ends.
+
+* 2b. User enters an invalid format for any field. 
+    * 2b1. RecruitTrackPro displays an error message based on the invalid field.
+
+      Use case ends.
+
+* 2c. User enters a duplicate candidate – same name and phone number as an existing candidate. 
+    * 2c1. RecruitTrackPro displays an error message: “Contact with this name and phone number already exists.”
+
+      Use case ends.
 
 **Use case: UC-002 - List Candidate**
 
 **MSS**
 
-1. User decides to list all candidates in the system by entering the command “list”, allowing user to view their name
-   , phone number, email, and address.
+1. User decides to list all candidates in the system by entering the command “list”, allowing user to view their name, 
+   phone number, email, and address.
 2. RecruitTrackPro lists every candidate in the system with their fields visible.
 
    Use case ends.
@@ -415,8 +420,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 * 1e. User searches by tag but enters an invalid tag.
-    * 1e1. RecruitTrackPro shows an error message. 
+    * 1e1. RecruitTrackPro shows an error message.
 
+      Use case ends.
 
 **Use case: UC-005 - Add Tag(s) to a Candidate**
 
@@ -435,12 +441,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User enters an invalid candidate index.
     * 1a1. RecruitTrackPro displays an error message: “The selected candidate does not exist. Please check the index and try again.”
+
       Use case ends.
+
 * 1b. User does not enter any tags.
     * 1b1. RecruitTrackPro displays an error message: “Tag name cannot be empty. Please enter a valid tag.”
+
       Use case ends.
+
 * 1c. User enters a duplicate tag (already exists for the candidate).
     * 1c1. RecruitTrackPro displays an error message: “Tag already exists for this candidate.”
+
       Use case ends.
 
 **Use case: UC-006 - Add Free-Form Notes to a Candidate**
@@ -449,13 +460,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to add a comment for a candidate.
 2. RecruitTrackPro updates the candidate’s information.
-3. RecruitTrackPro shows the list of candidates with the updated information
+3. RecruitTrackPro shows the list of candidates with the updated information.
 
    Use case ends.
 
 **Extensions**
 
 * 1a. User gives an invalid index.
+
     * 1a1. RecruitTrackPro shows an error message.
 
       Use case ends.
@@ -475,15 +487,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. User enters an invalid candidate index.
     * 2a1. RecruitTrackPro displays an error message: “The selected candidate does not exist. Please check the index and try again.”
+
       Use case ends.
+
 * 2b. User does not enter any tags.
     * 2b1. RecruitTrackPro displays an error message: “Tag name cannot be empty. Please enter a valid tag.”
+
       Use case ends.
+
 * 2c. User specifies a tag which does not exist the candidate's record.
     * 2c1. RecruitTrackPro displays an error message: “Tag does not exist for this candidate. Please enter a valid tag.”
+
       Use case ends.
-
-
 
 ### Non-Functional Requirements
 
