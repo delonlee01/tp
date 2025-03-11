@@ -459,8 +459,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a comment for a candidate.
-2. RecruitTrackPro updates the candidate’s information.
-3. RecruitTrackPro shows the list of candidates with the updated information.
+2. RecruitTrackPro shows the list of candidates with the updated information.
 
    Use case ends.
 
