@@ -22,14 +22,12 @@ public class FindCommandParserTest {
         // missing arguments
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
+        // blank argument
+        assertParseFailure(parser, " " + PREFIX_NAME, Name.MESSAGE_CONSTRAINTS);
+
         // non-empty preamble
         assertParseFailure(parser, " foo " + PREFIX_NAME + "Alice Bob",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_blankArg_throwsParseException() {
-        assertParseFailure(parser, " " + PREFIX_NAME, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
