@@ -79,7 +79,7 @@ public class ArgumentMultimap {
     /**
      * Returns true if at least one of the prefixes does not contain empty {@code Optional} values.
      */
-    public boolean isAtLeastOnePrefixPresent(Prefix... prefixes) {
+    public boolean hasAtLeastOnePrefixPresent(Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> getValue(prefix).isPresent());
     }
 
