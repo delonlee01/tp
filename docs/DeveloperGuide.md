@@ -360,9 +360,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User decides to list all candidates in the system by entering the command “list”, allowing user to view their name, 
-   phone number, email, and address.
-2. RecruitTrackPro lists every candidate in the system with their fields visible.
+1. User requests a list of all candidates.
+2. RecruitTrackPro displays the list of candidates with relevant details.
 
    Use case ends.
 
