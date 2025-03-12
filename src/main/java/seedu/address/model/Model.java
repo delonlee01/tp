@@ -37,20 +37,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getRecruitTrackProFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setRecruitTrackProFilePath(Path recruitTrackProFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code recruitTrackPro}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setRecruitTrackPro(ReadOnlyRecruitTrackPro recruitTrackPro);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the RecruitTrackPro */
+    ReadOnlyRecruitTrackPro getRecruitTrackPro();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
