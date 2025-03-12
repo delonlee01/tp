@@ -472,14 +472,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC-007 - Remove Tag(s) from a Candidate**
+**Use case: UC-007 - Remove Tag from a Candidate**
 
 **MSS**
 
-1. User requests to delete specific tags for a candidate.
-2. RecruitTrackPro verifies that the candidate exists and that the specified tags are assigned to them. 
-3. RecruitTrackPro removes the specified tags from the candidate’s profile. 
-4. The system successfully removes tags from the candidate record and displays a confirmation message.
+1. User requests to delete a specific tag for a candidate.
+2. RecruitTrackPro removes the specified tag from the candidate’s profile and shows a success message.
 
    Use case ends.
 
