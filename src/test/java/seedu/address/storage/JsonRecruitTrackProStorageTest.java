@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.RecruitTrackPro;
 import seedu.address.model.ReadOnlyRecruitTrackPro;
+import seedu.address.model.RecruitTrackPro;
 
 public class JsonRecruitTrackProStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonRecruitTrackProStorageTest");
@@ -31,7 +31,8 @@ public class JsonRecruitTrackProStorageTest {
     }
 
     private java.util.Optional<ReadOnlyRecruitTrackPro> readRecruitTrackPro(String filePath) throws Exception {
-        return new JsonRecruitTrackProStorage(Paths.get(filePath)).readRecruitTrackPro(addToTestDataPathIfNotNull(filePath));
+        return new JsonRecruitTrackProStorage(Paths.get(filePath))
+                .readRecruitTrackPro(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -57,7 +58,8 @@ public class JsonRecruitTrackProStorageTest {
 
     @Test
     public void readRecruitTrackPro_invalidAndValidPersonRecruitTrackPro_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readRecruitTrackPro("invalidAndValidPersonRecruitTrackPro.json"));
+        assertThrows(DataLoadingException.class, () ->
+                readRecruitTrackPro("invalidAndValidPersonRecruitTrackPro.json"));
     }
 
     @Test

@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.RecruitTrackPro;
 import seedu.address.model.ReadOnlyRecruitTrackPro;
+import seedu.address.model.RecruitTrackPro;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;

@@ -15,16 +15,16 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.RecruitTrackPro;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyRecruitTrackPro;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.RecruitTrackPro;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.RecruitTrackProStorage;
 import seedu.address.storage.JsonRecruitTrackProStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.RecruitTrackProStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -57,7 +57,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        RecruitTrackProStorage recruitTrackProStorage = new JsonRecruitTrackProStorage(userPrefs.getRecruitTrackProFilePath());
+        RecruitTrackProStorage recruitTrackProStorage =
+                new JsonRecruitTrackProStorage(userPrefs.getRecruitTrackProFilePath());
         storage = new StorageManager(recruitTrackProStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);

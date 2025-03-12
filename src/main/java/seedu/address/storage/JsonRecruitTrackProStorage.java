@@ -60,8 +60,8 @@ public class JsonRecruitTrackProStorage implements RecruitTrackProStorage {
     }
 
     @Override
-    public void saveRecruitTrackPro(ReadOnlyRecruitTrackPro RecruitTrackPro) throws IOException {
-        saveRecruitTrackPro(RecruitTrackPro, filePath);
+    public void saveRecruitTrackPro(ReadOnlyRecruitTrackPro recruitTrackPro) throws IOException {
+        saveRecruitTrackPro(recruitTrackPro, filePath);
     }
 
     /**

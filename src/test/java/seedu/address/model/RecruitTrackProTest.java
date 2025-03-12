@@ -85,7 +85,8 @@ public class RecruitTrackProTest {
 
     @Test
     public void toStringMethod() {
-        String expected = RecruitTrackPro.class.getCanonicalName() + "{persons=" + recruitTrackPro.getPersonList() + "}";
+        String expected = RecruitTrackPro.class.getCanonicalName()
+                + "{persons=" + recruitTrackPro.getPersonList() + "}";
         assertEquals(expected, recruitTrackPro.toString());
     }
 
