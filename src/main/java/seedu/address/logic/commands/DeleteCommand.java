@@ -25,7 +25,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
-    public static final String MESSAGE_EMPTY_LIST = "No candidate to delete! The address book is empty.";
+    public static final String MESSAGE_EMPTY_LIST = "No candidate to delete! The displayed list is empty.";
 
     private final Index targetIndex;
 
