@@ -370,9 +370,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to remove a specified candidate from the address book based on the displayed list index.
-2. Specified contact is removed and a success message is displayed.
-3. RecruitTrackPro updates the displayed list accordingly.
+1. User requests to remove a specified candidate from the address book.
+2. RecruitTrackPro updates the displayed list accordingly.
    
    Use case ends.
 
