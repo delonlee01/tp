@@ -333,12 +333,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use Case: UC-001 - Add Candidate**
 
 **MSS:**
-1. User provides a candidate’s details, including name, phone number, email, address, and optional tags.
-2. RecruitTrackPro validates the provided information.
-3. The candidate is added to the system.
-4. RecruitTrackPro displays a success message confirming the addition.
+1. User requests to add a candidate with relevant details.
+2. RecruitTrackPro adds the new candidate and displays a success message.
 
    Use case ends.
+
 
 **Extensions:**
 * 2a. User enters a missing required field (name, phone number, email, or address).
