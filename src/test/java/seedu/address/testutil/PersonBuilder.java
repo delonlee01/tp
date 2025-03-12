@@ -66,6 +66,15 @@ public class PersonBuilder {
     }
 
     /**
+     * Adds the specified {@code tags} to the existing set of tags for the {@code Person} being built,
+     * preserving previously added tags.
+     */
+    public PersonBuilder withAddedTags(String ... tags) {
+        this.tags.addAll(SampleDataUtil.getTagSet(tags));
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
