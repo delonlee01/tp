@@ -432,25 +432,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User provides a candidate’s index and specifies one or more tags to add to the candidate’s profile. 
-2. RecruitTrackPro successfully adds the tags to the candidate’s record. 
+1. User selects a candidate and specifies one or more tags. 
+2. RecruitTrackPro associates the tag(s) with the candidate’s profile. 
 
    Use case ends.
 
 **Extensions**
 
-* 1a. User enters an invalid candidate index.
-    * 1a1. RecruitTrackPro displays an error message: “The selected candidate does not exist. Please check the index and try again.”
+* 1a. Candidate does not exist.
+    * 1a1. RecruitTrackPro notifies the user that the candidate does not exist.
 
       Use case ends.
 
-* 1b. User does not enter any tags.
-    * 1b1. RecruitTrackPro displays an error message: “Tag name cannot be empty. Please enter a valid tag.”
+* 1b. User does not specify any tags.
+    * 1b1. RecruitTrackPro prompts the user to enter at least one tag.
 
       Use case ends.
 
-* 1c. User enters a duplicate tag (already exists for the candidate).
-    * 1c1. RecruitTrackPro displays an error message: “Tag already exists for this candidate.”
+* 1c. User enters a duplicate tag.
+    * 1c1. RecruitTrackPro informs the user that the tag already exists for the candidate.
 
       Use case ends.
 
