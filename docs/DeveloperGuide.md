@@ -471,31 +471,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC-007 - Remove Tag(s) from a Candidate**
+**Use case: UC-007 - Remove Tag from a Candidate**
 
 **MSS**
 
-1. User requests to delete specific tags for a candidate.
-2. RecruitTrackPro verifies that the candidate exists and that the specified tags are assigned to them. 
-3. RecruitTrackPro removes the specified tags from the candidate’s profile. 
-4. The system successfully removes tags from the candidate record and displays a confirmation message.
+1. User requests to delete a specific tag for a candidate.
+2. RecruitTrackPro removes the specified tag from the candidate’s profile and shows a success message.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. User enters an invalid candidate index.
-    * 2a1. RecruitTrackPro displays an error message: “The selected candidate does not exist. Please check the index and try again.”
+* 1a. User enters an invalid candidate index.
+    * 1a1. RecruitTrackPro displays an error message: “The selected candidate does not exist. Please check the index and try again.”
 
       Use case ends.
 
-* 2b. User does not enter any tags.
-    * 2b1. RecruitTrackPro displays an error message: “Tag name cannot be empty. Please enter a valid tag.”
+* 1b. User does not enter any tags.
+    * 1b1. RecruitTrackPro displays an error message: “Tag name cannot be empty. Please enter a valid tag.”
 
       Use case ends.
 
-* 2c. User specifies a tag which does not exist the candidate's record.
-    * 2c1. RecruitTrackPro displays an error message: “Tag does not exist for this candidate. Please enter a valid tag.”
+* 1c. User specifies a tag which does not exist the candidate's record.
+    * 1c1. RecruitTrackPro displays an error message: “Tag does not exist for this candidate. Please enter a valid tag.”
 
       Use case ends.
 
