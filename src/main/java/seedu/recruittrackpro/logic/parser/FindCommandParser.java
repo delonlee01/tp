@@ -1,11 +1,15 @@
 package seedu.recruittrackpro.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 import seedu.recruittrackpro.logic.commands.FindCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
+import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -19,15 +23,32 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        requireNonNull(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+
+        if (!hasAtLeastOnePrefixPresent(argMultimap, PREFIX_NAME)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME);
+        String name = argMultimap.getValue(PREFIX_NAME).orElse("");
+
+        if (name.isEmpty()) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+
+        String[] nameKeywords = name.split("\\s+");
 
         return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+    }
+
+    /**
+     * Returns true if at least one of the prefixes does not contain empty {@code Optional} values.
+     */
+    public boolean hasAtLeastOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix ... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
