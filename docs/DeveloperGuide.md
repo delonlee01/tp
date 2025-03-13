@@ -340,18 +340,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 **Extensions:**
-* 2a. User enters a missing required field (name, phone number, email, or address).
-    * 2a1. RecruitTrackPro displays an error message: “[parameter] cannot be empty.”
+* 1a. User enters a missing required field (name, phone number, email, or address).
+    * 1a1. RecruitTrackPro displays an error message: “[parameter] cannot be empty.”
 
       Use case ends.
 
-* 2b. User enters an invalid format for any field. 
-    * 2b1. RecruitTrackPro displays an error message based on the invalid field.
+* 1b. User enters an invalid format for any field. 
+    * 1b1. RecruitTrackPro displays an error message based on the invalid field.
 
       Use case ends.
 
-* 2c. User enters a duplicate candidate – same name and phone number as an existing candidate. 
-    * 2c1. RecruitTrackPro displays an error message: “Contact with this name and phone number already exists.”
+* 1c. User enters a duplicate candidate – same name and phone number as an existing candidate. 
+    * 1c1. RecruitTrackPro displays an error message: “Contact with this name and phone number already exists.”
 
       Use case ends.
 
