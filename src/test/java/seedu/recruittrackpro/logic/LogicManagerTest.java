@@ -1,12 +1,12 @@
 package seedu.recruittrackpro.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.recruittrackpro.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.recruittrackpro.logic.commands.DeleteCommand.MESSAGE_EMPTY_LIST;
 import static seedu.recruittrackpro.testutil.Assert.assertThrows;
 import static seedu.recruittrackpro.testutil.TypicalPersons.AMY;
 
@@ -61,7 +61,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_EMPTY_LIST);
     }
 
     @Test
