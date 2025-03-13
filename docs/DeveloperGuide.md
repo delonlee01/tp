@@ -456,16 +456,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a comment for a candidate.
-2. RecruitTrackPro updates the candidate’s information.
-3. RecruitTrackPro shows the list of candidates with the updated information.
+2. RecruitTrackPro shows the list of candidates with the updated information.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. User gives an invalid index.
+* 1a. Candidate specified by the user does not exist.
 
-    * 1a1. RecruitTrackPro shows an error message.
+    * 1a1. RecruitTrackPro notifies the user that the candidate does not exist.
 
       Use case ends.
 
