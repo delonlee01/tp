@@ -432,7 +432,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User selects a candidate and specifies one or more tags. 
-2. RecruitTrackPro associates the tag(s) with the candidate’s profile. 
+2. RecruitTrackPro displays the list of candidates with the updated information. 
 
    Use case ends.
 
