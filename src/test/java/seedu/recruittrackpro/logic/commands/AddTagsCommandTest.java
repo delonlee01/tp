@@ -88,14 +88,12 @@ public class AddTagsCommandTest {
     public void execute_addNewAndDuplicateTags_mixedResponse() {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        Set<Tag> mixedTags = new HashSet<>();
-        mixedTags.add(new Tag("Python")); // New tag
-        mixedTags.addAll(personToEdit.getTags()); // Duplicate tags
+        Set<Tag> mixedTags = new HashSet<>(personToEdit.getTags());
+        mixedTags.add(new Tag("Python"));
 
         AddTagsCommand command = new AddTagsCommand(INDEX_FIRST_PERSON, mixedTags);
 
-        Set<Tag> newlyAddedTags = new HashSet<>();
-        newlyAddedTags.add(new Tag("Python"));
+        Set<Tag> newlyAddedTags = generateTags("Python");
 
         Set<Tag> duplicateTags = new HashSet<>(personToEdit.getTags());
 
@@ -114,8 +112,7 @@ public class AddTagsCommandTest {
 
     @Test
     public void execute_invalidIndex_throwsCommandException() {
-        Set<Tag> tags = new HashSet<>();
-        tags.add(new Tag("Java"));
+        Set<Tag> tags = generateTags("Java");
 
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         AddTagsCommand command = new AddTagsCommand(outOfBoundIndex, tags);
@@ -133,11 +130,9 @@ public class AddTagsCommandTest {
 
     @Test
     public void equals() {
-        Set<Tag> tagsA = new HashSet<>();
-        tagsA.add(new Tag("Java"));
+        Set<Tag> tagsA = generateTags("Java");
 
-        Set<Tag> tagsB = new HashSet<>();
-        tagsB.add(new Tag("Python"));
+        Set<Tag> tagsB = generateTags("Python");
 
         AddTagsCommand commandA = new AddTagsCommand(INDEX_FIRST_PERSON, tagsA);
         AddTagsCommand commandB = new AddTagsCommand(INDEX_FIRST_PERSON, tagsB);
@@ -165,8 +160,7 @@ public class AddTagsCommandTest {
 
     @Test
     public void toStringMethod() {
-        Set<Tag> tags = new HashSet<>();
-        tags.add(new Tag("Java"));
+        Set<Tag> tags = generateTags("Java");
         Index index = Index.fromOneBased(1);
 
         AddTagsCommand command = new AddTagsCommand(index, tags);
