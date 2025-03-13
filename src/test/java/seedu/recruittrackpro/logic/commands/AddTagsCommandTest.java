@@ -9,9 +9,11 @@ import static seedu.recruittrackpro.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.recruittrackpro.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.recruittrackpro.testutil.TypicalPersons.getTypicalRecruitTrackPro;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,6 +35,15 @@ public class AddTagsCommandTest {
 
     private Model model;
 
+    /**
+     * Helper method to generate a set of tags.
+     */
+    private Set<Tag> generateTags(String... tagNames) {
+        return Arrays.stream(tagNames)
+                .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalRecruitTrackPro(), new UserPrefs());
@@ -41,13 +52,11 @@ public class AddTagsCommandTest {
     @Test
     public void execute_addNewTags_success() {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Set<Tag> newTags = new HashSet<>();
-        newTags.add(new Tag("Java"));
-        newTags.add(new Tag("Spring"));
+        Set<Tag> newTags = generateTags("Java", "Spring");
 
         AddTagsCommand command = new AddTagsCommand(INDEX_FIRST_PERSON, newTags);
 
-        Person updatedPerson = new PersonBuilder(personToEdit).withAddedTags("Java", "Spring").build();
+        Person updatedPerson = new PersonBuilder(personToEdit).addTags("Java", "Spring").build();
 
         String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAGS_SUCCESS,
                 updatedPerson.getName(), newTags);
@@ -90,7 +99,7 @@ public class AddTagsCommandTest {
 
         Set<Tag> duplicateTags = new HashSet<>(personToEdit.getTags());
 
-        Person updatedPerson = new PersonBuilder(personToEdit).withAddedTags("Python").build();
+        Person updatedPerson = new PersonBuilder(personToEdit).addTags("Python").build();
 
         String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAGS_SUCCESS,
                 updatedPerson.getName(), newlyAddedTags)

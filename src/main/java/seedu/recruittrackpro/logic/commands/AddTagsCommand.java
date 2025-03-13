@@ -7,7 +7,6 @@ import static seedu.recruittrackpro.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
@@ -66,30 +65,6 @@ public class AddTagsCommand extends Command {
     }
 
     /**
-     * Retrieves the set of newly added tags by filtering out duplicates.
-     *
-     * @param currentTags The existing tags of the person.
-     * @return A set containing only new tags.
-     */
-    private Set<Tag> getNewlyAddedTags(Set<Tag> currentTags) {
-        return tagsToAdd.stream()
-                .filter(tag -> !currentTags.contains(tag))
-                .collect(Collectors.toSet());
-    }
-
-    /**
-     * Retrieves the set of duplicate tags that already exist in the person's tag list.
-     *
-     * @param currentTags The existing tags of the person.
-     * @return A set containing only duplicate tags.
-     */
-    private Set<Tag> getDuplicateTags(Set<Tag> currentTags) {
-        return tagsToAdd.stream()
-                .filter(currentTags::contains)
-                .collect(Collectors.toSet());
-    }
-
-    /**
      * Creates a new updated person with the added tags.
      *
      * @param targetPerson The original person.
@@ -136,8 +111,16 @@ public class AddTagsCommand extends Command {
         Person targetPerson = getTargetPerson(lastShownList);
         Set<Tag> currentTags = new HashSet<>(targetPerson.getTags());
 
-        Set<Tag> newlyAddedTags = getNewlyAddedTags(currentTags);
-        Set<Tag> duplicateTags = getDuplicateTags(currentTags);
+        Set<Tag> newlyAddedTags = new HashSet<>();
+        Set<Tag> duplicateTags = new HashSet<>();
+
+        for (Tag tag : tagsToAdd) {
+            if (currentTags.add(tag)) {
+                newlyAddedTags.add(tag);
+            } else {
+                duplicateTags.add(tag);
+            }
+        }
 
         if (newlyAddedTags.isEmpty()) {
             return new CommandResult(String.format(MESSAGE_DUPLICATE_TAGS, targetPerson.getName(), duplicateTags));
