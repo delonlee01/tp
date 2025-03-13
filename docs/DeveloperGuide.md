@@ -483,18 +483,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. User enters an invalid candidate index.
-    * 2a1. RecruitTrackPro displays an error message: “The selected candidate does not exist. Please check the index and try again.”
+* 1a. User enters an invalid candidate index.
+    * 1a1. RecruitTrackPro displays an error message: “The selected candidate does not exist. Please check the index and try again.”
 
       Use case ends.
 
-* 2b. User does not enter any tags.
-    * 2b1. RecruitTrackPro displays an error message: “Tag name cannot be empty. Please enter a valid tag.”
+* 1b. User does not enter any tags.
+    * 1b1. RecruitTrackPro displays an error message: “Tag name cannot be empty. Please enter a valid tag.”
 
       Use case ends.
 
-* 2c. User specifies a tag which does not exist the candidate's record.
-    * 2c1. RecruitTrackPro displays an error message: “Tag does not exist for this candidate. Please enter a valid tag.”
+* 1c. User specifies a tag which does not exist the candidate's record.
+    * 1c1. RecruitTrackPro displays an error message: “Tag does not exist for this candidate. Please enter a valid tag.”
 
       Use case ends.
 
