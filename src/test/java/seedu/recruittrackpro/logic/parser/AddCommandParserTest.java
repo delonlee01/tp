@@ -3,7 +3,7 @@ package seedu.recruittrackpro.logic.parser;
 import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.recruittrackpro.logic.commands.CommandTestUtil.COMMENT_DESC_EMPTY;
+import static seedu.recruittrackpro.logic.commands.CommandTestUtil.COMMENT_DESC_DND;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -20,6 +20,7 @@ import static seedu.recruittrackpro.logic.commands.CommandTestUtil.PREAMBLE_WHIT
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_COMMENT_DND;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -51,11 +52,12 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(BOB)
+                .withTags(VALID_TAG_FRIEND).withComment(VALID_COMMENT_DND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + COMMENT_DESC_EMPTY, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + COMMENT_DESC_DND, new AddCommand(expectedPerson));
 
 
         // multiple tags - all accepted

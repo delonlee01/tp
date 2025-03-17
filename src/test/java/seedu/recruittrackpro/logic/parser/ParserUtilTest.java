@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.person.Address;
+import seedu.recruittrackpro.model.person.Comment;
 import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Phone;
@@ -26,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = " ";
+    private static final String INVALID_COMMENT = "A".repeat(501);
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +35,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_COMMENT = "do not disturb";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +195,28 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseComment_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseComment((String) null));
+    }
+
+    @Test
+    public void parseComment_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseComment(INVALID_COMMENT));
+    }
+
+    @Test
+    public void parseComment_validValueWithoutWhitespace_returnsComment() throws Exception {
+        Comment expectedComment = new Comment(VALID_COMMENT);
+        assertEquals(expectedComment, ParserUtil.parseComment(VALID_COMMENT));
+    }
+
+    @Test
+    public void parseComment_validValueWithWhitespace_returnsTrimmedComment() throws Exception {
+        String commentWithWhitespace = WHITESPACE + VALID_COMMENT + WHITESPACE;
+        Comment expectedComment = new Comment(VALID_COMMENT);
+        assertEquals(expectedComment, ParserUtil.parseComment(commentWithWhitespace));
     }
 }
