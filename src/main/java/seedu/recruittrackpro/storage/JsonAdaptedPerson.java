@@ -30,7 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
-    private final String comment;
+    private String comment = "";
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -46,7 +46,9 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        this.comment = comment;
+        if (comment != null) {
+            this.comment = comment;
+        }
     }
 
     /**
@@ -108,9 +110,6 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        if (comment == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Comment.class.getSimpleName()));
-        }
         if (!Comment.isValidComment(comment)) {
             throw new IllegalValueException(Comment.MESSAGE_CONSTRAINTS);
         }

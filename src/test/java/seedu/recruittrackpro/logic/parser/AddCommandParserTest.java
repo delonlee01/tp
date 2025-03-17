@@ -3,6 +3,7 @@ package seedu.recruittrackpro.logic.parser;
 import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.recruittrackpro.logic.commands.CommandTestUtil.COMMENT_DESC_EMPTY;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -54,7 +55,7 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + COMMENT_DESC_EMPTY, new AddCommand(expectedPerson));
 
 
         // multiple tags - all accepted
