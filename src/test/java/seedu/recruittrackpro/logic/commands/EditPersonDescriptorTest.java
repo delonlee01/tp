@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_COMMENT_DND;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -54,6 +55,10 @@ public class EditPersonDescriptorTest {
 
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different comment -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withComment(VALID_COMMENT_DND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 
