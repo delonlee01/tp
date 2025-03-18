@@ -8,7 +8,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.recruittrackpro.commons.core.LogsCenter;
-import seedu.recruittrackpro.logic.commands.*;
+import seedu.recruittrackpro.logic.commands.AddCommand;
+import seedu.recruittrackpro.logic.commands.ClearCommand;
+import seedu.recruittrackpro.logic.commands.Command;
+import seedu.recruittrackpro.logic.commands.DeleteCommand;
+import seedu.recruittrackpro.logic.commands.EditCommand;
+import seedu.recruittrackpro.logic.commands.ExitCommand;
+import seedu.recruittrackpro.logic.commands.FindCommand;
+import seedu.recruittrackpro.logic.commands.HelpCommand;
+import seedu.recruittrackpro.logic.commands.ListCommand;
+import seedu.recruittrackpro.logic.commands.RemoveTagCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 
 /**

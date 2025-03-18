@@ -1,6 +1,5 @@
 package seedu.recruittrackpro.logic.parser;
 
-import static java.util.Objects.checkFromIndexSize;
 import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;

@@ -1,5 +1,9 @@
 package seedu.recruittrackpro.logic.commands;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
 import seedu.recruittrackpro.logic.Messages;
@@ -8,14 +12,11 @@ import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.tag.Tag;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.logic.commands.DeleteCommand.MESSAGE_EMPTY_LIST;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recruittrackpro.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 
 /**
  * Removes a specified tag from an existing candidate in the address book.
