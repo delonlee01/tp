@@ -2,7 +2,10 @@ package seedu.recruittrackpro.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
@@ -28,7 +31,8 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG);
 
         if (!hasAtLeastOnePrefixPresent(argMultimap, PREFIX_NAME, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
