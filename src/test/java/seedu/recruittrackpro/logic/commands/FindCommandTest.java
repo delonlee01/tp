@@ -15,10 +15,10 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.recruittrackpro.logic.predicates.NameContainsKeywordsPredicate;
 import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.ModelManager;
 import seedu.recruittrackpro.model.UserPrefs;
-import seedu.recruittrackpro.logic.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

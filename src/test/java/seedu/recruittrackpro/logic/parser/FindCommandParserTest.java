@@ -6,14 +6,11 @@ import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recruittrackpro.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.recruittrackpro.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.recruittrackpro.logic.commands.FindCommand;
-import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.logic.predicates.ContainsKeywordPredicate;
-import seedu.recruittrackpro.logic.predicates.NameContainsKeywordsPredicate;
+import seedu.recruittrackpro.model.person.Name;
 
 public class FindCommandParserTest {
 
