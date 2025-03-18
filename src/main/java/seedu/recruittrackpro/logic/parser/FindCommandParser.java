@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 
 import seedu.recruittrackpro.logic.commands.FindCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
-import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.logic.predicates.ContainsKeywordPredicate;
+import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.tag.Tag;
 
 /**

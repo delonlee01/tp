@@ -1,10 +1,10 @@
 package seedu.recruittrackpro.logic.commands;
 
-import java.util.function.Predicate;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.function.Predicate;
 
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
 import seedu.recruittrackpro.logic.Messages;
@@ -19,9 +19,10 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names or attributes contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all persons whose names or attributes contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: " + PREFIX_NAME +" or " + PREFIX_TAG + "KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: " + PREFIX_NAME + " or " + PREFIX_TAG + "KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice bob charlie";
 
     private final Predicate<Person> predicate;

@@ -33,8 +33,8 @@ public class StringUtil {
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
-        return preppedSentence.equalsIgnoreCase(preppedWord) ||
-                Arrays.stream(wordsInPreppedSentence)
+        return preppedSentence.equalsIgnoreCase(preppedWord)
+                || Arrays.stream(wordsInPreppedSentence)
                         .anyMatch(preppedWord::equalsIgnoreCase);
     }
 

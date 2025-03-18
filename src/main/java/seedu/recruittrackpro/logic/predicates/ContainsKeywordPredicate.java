@@ -8,6 +8,10 @@ import java.util.function.Predicate;
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
 import seedu.recruittrackpro.model.person.Person;
 
+/**
+ * Tests if a {@code Person}'s {@code Name} or {@code Tag} matches any of the given keywords.
+ * The keywords are matched based on the specified prefix ("n/" for names, "t/" for tags).
+ */
 public class ContainsKeywordPredicate implements Predicate<Person> {
     private final Predicate<Person> combinedPredicate;
     private final List<Predicate<Person>> predicatesList;
@@ -16,7 +20,7 @@ public class ContainsKeywordPredicate implements Predicate<Person> {
         predicatesList = new ArrayList<>();
 
         for (Object[] keywordsArray : keywordsArrays) {
-            if (((String[])keywordsArray[1]).length > 0)
+            if (((String[])keywordsArray[1]).length > 0) {
                 switch (keywordsArray[0].toString()) {
                 case "n/":
                     predicatesList.add(new NameContainsKeywordsPredicate(
@@ -24,6 +28,9 @@ public class ContainsKeywordPredicate implements Predicate<Person> {
                 case "t/":
                     predicatesList.add(new TagContainsKeywordsPredicate(
                             Arrays.asList((String[])keywordsArray[1])));
+                default:
+                    continue;
+                }
             }
         }
 
