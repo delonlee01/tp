@@ -2,21 +2,22 @@ package seedu.recruittrackpro.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import seedu.recruittrackpro.logic.commands.FindCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.person.Name;
-import seedu.recruittrackpro.model.person.NameContainsKeywordsPredicate;
-import seedu.recruittrackpro.model.person.TagContainsKeywordsPredicate;
+import seedu.recruittrackpro.logic.predicates.NameContainsKeywordsPredicate;
+import seedu.recruittrackpro.model.person.Person;
+import seedu.recruittrackpro.logic.predicates.ContainsKeywordPredicate;
+import seedu.recruittrackpro.logic.predicates.TagContainsKeywordsPredicate;
 import seedu.recruittrackpro.model.tag.Tag;
 
 /**
@@ -43,10 +44,15 @@ public class FindCommandParser implements Parser<FindCommand> {
         String[] nameKeywords = getNameKeywords(argMultimap);
         String[] tagKeywords = getTagKeywords(argMultimap);
 
-        NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
-        TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords));
+        ArrayList<Predicate<Person>> predicates = new ArrayList<>();
+        if (nameKeywords.length > 0) {
+            predicates.add(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        }
+        if (tagKeywords.length > 0) {
+            predicates.add(new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords)));
+        }
 
-        return new FindCommand(namePredicate.or(tagPredicate));
+        return new FindCommand(new ContainsKeywordPredicate(predicates.toArray(new Predicate[predicates.size()])));
     }
 
     /**

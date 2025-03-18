@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.recruittrackpro.logic.predicates.NameContainsKeywordsPredicate;
 import seedu.recruittrackpro.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {

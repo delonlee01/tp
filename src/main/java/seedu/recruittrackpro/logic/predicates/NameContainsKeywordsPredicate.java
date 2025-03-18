@@ -1,10 +1,11 @@
-package seedu.recruittrackpro.model.person;
+package seedu.recruittrackpro.logic.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.recruittrackpro.commons.util.StringUtil;
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
+import seedu.recruittrackpro.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.

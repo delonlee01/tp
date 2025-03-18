@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.recruittrackpro.commons.core.GuiSettings;
-import seedu.recruittrackpro.model.person.NameContainsKeywordsPredicate;
+import seedu.recruittrackpro.logic.predicates.NameContainsKeywordsPredicate;
 import seedu.recruittrackpro.testutil.RecruitTrackProBuilder;
 
 public class ModelManagerTest {

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recruittrackpro.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
+import seedu.recruittrackpro.logic.predicates.ContainsKeywordPredicate;
 import static seedu.recruittrackpro.testutil.Assert.assertThrows;
 import static seedu.recruittrackpro.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -24,7 +25,7 @@ import seedu.recruittrackpro.logic.commands.FindCommand;
 import seedu.recruittrackpro.logic.commands.HelpCommand;
 import seedu.recruittrackpro.logic.commands.ListCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
-import seedu.recruittrackpro.model.person.NameContainsKeywordsPredicate;
+import seedu.recruittrackpro.logic.predicates.NameContainsKeywordsPredicate;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.testutil.EditPersonDescriptorBuilder;
 import seedu.recruittrackpro.testutil.PersonBuilder;
@@ -74,7 +75,7 @@ public class RecruitTrackProParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + PREFIX_NAME + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new ContainsKeywordPredicate(new NameContainsKeywordsPredicate(keywords))), command);
     }
 
     @Test
