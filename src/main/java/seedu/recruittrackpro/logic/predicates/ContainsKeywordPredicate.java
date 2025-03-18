@@ -16,20 +16,27 @@ public class ContainsKeywordPredicate implements Predicate<Person> {
     private final Predicate<Person> combinedPredicate;
     private final List<Predicate<Person>> predicatesList;
 
+    /**
+     * Takes in Object[] of keywords using the first element to check type of prefix,
+     * and adds keywords to an ArrayList as corresponding predicates.
+     * Initialises a combinedPredicate using "or" on all predicates.
+     */
     public ContainsKeywordPredicate(Object[] ... keywordsArrays) {
         predicatesList = new ArrayList<>();
 
         for (Object[] keywordsArray : keywordsArrays) {
-            if (((String[])keywordsArray[1]).length > 0) {
+            if (((String[]) keywordsArray[1]).length > 0) {
                 switch (keywordsArray[0].toString()) {
                 case "n/":
                     predicatesList.add(new NameContainsKeywordsPredicate(
-                            Arrays.asList((String[])keywordsArray[1])));
+                            Arrays.asList((String[]) keywordsArray[1])));
+                    break;
                 case "t/":
                     predicatesList.add(new TagContainsKeywordsPredicate(
-                            Arrays.asList((String[])keywordsArray[1])));
+                            Arrays.asList((String[]) keywordsArray[1])));
+                    break;
                 default:
-                    continue;
+                    break;
                 }
             }
         }
