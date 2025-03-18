@@ -6,6 +6,7 @@ import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.recruittrackpro.logic.commands.FindCommand;
@@ -35,20 +36,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_TAG);
-        String name = argMultimap.getValue(PREFIX_NAME).orElse("");
-        String tag = argMultimap.getValue(PREFIX_TAG).orElse("");
-
-        if (name.isEmpty()) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
-
-        if (tag.isEmpty()) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-
-        String[] nameKeywords = name.split("\\s+");
-        String[] tagKeywords = tag.split("\\s+");
+        String[] nameKeywords = getNameKeywords(argMultimap);
+        String[] tagKeywords = getTagKeywords(argMultimap);
 
         NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
         TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords));
@@ -61,6 +50,32 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public boolean hasAtLeastOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix ... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    private boolean containsPrefix(ArgumentMultimap argumentMultimap, Prefix prefix) {
+        return argumentMultimap.getValue(prefix).isPresent();
+    }
+
+    private String[] getNameKeywords(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (!containsPrefix(argumentMultimap, PREFIX_NAME)) {
+            return new String[0];
+        }
+        argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME);
+        String name = argumentMultimap.getValue(PREFIX_NAME).orElse("");
+
+        if (name.isEmpty()) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+
+        return name.split("\\s+");
+    }
+
+    private String[] getTagKeywords(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (!containsPrefix(argumentMultimap, PREFIX_TAG)) {
+            return new String[0];
+        }
+        Set<Tag> tagList = ParserUtil.parseTags(argumentMultimap.getAllValues(PREFIX_TAG));
+        return tagList.stream().map(tag -> tag.tagName).toArray(String[]::new);
     }
 
 }
