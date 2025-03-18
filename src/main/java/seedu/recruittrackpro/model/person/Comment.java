@@ -26,7 +26,7 @@ public class Comment {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid comment.
      */
     public static boolean isValidComment(String test) {
         return test.matches(VALIDATION_REGEX);
