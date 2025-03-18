@@ -38,7 +38,7 @@ public class Messages {
      * @param invalidPrefixes The prefixes that were found but are not allowed.
      * @return A formatted error message indicating which prefixes are allowed and which ones are invalid.
      */
-    public static String getErrorMessageForAllowedPrefixes(Prefix[] allowedPrefixes, Prefix[] invalidPrefixes) {
+    public static String getErrorMessageForInvalidPrefixes(Prefix[] allowedPrefixes, Prefix[] invalidPrefixes) {
         assert invalidPrefixes.length > 0;
 
         Set<String> invalidFields = Stream.of(invalidPrefixes)

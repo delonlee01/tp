@@ -38,7 +38,7 @@ public class AddTagsCommandParser implements Parser<AddTagsCommand> {
         }
 
         // Verify that only allowed prefixes are used
-        argMultimap.verifyOnlyAllowedPrefixes(PREFIX_TAG);
+        argMultimap.verifyOnlyHavePrefixesFor(PREFIX_TAG);
 
         // Process valid tags
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
