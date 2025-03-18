@@ -74,6 +74,11 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder removeTags(String tag) {
+        this.tags.remove(new Tag(tag));
+        return this;
+    }
+
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
