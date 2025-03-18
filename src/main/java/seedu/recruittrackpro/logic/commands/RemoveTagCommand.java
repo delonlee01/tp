@@ -8,6 +8,7 @@ import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.tag.Tag;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -52,8 +53,10 @@ public class RemoveTagCommand extends Command {
      * @return A new Person object with updated tags.
      */
     private Person createUpdatedPerson(Person targetPerson, Tag tagToRemove) throws CommandException {
-        Set<Tag> updatedTags = targetPerson.getTags();
-        if (!updatedTags.remove(tagToRemove)) {
+        Set<Tag> updatedTags = new HashSet<>(targetPerson.getTags());
+        if (updatedTags.contains(tagToRemove)) {
+            updatedTags.remove(tagToRemove);
+        } else {
             throw new CommandException(MESSAGE_TAG_NOT_IN_LIST);
         }
         return new Person(targetPerson.getName(), targetPerson.getPhone(), targetPerson.getEmail(),
