@@ -12,6 +12,7 @@ import seedu.recruittrackpro.logic.commands.FindCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.NameContainsKeywordsPredicate;
+import seedu.recruittrackpro.model.person.TagContainsKeywordsPredicate;
 import seedu.recruittrackpro.model.tag.Tag;
 
 /**
@@ -49,8 +50,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         String[] nameKeywords = name.split("\\s+");
         String[] tagKeywords = tag.split("\\s+");
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords))
-        || new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords)));
+        NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+        TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords));
+
+        return new FindCommand(namePredicate.or(tagPredicate));
     }
 
     /**
