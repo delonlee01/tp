@@ -36,12 +36,21 @@ public class AddTagsCommandTest {
     private Model model;
 
     /**
-     * Helper method to generate a set of tags.
+     * Generates a set of tags
      */
     private Set<Tag> generateTags(String... tagNames) {
         return Arrays.stream(tagNames)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Formats a set of tags into a string representation: ["Tag1", "Tag2"]
+     */
+    private static String formatTags(Set<Tag> tags) {
+        return tags.stream()
+                .map(tag -> "\"" + tag.toString().replaceAll("^\\[|\\]$", "") + "\"")
+                .collect(Collectors.joining(", ", "[", "]"));
     }
 
     @BeforeEach
@@ -58,8 +67,10 @@ public class AddTagsCommandTest {
 
         Person updatedPerson = new PersonBuilder(personToEdit).addTags("Java", "Spring").build();
 
+        String formattedNewTags = formatTags(newTags);
+
         String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAGS_SUCCESS,
-                updatedPerson.getName(), newTags);
+                updatedPerson.getName(), formattedNewTags);
 
         Model expectedModel = new ModelManager(new RecruitTrackPro(model.getRecruitTrackPro()), new UserPrefs());
         expectedModel.setPerson(personToEdit, updatedPerson);
@@ -71,12 +82,13 @@ public class AddTagsCommandTest {
     public void execute_addDuplicateTags_onlyShowDuplicates() {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Set<Tag> duplicateTags = new HashSet<>(personToEdit.getTags());
+        String formattedDuplicateTags = formatTags(duplicateTags);
 
         AddTagsCommand command = new AddTagsCommand(INDEX_FIRST_PERSON, duplicateTags);
         String expectedMessage = String.format(
                 AddTagsCommand.MESSAGE_DUPLICATE_TAGS,
                 personToEdit.getName(),
-                duplicateTags
+                formattedDuplicateTags
         );
 
         Model expectedModel = new ModelManager(new RecruitTrackPro(model.getRecruitTrackPro()), new UserPrefs());
@@ -94,15 +106,17 @@ public class AddTagsCommandTest {
         AddTagsCommand command = new AddTagsCommand(INDEX_FIRST_PERSON, mixedTags);
 
         Set<Tag> newlyAddedTags = generateTags("Python");
+        String formattedNewTags = formatTags(newlyAddedTags);
 
         Set<Tag> duplicateTags = new HashSet<>(personToEdit.getTags());
+        String formattedDuplicateTags = formatTags(duplicateTags);
 
         Person updatedPerson = new PersonBuilder(personToEdit).addTags("Python").build();
 
         String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAGS_SUCCESS,
-                updatedPerson.getName(), newlyAddedTags)
+                updatedPerson.getName(), formattedNewTags)
                 + "\n" + String.format(AddTagsCommand.MESSAGE_DUPLICATE_TAGS,
-                updatedPerson.getName(), duplicateTags);
+                updatedPerson.getName(), formattedDuplicateTags);
 
         Model expectedModel = new ModelManager(new RecruitTrackPro(model.getRecruitTrackPro()), new UserPrefs());
         expectedModel.setPerson(personToEdit, updatedPerson);
