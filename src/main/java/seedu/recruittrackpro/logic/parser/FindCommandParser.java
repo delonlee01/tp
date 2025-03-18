@@ -5,19 +5,13 @@ import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import seedu.recruittrackpro.logic.commands.FindCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.person.Name;
-import seedu.recruittrackpro.logic.predicates.NameContainsKeywordsPredicate;
-import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.logic.predicates.ContainsKeywordPredicate;
-import seedu.recruittrackpro.logic.predicates.TagContainsKeywordsPredicate;
 import seedu.recruittrackpro.model.tag.Tag;
 
 /**
@@ -41,18 +35,10 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = getNameKeywords(argMultimap);
-        String[] tagKeywords = getTagKeywords(argMultimap);
+        Object[] nameKeywords = getNameKeywords(argMultimap);
+        Object[] tagKeywords = getTagKeywords(argMultimap);
 
-        ArrayList<Predicate<Person>> predicates = new ArrayList<>();
-        if (nameKeywords.length > 0) {
-            predicates.add(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        }
-        if (tagKeywords.length > 0) {
-            predicates.add(new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords)));
-        }
-
-        return new FindCommand(new ContainsKeywordPredicate(predicates.toArray(new Predicate[predicates.size()])));
+        return new FindCommand(new ContainsKeywordPredicate(nameKeywords, tagKeywords));
     }
 
     /**
@@ -66,26 +52,32 @@ public class FindCommandParser implements Parser<FindCommand> {
         return argumentMultimap.getValue(prefix).isPresent();
     }
 
-    private String[] getNameKeywords(ArgumentMultimap argumentMultimap) throws ParseException {
-        if (!containsPrefix(argumentMultimap, PREFIX_NAME)) {
-            return new String[0];
-        }
-        argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME);
-        String name = argumentMultimap.getValue(PREFIX_NAME).orElse("");
+    private Object[] getNameKeywords(ArgumentMultimap argumentMultimap) throws ParseException {
+        Object[] nameKeywordArray = {PREFIX_NAME, new String[0]};
 
-        if (name.isEmpty()) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (containsPrefix(argumentMultimap, PREFIX_NAME)) {
+            argumentMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME);
+            String name = argumentMultimap.getValue(PREFIX_NAME).orElse("");
+
+            if (name.isEmpty()) {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
+
+            nameKeywordArray[1] = name.split("\\s+");
         }
 
-        return name.split("\\s+");
+        return nameKeywordArray;
     }
 
-    private String[] getTagKeywords(ArgumentMultimap argumentMultimap) throws ParseException {
-        if (!containsPrefix(argumentMultimap, PREFIX_TAG)) {
-            return new String[0];
+    private Object[] getTagKeywords(ArgumentMultimap argumentMultimap) throws ParseException {
+        Object[] tagKeywordArray = {PREFIX_TAG, new String[0]};
+
+        if (containsPrefix(argumentMultimap, PREFIX_TAG)) {
+            Set<Tag> tagList = ParserUtil.parseTags(argumentMultimap.getAllValues(PREFIX_TAG));
+            tagKeywordArray[1] = tagList.stream().map(tag -> tag.tagName).toArray(String[]::new);
         }
-        Set<Tag> tagList = ParserUtil.parseTags(argumentMultimap.getAllValues(PREFIX_TAG));
-        return tagList.stream().map(tag -> tag.tagName).toArray(String[]::new);
+
+        return tagKeywordArray;
     }
 
 }
