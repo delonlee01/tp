@@ -47,7 +47,7 @@ public class RemoveTagCommand extends Command {
     }
 
     /**
-     * Creates a new updated person with the added tags.
+     * Creates a new person with the specified tags removed.
      *
      * @param targetPerson The original person.
      * @param tagToRemove The tag to be removed.
