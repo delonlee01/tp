@@ -1,7 +1,6 @@
 package seedu.recruittrackpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.recruittrackpro.logic.commands.DeleteCommand.MESSAGE_EMPTY_LIST;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recruittrackpro.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -31,6 +30,7 @@ public class RemoveTagCommand extends Command {
             + PREFIX_TAG + "Java Developer";
     public static final String MESSAGE_REMOVE_TAGS_SUCCESS = "Tag removed from %1$s: %2$s";
     public static final String MESSAGE_TAG_NOT_IN_LIST = "Tag specified is not in the persons tag list.";
+    public static final String MESSAGE_EMPTY_LIST = "No candidates to edit! The displayed list is empty.";
 
     private final Index targetIndex;
     private final Tag tagToRemove;
