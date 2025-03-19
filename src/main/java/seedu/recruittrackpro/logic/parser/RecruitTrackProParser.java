@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import seedu.recruittrackpro.commons.core.LogsCenter;
 import seedu.recruittrackpro.logic.commands.AddCommand;
+import seedu.recruittrackpro.logic.commands.AddTagsCommand;
 import seedu.recruittrackpro.logic.commands.ClearCommand;
 import seedu.recruittrackpro.logic.commands.Command;
 import seedu.recruittrackpro.logic.commands.DeleteCommand;
@@ -55,6 +56,9 @@ public class RecruitTrackProParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case AddTagsCommand.COMMAND_WORD:
+            return new AddTagsCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

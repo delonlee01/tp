@@ -7,6 +7,7 @@ import static seedu.recruittrackpro.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
@@ -87,16 +88,25 @@ public class AddTagsCommand extends Command {
      * @return A formatted success message.
      */
     private String constructResultMessage(Person targetPerson, Set<Tag> newlyAddedTags, Set<Tag> duplicateTags) {
+        String formattedNewTags = formatTags(newlyAddedTags);
         StringBuilder resultMessage = new StringBuilder();
-        resultMessage.append(String.format(MESSAGE_ADD_TAGS_SUCCESS, targetPerson.getName(), newlyAddedTags));
+        resultMessage.append(String.format(MESSAGE_ADD_TAGS_SUCCESS, targetPerson.getName(), formattedNewTags));
 
         if (!duplicateTags.isEmpty()) {
+            String formattedDuplicateTags = formatTags(duplicateTags);
             resultMessage.append("\n").append(String.format(MESSAGE_DUPLICATE_TAGS,
-                    targetPerson.getName(),
-                    duplicateTags)
-            );
+                    targetPerson.getName(), formattedDuplicateTags));
         }
         return resultMessage.toString();
+    }
+
+    /**
+     * Formats a set of tags into a string representation: ["Tag1", "Tag2"]
+     */
+    private static String formatTags(Set<Tag> tags) {
+        return tags.stream()
+                .map(tag -> "\"" + tag.toString().replaceAll("^[\\[]|[\\]]$", "") + "\"")
+                .collect(Collectors.joining(", ", "[", "]"));
     }
 
     @Override
@@ -123,7 +133,9 @@ public class AddTagsCommand extends Command {
         }
 
         if (newlyAddedTags.isEmpty()) {
-            return new CommandResult(String.format(MESSAGE_DUPLICATE_TAGS, targetPerson.getName(), duplicateTags));
+            return new CommandResult(
+                    String.format(MESSAGE_DUPLICATE_TAGS, targetPerson.getName(), formatTags(duplicateTags))
+            );
         }
 
         Person updatedPerson = createUpdatedPerson(targetPerson, newlyAddedTags, currentTags);

@@ -76,4 +76,21 @@ public class ArgumentMultimap {
         }
     }
 
+    /**
+     * Throws a {@code ParseException} if any prefixes in {@code argMultimap} are not within the allowed prefixes.
+     *
+     * @param validPrefixes The prefixes that are permitted.
+     * @throws ParseException If any invalid prefixes are found in {@code argMultimap}.
+     */
+    public void verifyOnlyHavePrefixesFor(Prefix... validPrefixes) throws ParseException {
+        Prefix[] invalidPrefixes = argMultimap.keySet().stream()
+                .filter(prefix -> !prefix.getPrefix().isEmpty()) // Exclude empty prefix
+                .filter(prefix -> Stream.of(validPrefixes).noneMatch(prefix::equals))
+                .toArray(Prefix[]::new);
+
+        if (invalidPrefixes.length > 0) {
+            throw new ParseException(Messages.getErrorMessageForInvalidPrefixes(validPrefixes, invalidPrefixes));
+        }
+    }
+
 }

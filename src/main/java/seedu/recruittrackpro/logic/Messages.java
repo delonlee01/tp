@@ -32,6 +32,29 @@ public class Messages {
     }
 
     /**
+     * Returns an error message indicating the invalid prefixes used and the allowed prefixes.
+     *
+     * @param allowedPrefixes The prefixes that are permitted.
+     * @param invalidPrefixes The prefixes that were found but are not allowed.
+     * @return A formatted error message indicating which prefixes are allowed and which ones are invalid.
+     */
+    public static String getErrorMessageForInvalidPrefixes(Prefix[] allowedPrefixes, Prefix[] invalidPrefixes) {
+        assert invalidPrefixes.length > 0;
+
+        Set<String> invalidFields = Stream.of(invalidPrefixes)
+                .map(Prefix::toString)
+                .collect(Collectors.toSet());
+
+        Set<String> allowedFields = Stream.of(allowedPrefixes)
+                .map(Prefix::toString)
+                .collect(Collectors.toSet());
+
+        return "Invalid prefixes detected: " + String.join(" ", invalidFields)
+                + ". Only the following prefixes are allowed: " + String.join(" ", allowedFields) + ".";
+    }
+
+
+    /**
      * Formats the {@code person} for display to the user.
      */
     public static String format(Person person) {
