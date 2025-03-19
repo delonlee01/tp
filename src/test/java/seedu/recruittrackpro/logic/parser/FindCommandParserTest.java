@@ -49,7 +49,8 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " " + PREFIX_TAG + "friend " + PREFIX_TAG + "neighbour", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " " + PREFIX_TAG + " \n friend "  + PREFIX_TAG + "\t neighbour\t", expectedFindCommand);
+        assertParseSuccess(parser, " " + PREFIX_TAG + " \n friend "
+                + PREFIX_TAG + "\t neighbour\t", expectedFindCommand);
     }
 
 }

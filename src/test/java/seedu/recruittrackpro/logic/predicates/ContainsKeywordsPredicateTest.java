@@ -1,19 +1,16 @@
 package seedu.recruittrackpro.logic.predicates;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Predicate;
-
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import seedu.recruittrackpro.commons.util.ToStringBuilder;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
-import seedu.recruittrackpro.model.person.Person;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
 import seedu.recruittrackpro.testutil.PersonBuilder;
 
 public class ContainsKeywordsPredicateTest {
