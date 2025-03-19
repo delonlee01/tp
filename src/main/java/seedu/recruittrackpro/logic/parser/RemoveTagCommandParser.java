@@ -22,7 +22,6 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
     public RemoveTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
-        System.out.println("PARSE");
         if (argMultimap.getValue(PREFIX_TAG).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveTagCommand.MESSAGE_USAGE));
         }
