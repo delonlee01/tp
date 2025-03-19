@@ -74,6 +74,10 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Removes the specified {@code tags} from the existing set of tags for the {@code Person} being built,
+     * preserving previously added tags.
+     */
     public PersonBuilder removeTags(String tag) {
         this.tags.remove(new Tag(tag));
         return this;

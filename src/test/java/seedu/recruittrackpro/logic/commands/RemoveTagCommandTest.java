@@ -17,9 +17,6 @@ import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.tag.Tag;
 import seedu.recruittrackpro.testutil.PersonBuilder;
 
-import java.util.Set;
-
-
 public class RemoveTagCommandTest {
     private Model model = new ModelManager(getTypicalRecruitTrackPro(), new UserPrefs());
 
