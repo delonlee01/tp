@@ -90,8 +90,8 @@ public class ContainsKeywordsPredicateTest {
 
         // Keywords match phone, email and address, but does not match tag
         predicate =
-                new ContainsKeywordsPredicate(new Object[]{PREFIX_TAG,
-                        new String[]{"Alice", "12345", "alice@email.com", "Main", "Street"}});
+                new ContainsKeywordsPredicate(new Object[]
+                        {PREFIX_TAG, new String[]{"Alice", "12345", "alice@email.com", "Main", "Street"}});
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street")
                 .withTags("friend", "neighbour").build()));
@@ -106,8 +106,10 @@ public class ContainsKeywordsPredicateTest {
         ContainsKeywordsPredicate predicate =
                 new ContainsKeywordsPredicate(firstKeywordsArray, secondKeywordsArray);
 
-        NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(Arrays.asList("friends", "neighbour"));
+        NameContainsKeywordsPredicate namePredicate =
+                new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        TagContainsKeywordsPredicate tagPredicate =
+                new TagContainsKeywordsPredicate(Arrays.asList("friends", "neighbour"));
 
         List<String> predicatesList = List.of(namePredicate.toString(), tagPredicate.toString());
 
