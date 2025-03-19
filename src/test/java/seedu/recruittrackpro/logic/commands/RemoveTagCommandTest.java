@@ -1,5 +1,6 @@
 package seedu.recruittrackpro.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -90,5 +91,16 @@ public class RemoveTagCommandTest {
 
         // Different type -> returns false
         assertFalse(removeTagCommand1.equals(5));
+    }
+
+    @Test
+    public void toStringTest() {
+        Index index = Index.fromOneBased(1);
+        Tag tag = new Tag("friends");
+        RemoveTagCommand removeTagCommand = new RemoveTagCommand(index, tag);
+
+        String expectedString = "seedu.recruittrackpro.logic.commands.RemoveTagCommand"
+                + "{targetIndex=" + index + ", tagToRemove=" + tag + "}";
+        assertEquals(expectedString, removeTagCommand.toString());
     }
 }
