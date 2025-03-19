@@ -24,7 +24,7 @@ public class RemoveTagCommandTest {
     private Model model = new ModelManager(getTypicalRecruitTrackPro(), new UserPrefs());
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidIndexFilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         RemoveTagCommand removeTagCommand = new RemoveTagCommand(outOfBoundIndex, new Tag("test"));
 

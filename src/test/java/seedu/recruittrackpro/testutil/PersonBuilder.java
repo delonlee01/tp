@@ -74,10 +74,7 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Removes the specified {@code tags} from the existing set of tags for the {@code Person} being built,
-     * preserving previously added tags.
-     */
+
     /**
      * Removes a specified tag from the person's tag list.
      *
