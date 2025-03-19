@@ -78,6 +78,12 @@ public class PersonBuilder {
      * Removes the specified {@code tags} from the existing set of tags for the {@code Person} being built,
      * preserving previously added tags.
      */
+    /**
+     * Removes a specified tag from the person's tag list.
+     *
+     * @param tag The tag to be removed.
+     * @return The updated PersonBuilder instance.
+     */
     public PersonBuilder removeTags(String tag) {
         this.tags.remove(new Tag(tag));
         return this;
