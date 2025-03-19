@@ -2,6 +2,7 @@ package seedu.recruittrackpro.logic.predicates;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -12,7 +13,7 @@ import seedu.recruittrackpro.model.person.Person;
  * Tests if a {@code Person}'s {@code Name} or {@code Tag} matches any of the given keywords.
  * The keywords are matched based on the specified prefix ("n/" for names, "t/" for tags).
  */
-public class ContainsKeywordPredicate implements Predicate<Person> {
+public class ContainsKeywordsPredicate implements Predicate<Person> {
     private final Predicate<Person> combinedPredicate;
     private final List<Predicate<Person>> predicatesList;
 
@@ -21,11 +22,12 @@ public class ContainsKeywordPredicate implements Predicate<Person> {
      * and adds keywords to an ArrayList as corresponding predicates.
      * Initialises a combinedPredicate using "or" on all predicates.
      */
-    public ContainsKeywordPredicate(Object[] ... keywordsArrays) {
+    public ContainsKeywordsPredicate(Object[] ... keywordsArrays) {
         predicatesList = new ArrayList<>();
 
         for (Object[] keywordsArray : keywordsArrays) {
-            if (((String[]) keywordsArray[1]).length > 0) {
+            if (keywordsArray[1] instanceof String[]
+                    && ((String[]) keywordsArray[1]).length > 0) {
                 switch (keywordsArray[0].toString()) {
                 case "n/":
                     predicatesList.add(new NameContainsKeywordsPredicate(
@@ -41,7 +43,8 @@ public class ContainsKeywordPredicate implements Predicate<Person> {
             }
         }
 
-        Predicate<Person> result = predicatesList.get(0);
+        Predicate<Person> result = predicatesList.isEmpty()
+                ? new NameContainsKeywordsPredicate(Collections.emptyList()):predicatesList.get(0);
         for (int i = 1; i < predicatesList.size(); i++) {
             result = result.or(predicatesList.get(i));
         }
@@ -60,11 +63,11 @@ public class ContainsKeywordPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ContainsKeywordPredicate)) {
+        if (!(other instanceof ContainsKeywordsPredicate)) {
             return false;
         }
 
-        ContainsKeywordPredicate otherContainsKeywordPredicate = (ContainsKeywordPredicate) other;
+        ContainsKeywordsPredicate otherContainsKeywordPredicate = (ContainsKeywordsPredicate) other;
         return predicatesList.size() == otherContainsKeywordPredicate.predicatesList.size()
                 && predicatesList.containsAll(otherContainsKeywordPredicate.predicatesList);
     }
@@ -72,10 +75,13 @@ public class ContainsKeywordPredicate implements Predicate<Person> {
     @Override
     public String toString() {
         ToStringBuilder stringBuilder = new ToStringBuilder(this);
+        List<String> predicatesAsString = new ArrayList<>();
 
         for (Predicate<Person> predicate : predicatesList) {
-            stringBuilder.add("predicates", predicate.toString());
+            predicatesAsString.add(predicate.toString());
         }
+
+        stringBuilder.add("predicates", predicatesAsString);
 
         return stringBuilder.toString();
     }

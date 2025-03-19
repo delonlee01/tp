@@ -1,4 +1,4 @@
-package seedu.recruittrackpro.model.person;
+package seedu.recruittrackpro.logic.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.recruittrackpro.logic.predicates.NameContainsKeywordsPredicate;
 import seedu.recruittrackpro.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {

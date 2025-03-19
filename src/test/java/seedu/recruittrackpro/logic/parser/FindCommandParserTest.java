@@ -10,7 +10,7 @@ import static seedu.recruittrackpro.logic.parser.CommandParserTestUtil.assertPar
 import org.junit.jupiter.api.Test;
 
 import seedu.recruittrackpro.logic.commands.FindCommand;
-import seedu.recruittrackpro.logic.predicates.ContainsKeywordPredicate;
+import seedu.recruittrackpro.logic.predicates.ContainsKeywordsPredicate;
 import seedu.recruittrackpro.model.person.Name;
 
 public class FindCommandParserTest {
@@ -34,7 +34,7 @@ public class FindCommandParserTest {
     public void parse_validNameArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         Object[] nameKeywords = {PREFIX_NAME, new String[]{"Alice", "Bob"}};
-        FindCommand expectedFindCommand = new FindCommand(new ContainsKeywordPredicate(nameKeywords));
+        FindCommand expectedFindCommand = new FindCommand(new ContainsKeywordsPredicate(nameKeywords));
         assertParseSuccess(parser, " " + PREFIX_NAME + "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -44,12 +44,12 @@ public class FindCommandParserTest {
     @Test
     public void parse_validTagArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        Object[] tagKeywords = {PREFIX_TAG, new String[]{"friend"}};
-        FindCommand expectedFindCommand = new FindCommand(new ContainsKeywordPredicate(tagKeywords));
-        assertParseSuccess(parser, " " + PREFIX_TAG + "friend", expectedFindCommand);
+        Object[] tagKeywords = {PREFIX_TAG, new String[]{"friend", "neighbour"}};
+        FindCommand expectedFindCommand = new FindCommand(new ContainsKeywordsPredicate(tagKeywords));
+        assertParseSuccess(parser, " " + PREFIX_TAG + "friend " + PREFIX_TAG + "neighbour", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " " + PREFIX_TAG + " \n friend \n \t  \t", expectedFindCommand);
+        assertParseSuccess(parser, " " + PREFIX_TAG + " \n friend "  + PREFIX_TAG + "\t neighbour\t", expectedFindCommand);
     }
 
 }
