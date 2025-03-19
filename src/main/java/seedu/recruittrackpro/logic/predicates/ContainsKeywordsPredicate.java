@@ -44,7 +44,7 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
         }
 
         Predicate<Person> result = predicatesList.isEmpty()
-                ? new NameContainsKeywordsPredicate(Collections.emptyList()):predicatesList.get(0);
+                ? new NameContainsKeywordsPredicate(Collections.emptyList()) : predicatesList.get(0);
         for (int i = 1; i < predicatesList.size(); i++) {
             result = result.or(predicatesList.get(i));
         }
