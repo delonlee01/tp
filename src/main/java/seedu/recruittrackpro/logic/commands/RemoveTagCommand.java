@@ -60,7 +60,7 @@ public class RemoveTagCommand extends Command {
             throw new CommandException(MESSAGE_TAG_NOT_IN_LIST);
         }
         return new Person(targetPerson.getName(), targetPerson.getPhone(), targetPerson.getEmail(),
-                targetPerson.getAddress(), updatedTags);
+                targetPerson.getAddress(), updatedTags, targetPerson.getComment());
     }
 
     @Override

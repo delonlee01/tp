@@ -16,7 +16,7 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * and returns a RemoveTagCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public RemoveTagCommand parse(String args) throws ParseException {
