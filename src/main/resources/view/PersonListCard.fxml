@@ -37,7 +37,7 @@
           </VBox>
           <Separator orientation="VERTICAL" GridPane.columnIndex="1" />
           <VBox GridPane.columnIndex="2">
-            <Label styleClass="cell_medium_label">Notes:</Label>
+            <Label styleClass="cell_medium_label">Comments:</Label>
             <Label fx:id="comment" styleClass="cell_small_label" text="\$comment" wrapText="true" />
           </VBox>
         </children>
