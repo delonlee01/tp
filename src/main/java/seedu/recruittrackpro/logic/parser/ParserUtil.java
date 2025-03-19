@@ -10,6 +10,7 @@ import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.commons.util.StringUtil;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.person.Address;
+import seedu.recruittrackpro.model.person.Comment;
 import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Phone;
@@ -120,5 +121,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String comment} into a {@code Comment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code comment} is invalid.
+     */
+    public static Comment parseComment(String comment) throws ParseException {
+        requireNonNull(comment);
+        String trimmedComment = comment.trim();
+        if (!Comment.isValidComment(trimmedComment)) {
+            throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
+        }
+        return new Comment(trimmedComment);
     }
 }

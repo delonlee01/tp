@@ -2,6 +2,7 @@ package seedu.recruittrackpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -22,6 +23,7 @@ import seedu.recruittrackpro.logic.Messages;
 import seedu.recruittrackpro.logic.commands.exceptions.CommandException;
 import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.person.Address;
+import seedu.recruittrackpro.model.person.Comment;
 import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Person;
@@ -43,7 +45,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_COMMENT + "COMMENT]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -100,8 +103,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Comment updatedComment = editPersonDescriptor.getComment().orElse(personToEdit.getComment());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedComment);
     }
 
     @Override
@@ -138,6 +142,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Comment comment;
 
         public EditPersonDescriptor() {}
 
@@ -151,13 +156,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setComment(toCopy.comment);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, comment);
         }
 
         public void setName(Name name) {
@@ -209,6 +215,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setComment(Comment comment) {
+            this.comment = comment;
+        }
+
+        public Optional<Comment> getComment() {
+            return Optional.ofNullable(comment);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -225,7 +239,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(comment, otherEditPersonDescriptor.comment);
         }
 
         @Override
@@ -236,6 +251,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("comment", comment)
                     .toString();
         }
     }

@@ -1,6 +1,7 @@
 package seedu.recruittrackpro.testutil;
 
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -37,6 +38,7 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        sb.append(PREFIX_COMMENT + person.getComment().value + " ");
         return sb.toString();
     }
 
@@ -52,11 +54,13 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG).append(" ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        descriptor.getComment().ifPresent(
+                comment -> sb.append(PREFIX_COMMENT).append(comment.value).append(" "));
         return sb.toString();
     }
 }

@@ -76,7 +76,7 @@ public class AddTagsCommand extends Command {
     private Person createUpdatedPerson(Person targetPerson, Set<Tag> newlyAddedTags, Set<Tag> currentTags) {
         currentTags.addAll(newlyAddedTags);
         return new Person(targetPerson.getName(), targetPerson.getPhone(),
-                targetPerson.getEmail(), targetPerson.getAddress(), currentTags);
+                targetPerson.getEmail(), targetPerson.getAddress(), currentTags, targetPerson.getComment());
     }
 
     /**

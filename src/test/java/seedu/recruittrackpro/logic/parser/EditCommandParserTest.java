@@ -3,9 +3,11 @@ package seedu.recruittrackpro.logic.parser;
 import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.recruittrackpro.logic.commands.CommandTestUtil.COMMENT_DESC_DND;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.recruittrackpro.logic.commands.CommandTestUtil.INVALID_COMMENT_DESC;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -16,6 +18,7 @@ import static seedu.recruittrackpro.logic.commands.CommandTestUtil.PHONE_DESC_BO
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_COMMENT_DND;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -39,6 +42,7 @@ import seedu.recruittrackpro.logic.Messages;
 import seedu.recruittrackpro.logic.commands.EditCommand;
 import seedu.recruittrackpro.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.recruittrackpro.model.person.Address;
+import seedu.recruittrackpro.model.person.Comment;
 import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Phone;
@@ -88,6 +92,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_COMMENT_DESC, Comment.MESSAGE_CONSTRAINTS); // invalid comment
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -107,11 +112,11 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + COMMENT_DESC_DND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withComment(VALID_COMMENT_DND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -159,6 +164,12 @@ public class EditCommandParserTest {
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // comment
+        userInput = targetIndex.getOneBased() + COMMENT_DESC_DND;
+        descriptor = new EditPersonDescriptorBuilder().withComment(VALID_COMMENT_DND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
