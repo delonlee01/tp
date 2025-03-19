@@ -3,6 +3,7 @@ package seedu.recruittrackpro.logic.parser;
 import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recruittrackpro.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.recruittrackpro.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -30,7 +31,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validNameArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         Object[] nameKeywords = {PREFIX_NAME, new String[]{"Alice", "Bob"}};
         FindCommand expectedFindCommand = new FindCommand(new ContainsKeywordPredicate(nameKeywords));
@@ -38,6 +39,17 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " " + PREFIX_NAME + " \n Alice \n \t Bob  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validTagArgs_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        Object[] tagKeywords = {PREFIX_TAG, new String[]{"friend"}};
+        FindCommand expectedFindCommand = new FindCommand(new ContainsKeywordPredicate(tagKeywords));
+        assertParseSuccess(parser, " " + PREFIX_TAG + "friend", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " " + PREFIX_TAG + " \n friend \n \t  \t", expectedFindCommand);
     }
 
 }
