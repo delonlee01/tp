@@ -15,9 +15,9 @@ import java.util.List;
 
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.logic.commands.exceptions.CommandException;
+import seedu.recruittrackpro.logic.predicates.NameContainsKeywordsPredicate;
 import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.RecruitTrackPro;
-import seedu.recruittrackpro.model.person.NameContainsKeywordsPredicate;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.testutil.EditPersonDescriptorBuilder;
 

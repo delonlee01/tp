@@ -29,13 +29,21 @@ public class StringUtil {
 
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+        return exactMatchIgnoreCase(preppedSentence, preppedWord)
+                || partialMatchIgnoreCase(wordsInPreppedSentence, preppedWord);
+    }
+
+    private static boolean exactMatchIgnoreCase(String sentence, String word) {
+        return sentence.equalsIgnoreCase(word);
+    }
+
+    private static boolean partialMatchIgnoreCase(String[] wordsInSentence, String word) {
+        return Arrays.stream(wordsInSentence).anyMatch(word::equalsIgnoreCase);
+
     }
 
     /**

@@ -24,7 +24,7 @@ import seedu.recruittrackpro.logic.commands.FindCommand;
 import seedu.recruittrackpro.logic.commands.HelpCommand;
 import seedu.recruittrackpro.logic.commands.ListCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
-import seedu.recruittrackpro.model.person.NameContainsKeywordsPredicate;
+import seedu.recruittrackpro.logic.predicates.ContainsKeywordsPredicate;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.testutil.EditPersonDescriptorBuilder;
 import seedu.recruittrackpro.testutil.PersonBuilder;
@@ -74,7 +74,8 @@ public class RecruitTrackProParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + PREFIX_NAME + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        Object[] nameKeywords = {PREFIX_NAME, keywords.toArray(new String[0])};
+        assertEquals(new FindCommand(new ContainsKeywordsPredicate(nameKeywords)), command);
     }
 
     @Test
