@@ -21,9 +21,10 @@ import seedu.recruittrackpro.model.tag.Tag;
  */
 public class RemoveTagCommand extends Command {
     public static final String COMMAND_WORD = "remove-tag";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes a specified tag from a candidate"
-            + " using the index number from the displayed person list. "
-            + "Specified tag will be removed from the person's existing tag list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes a specified tag from a candidate "
+            + "using the index number from the displayed person list. "
+            + "The specified tag will be removed from the person's existing tag list if it matches exactly, "
+            + "ignoring case sensitivity.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
