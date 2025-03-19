@@ -31,7 +31,6 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
             Index index = ParserUtil.parseIndex(preamble);
             String tagName = argMultimap.getValue(PREFIX_TAG).orElseThrow(() ->
                     new ParseException(Tag.MESSAGE_CONSTRAINTS));
-            System.out.println(preamble + index + tagName);
 
             return new RemoveTagCommand(index, new Tag(tagName));
         } catch (ParseException pe) {
