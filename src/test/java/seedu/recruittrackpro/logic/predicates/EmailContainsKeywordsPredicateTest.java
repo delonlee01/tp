@@ -1,14 +1,12 @@
 package seedu.recruittrackpro.logic.predicates;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.recruittrackpro.testutil.PersonBuilder;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EmailContainsKeywordsPredicateTest {
     @Test
@@ -19,8 +17,8 @@ public class EmailContainsKeywordsPredicateTest {
                 new EmailContainsKeywordsPredicate(List.of(new String[]{"johndoe@example.com"}));
         EmailContainsKeywordsPredicate predicate3 =
                 new EmailContainsKeywordsPredicate(List.of(new String[]{"johnny@example.com"}));
-        assertTrue(predicate1.equals(predicate2));
-        assertFalse(predicate1.equals(predicate3));
+        assertEquals(predicate1, predicate2);
+        assertNotEquals(predicate1, predicate3);
     }
 
     @Test
