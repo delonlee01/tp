@@ -14,7 +14,10 @@ import java.util.stream.Stream;
 import seedu.recruittrackpro.logic.commands.FindCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.logic.predicates.ContainsKeywordsPredicate;
+import seedu.recruittrackpro.model.person.Address;
+import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
+import seedu.recruittrackpro.model.person.Phone;
 import seedu.recruittrackpro.model.tag.Tag;
 
 /**
@@ -94,10 +97,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             String address = argumentMultimap.getValue(PREFIX_ADDRESS).orElse("");
 
             if (address.isEmpty()) {
-                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
             }
 
-            addressKeywordArray[1] = new String[]{address};
+            addressKeywordArray[1] = address.split("\\s+");
         }
         return addressKeywordArray;
     }
@@ -109,10 +112,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             String email = argumentMultimap.getValue(PREFIX_EMAIL).orElse("");
 
             if (email.isEmpty()) {
-                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
             }
 
-            emailKeywordArray[1] = new String[]{email};
+            emailKeywordArray[1] = email.split("\\s+");
 
         }
         return emailKeywordArray;
@@ -125,10 +128,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             String phone = argumentMultimap.getValue(PREFIX_PHONE).orElse("");
 
             if (phone.isEmpty()) {
-                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
             }
 
-            phoneKeywordArray[1] = new String[]{phone};
+            phoneKeywordArray[1] = phone.split("\\s+");
         }
 
         return phoneKeywordArray;

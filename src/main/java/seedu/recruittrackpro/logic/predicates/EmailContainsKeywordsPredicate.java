@@ -8,7 +8,7 @@ import seedu.recruittrackpro.commons.util.ToStringBuilder;
 import seedu.recruittrackpro.model.person.Person;
 
 /**
- * Tests that a {@code Person}'s {@code Tag} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Email} matches any of the keywords given.
  */
 public class EmailContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
