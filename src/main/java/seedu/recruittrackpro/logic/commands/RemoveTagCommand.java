@@ -62,7 +62,7 @@ public class RemoveTagCommand extends Command {
                 .orElse(null);
 
         if (tagToBeRemoved != null) {
-            updatedTags.remove(tagToBeRemoved);  
+            updatedTags.remove(tagToBeRemoved);
         } else {
             throw new CommandException(MESSAGE_TAG_NOT_IN_LIST);
         }
