@@ -11,6 +11,17 @@ import org.junit.jupiter.api.Test;
 import seedu.recruittrackpro.testutil.PersonBuilder;
 
 public class EmailContainsKeywordsPredicateTest {
+    @Test
+    public void equals() {
+        EmailContainsKeywordsPredicate predicate1 =
+                new EmailContainsKeywordsPredicate(List.of(new String[]{"johndoe@example.com"}));
+        EmailContainsKeywordsPredicate predicate2 =
+                new EmailContainsKeywordsPredicate(List.of(new String[]{"johndoe@example.com"}));
+        EmailContainsKeywordsPredicate predicate3 =
+                new EmailContainsKeywordsPredicate(List.of(new String[]{"johnny@example.com"}));
+        assertTrue(predicate1.equals(predicate2));
+        assertFalse(predicate1.equals(predicate3));
+    }
 
     @Test
     public void test_containEmailKeywords_returnsTrue() {

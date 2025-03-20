@@ -11,6 +11,17 @@ import org.junit.jupiter.api.Test;
 import seedu.recruittrackpro.testutil.PersonBuilder;
 
 public class PhoneContainsKeywordsPredicateTest {
+    @Test
+    public void equals() {
+        PhoneContainsKeywordsPredicate predicate1 =
+                new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}));
+        PhoneContainsKeywordsPredicate predicate2 =
+                new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}));
+        PhoneContainsKeywordsPredicate predicate3 =
+                new PhoneContainsKeywordsPredicate(List.of(new String[]{"23456789"}));
+        assertTrue(predicate1.equals(predicate2));
+        assertFalse(predicate1.equals(predicate3));
+    }
 
     @Test
     public void test_containPhoneKeywords_returnsTrue() {
