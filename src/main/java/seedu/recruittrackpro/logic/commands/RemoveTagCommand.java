@@ -55,11 +55,18 @@ public class RemoveTagCommand extends Command {
      */
     private Person createUpdatedPerson(Person targetPerson, Tag tagToRemove) throws CommandException {
         Set<Tag> updatedTags = new HashSet<>(targetPerson.getTags());
-        if (updatedTags.contains(tagToRemove)) {
-            updatedTags.remove(tagToRemove);
+
+        Tag tagToBeRemoved = updatedTags.stream()
+                .filter(tag -> tag.tagName.equalsIgnoreCase(tagToRemove.tagName))
+                .findFirst()
+                .orElse(null);
+
+        if (tagToBeRemoved != null) {
+            updatedTags.remove(tagToBeRemoved);  
         } else {
             throw new CommandException(MESSAGE_TAG_NOT_IN_LIST);
         }
+
         return new Person(targetPerson.getName(), targetPerson.getPhone(), targetPerson.getEmail(),
                 targetPerson.getAddress(), updatedTags, targetPerson.getComment());
     }
