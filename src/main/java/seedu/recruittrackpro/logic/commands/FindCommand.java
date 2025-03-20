@@ -15,7 +15,7 @@ import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.person.Person;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all persons in RecruitTrackPro whose names or attributes contain any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
@@ -26,10 +26,13 @@ public class FindCommand extends Command {
             + ": Finds all persons whose names or attributes contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: "
-            + PREFIX_NAME + " or " + PREFIX_TAG + " or " + PREFIX_ADDRESS
-            + " or " + PREFIX_EMAIL + " or " + PREFIX_PHONE
-            + "KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice bob charlie";
+            + PREFIX_NAME + " NAME [MORE_NAMES] or \n"
+            + PREFIX_TAG + " TAG [MORE_TAGS] or \n"
+            + PREFIX_ADDRESS + " ADDRESS [MORE_ADDRESSES] or \n"
+            + PREFIX_EMAIL + " EMAIL [MORE_EMAILS] or \n"
+            + PREFIX_PHONE + " PHONE [MORE_PHONES] \n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice bob charlie"
+            + " " + PREFIX_EMAIL + "alice@gmail.com bob@yahoo.com charlie@hotmail.com";
 
     private final Predicate<Person> predicate;
 
