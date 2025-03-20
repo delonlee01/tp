@@ -2,7 +2,6 @@ package seedu.recruittrackpro.logic.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -20,8 +19,11 @@ public class PhoneContainsKeywordsPredicateTest {
                 new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}));
         PhoneContainsKeywordsPredicate predicate3 =
                 new PhoneContainsKeywordsPredicate(List.of(new String[]{"23456789"}));
-        assertEquals(predicate1, predicate2);
-        assertNotEquals(predicate1, predicate3);
+        assertTrue(predicate1.equals(predicate1));
+        assertTrue(predicate1.equals(predicate2));
+        assertFalse(predicate1.equals(predicate3));
+        assertFalse(predicate1.equals("not a predicate"));
+        assertFalse(predicate1.equals(null));
     }
 
     @Test
