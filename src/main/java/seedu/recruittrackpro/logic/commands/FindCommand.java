@@ -1,7 +1,10 @@
 package seedu.recruittrackpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.function.Predicate;
@@ -13,7 +16,7 @@ import seedu.recruittrackpro.model.person.Person;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
@@ -22,7 +25,10 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all persons whose names or attributes contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: " + PREFIX_NAME + " or " + PREFIX_TAG + "KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: "
+            + PREFIX_NAME + " or " + PREFIX_TAG + " or " + PREFIX_ADDRESS
+            + " or " + PREFIX_EMAIL + " or " + PREFIX_PHONE
+            + "KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice bob charlie";
 
     private final Predicate<Person> predicate;
