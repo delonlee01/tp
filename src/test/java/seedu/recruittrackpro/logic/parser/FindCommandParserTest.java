@@ -49,7 +49,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         Object[] tagKeywords = {PREFIX_TAG, new String[]{"friend", "neighbour"}};
         FindCommand expectedFindCommand = new FindCommand(new ContainsKeywordsPredicate(tagKeywords));
-        assertParseSuccess(parser, " " + PREFIX_TAG + "friend " + PREFIX_TAG + "neighbour", expectedFindCommand);
+        assertParseSuccess(parser, " " + PREFIX_TAG + "friend neighbour", expectedFindCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " " + PREFIX_TAG + " \n friend "

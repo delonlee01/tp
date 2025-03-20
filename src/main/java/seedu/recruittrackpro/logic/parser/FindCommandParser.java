@@ -8,6 +8,8 @@ import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Arrays;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.recruittrackpro.logic.commands.FindCommand;
