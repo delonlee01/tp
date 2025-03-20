@@ -22,12 +22,12 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
      * and adds keywords to an ArrayList as corresponding predicates.
      * Initialises a combinedPredicate using "or" on all predicates.
      */
+    //nameKeywords, tagKeywords, addressKeywords, emailKeywords, phoneKeywords
     public ContainsKeywordsPredicate(Object[] ... keywordsArrays) {
         predicatesList = new ArrayList<>();
 
         for (Object[] keywordsArray : keywordsArrays) {
-            if (keywordsArray[1] instanceof String[]
-                    && ((String[]) keywordsArray[1]).length > 0) {
+            if (keywordsArray[1] instanceof String[] && ((String[]) keywordsArray[1]).length > 0) {
                 switch (keywordsArray[0].toString()) {
                 case "n/":
                     predicatesList.add(new NameContainsKeywordsPredicate(
@@ -35,6 +35,18 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
                     break;
                 case "t/":
                     predicatesList.add(new TagContainsKeywordsPredicate(
+                            Arrays.asList((String[]) keywordsArray[1])));
+                    break;
+                case "a/":
+                    predicatesList.add(new AddressContainsKeywordsPredicate(
+                            Arrays.asList((String[]) keywordsArray[1])));
+                    break;
+                case "e/":
+                    predicatesList.add(new EmailContainsKeywordsPredicate(
+                            Arrays.asList((String[]) keywordsArray[1])));
+                    break;
+                case "p/":
+                    predicatesList.add(new PhoneContainsKeywordsPredicate(
                             Arrays.asList((String[]) keywordsArray[1])));
                     break;
                 default:
@@ -45,6 +57,7 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
 
         Predicate<Person> result = predicatesList.isEmpty()
                 ? new NameContainsKeywordsPredicate(Collections.emptyList()) : predicatesList.get(0);
+
         for (int i = 1; i < predicatesList.size(); i++) {
             result = result.or(predicatesList.get(i));
         }

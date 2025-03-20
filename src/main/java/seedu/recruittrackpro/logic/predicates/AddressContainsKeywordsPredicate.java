@@ -8,19 +8,19 @@ import seedu.recruittrackpro.commons.util.ToStringBuilder;
 import seedu.recruittrackpro.model.person.Person;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Address} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Person> {
+public class AddressContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public AddressContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().value, keyword));
     }
 
     @Override
@@ -28,13 +28,15 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         if (other == this) {
             return true;
         }
+
         // instanceof handles nulls
-        if (!(other instanceof NameContainsKeywordsPredicate)) {
+        if (!(other instanceof AddressContainsKeywordsPredicate)) {
             return false;
         }
 
-        NameContainsKeywordsPredicate otherNameContainsKeywordsPredicate = (NameContainsKeywordsPredicate) other;
-        return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
+        AddressContainsKeywordsPredicate otherAddressContainsKeywordsPredicate =
+                (AddressContainsKeywordsPredicate) other;
+        return keywords.equals(otherAddressContainsKeywordsPredicate.keywords);
     }
 
     @Override
