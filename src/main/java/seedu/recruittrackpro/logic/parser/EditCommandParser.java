@@ -16,7 +16,7 @@ import java.util.Set;
 
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.logic.commands.EditCommand;
-import seedu.recruittrackpro.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.recruittrackpro.logic.descriptors.EditPersonDescriptor;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.tag.Tag;
 

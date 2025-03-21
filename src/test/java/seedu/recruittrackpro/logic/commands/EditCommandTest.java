@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.logic.Messages;
-import seedu.recruittrackpro.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.recruittrackpro.logic.descriptors.EditPersonDescriptor;
 import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.ModelManager;
 import seedu.recruittrackpro.model.RecruitTrackPro;
