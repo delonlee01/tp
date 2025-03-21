@@ -68,16 +68,21 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same name regardless of case-sensitivity.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+        if (otherPerson == null) {
+            return false;
+        }
+        if (this == otherPerson) {
             return true;
         }
 
-        return otherPerson != null
-                && (otherPerson.getName().equals(getName()) && otherPerson.getPhone().equals(getPhone()));
+        String thisName = getName().fullName;
+        String otherName = otherPerson.getName().fullName;
+
+        return thisName.equalsIgnoreCase(otherName) && getPhone().equals(otherPerson.getPhone());
     }
 
     /**
