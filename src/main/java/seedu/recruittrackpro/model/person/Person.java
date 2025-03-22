@@ -2,13 +2,10 @@ package seedu.recruittrackpro.model.person;
 
 import static seedu.recruittrackpro.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
-import seedu.recruittrackpro.model.tag.Tag;
+import seedu.recruittrackpro.model.tag.Tags;
 
 /**
  * Represents a Person in the address book.
@@ -23,19 +20,19 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Tags tags;
     private final Comment comment;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Comment comment) {
+    public Person(Name name, Phone phone, Email email, Address address, Tags tags, Comment comment) {
         requireAllNonNull(name, phone, email, address, tags, comment);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.tags = tags;
         this.comment = comment;
     }
 
@@ -55,12 +52,8 @@ public class Person {
         return address;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Tags getTags() {
+        return tags;
     }
 
     public Comment getComment() {

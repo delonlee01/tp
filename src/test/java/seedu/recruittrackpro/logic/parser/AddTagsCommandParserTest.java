@@ -11,6 +11,7 @@ import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.logic.commands.AddTagsCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.tag.Tag;
+import seedu.recruittrackpro.model.tag.Tags;
 
 /**
  * Contains unit tests for {@code AddTagsCommandParser}.
@@ -23,7 +24,7 @@ public class AddTagsCommandParserTest {
         String userInput = "1 t/Java";
         AddTagsCommand expectedCommand = new AddTagsCommand(
                 Index.fromOneBased(1),
-                Set.of(new Tag("Java"))
+                new Tags(Set.of(new Tag("Java")))
         );
 
         AddTagsCommand actualCommand = parser.parse(userInput);
@@ -35,7 +36,7 @@ public class AddTagsCommandParserTest {
         String userInput = "1 t/Java t/Python t/C++";
         AddTagsCommand expectedCommand = new AddTagsCommand(
                 Index.fromOneBased(1),
-                Set.of(new Tag("Java"), new Tag("Python"), new Tag("C++"))
+                new Tags(Set.of(new Tag("Java"), new Tag("Python"), new Tag("C++")))
         );
 
         AddTagsCommand actualCommand = parser.parse(userInput);
@@ -83,7 +84,7 @@ public class AddTagsCommandParserTest {
         String userInput = "1 t/Java  ";
         AddTagsCommand expectedCommand = new AddTagsCommand(
                 Index.fromOneBased(1),
-                Set.of(new Tag("Java"))
+                new Tags(Set.of(new Tag("Java")))
         );
 
         AddTagsCommand actualCommand = parser.parse(userInput);

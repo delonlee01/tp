@@ -8,7 +8,6 @@ import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.recruittrackpro.logic.commands.FindCommand;
@@ -18,7 +17,7 @@ import seedu.recruittrackpro.model.person.Address;
 import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Phone;
-import seedu.recruittrackpro.model.tag.Tag;
+import seedu.recruittrackpro.model.tag.Tags;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -84,8 +83,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         Object[] tagKeywordArray = {PREFIX_TAG, new String[0]};
 
         if (containsPrefix(argumentMultimap, PREFIX_TAG)) {
-            Set<Tag> tagList = ParserUtil.parseTags(argumentMultimap.getAllValues(PREFIX_TAG));
-            tagKeywordArray[1] = tagList.stream().map(tag -> tag.tagName).toArray(String[]::new);
+            Tags tags = ParserUtil.parseTags(argumentMultimap.getAllValues(PREFIX_TAG));
+            tagKeywordArray[1] = tags.toSet().stream().map(tag -> tag.tagName).toArray(String[]::new);
         }
         return tagKeywordArray;
     }

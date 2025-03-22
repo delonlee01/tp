@@ -7,13 +7,11 @@ import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.logic.commands.AddTagsCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
-import seedu.recruittrackpro.model.tag.Tag;
+import seedu.recruittrackpro.model.tag.Tags;
 
 /**
  * Parses input arguments and creates a new AddTagsCommand object
@@ -42,10 +40,7 @@ public class AddTagsCommandParser implements Parser<AddTagsCommand> {
 
         // Process valid tags
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        Set<Tag> tags = tagValues.stream()
-                .map(String::trim)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
+        Tags tags = Tags.fromListToTags(tagValues);
 
         if (tags.isEmpty()) {
             throw new ParseException(AddTagsCommand.MESSAGE_NO_TAGS_FOUND);

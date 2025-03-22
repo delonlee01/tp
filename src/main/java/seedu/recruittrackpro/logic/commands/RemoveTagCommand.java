@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recruittrackpro.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +14,7 @@ import seedu.recruittrackpro.logic.commands.exceptions.CommandException;
 import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.tag.Tag;
+import seedu.recruittrackpro.model.tag.Tags;
 
 /**
  * Removes a specified tag from an existing candidate in the address book.
@@ -54,21 +54,16 @@ public class RemoveTagCommand extends Command {
      * @return A new Person object with updated tags.
      */
     private Person createUpdatedPerson(Person targetPerson, Tag tagToRemove) throws CommandException {
-        Set<Tag> updatedTags = new HashSet<>(targetPerson.getTags());
+        Tags updatedTags = targetPerson.getTags();
 
-        Tag tagToBeRemoved = updatedTags.stream()
-                .filter(tag -> tag.tagName.equalsIgnoreCase(tagToRemove.tagName))
-                .findFirst()
-                .orElse(null);
-
-        if (tagToBeRemoved != null) {
-            updatedTags.remove(tagToBeRemoved);
-        } else {
+        if (!updatedTags.contains(tagToRemove)) {
             throw new CommandException(MESSAGE_TAG_NOT_IN_LIST);
         }
 
+        Tags newTags = updatedTags.removeTags(new Tags(Set.of(tagToRemove)));
+
         return new Person(targetPerson.getName(), targetPerson.getPhone(), targetPerson.getEmail(),
-                targetPerson.getAddress(), updatedTags, targetPerson.getComment());
+                targetPerson.getAddress(), newTags, targetPerson.getComment());
     }
 
     @Override

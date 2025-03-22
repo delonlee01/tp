@@ -10,7 +10,7 @@ import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new RemoveTagCommand object
+ * Parses input arguments and creates a new RemoveTagCommand object.
  */
 public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
 

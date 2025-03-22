@@ -1,17 +1,16 @@
 package seedu.recruittrackpro.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.recruittrackpro.logic.descriptors.EditPersonDescriptor;
+import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.person.Address;
 import seedu.recruittrackpro.model.person.Comment;
 import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.person.Phone;
-import seedu.recruittrackpro.model.tag.Tag;
+import seedu.recruittrackpro.model.tag.Tags;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -78,8 +77,12 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+        try {
+            Tags tagWrapper = Tags.fromListToTags(Stream.of(tags).toList());
+            descriptor.setTags(tagWrapper);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Invalid tag provided: " + e.getMessage(), e);
+        }
         return this;
     }
 
