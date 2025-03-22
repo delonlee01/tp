@@ -14,7 +14,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.recruittrackpro.logic.commands.FindCommand;
 import seedu.recruittrackpro.logic.predicates.ContainsKeywordsPredicate;
+import seedu.recruittrackpro.model.person.Address;
+import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
+import seedu.recruittrackpro.model.person.Phone;
+import seedu.recruittrackpro.model.tag.Tag;
 
 public class FindCommandParserTest {
 
@@ -27,6 +31,10 @@ public class FindCommandParserTest {
 
         // blank argument
         assertParseFailure(parser, " " + PREFIX_NAME, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " " + PREFIX_TAG, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " " + PREFIX_ADDRESS, Address.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " " + PREFIX_EMAIL, Email.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " " + PREFIX_PHONE, Phone.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + " " + PREFIX_NAME + "Alice Bob",
