@@ -52,14 +52,13 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " " + PREFIX_TAG + "friend neighbour", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " " + PREFIX_TAG + " \n friend "
-                + PREFIX_TAG + "\t neighbour\t", expectedFindCommand);
+        assertParseSuccess(parser, " " + PREFIX_TAG + " \n friend \n\t neighbour\t", expectedFindCommand);
     }
 
     @Test
     public void parse_validAddressArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        Object[] addressKeywords = {PREFIX_ADDRESS, new String[]{"5 Boundary Road"}};
+        Object[] addressKeywords = {PREFIX_ADDRESS, new String[]{"5", "Boundary", "Road"}};
         FindCommand expectedFindCommand = new FindCommand(new ContainsKeywordsPredicate(addressKeywords));
         assertParseSuccess(parser, " " + PREFIX_ADDRESS + "5 Boundary Road", expectedFindCommand);
 
