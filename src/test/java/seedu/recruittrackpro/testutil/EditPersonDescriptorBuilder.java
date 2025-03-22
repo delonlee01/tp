@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.recruittrackpro.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.recruittrackpro.logic.descriptors.EditPersonDescriptor;
 import seedu.recruittrackpro.model.person.Address;
 import seedu.recruittrackpro.model.person.Comment;
 import seedu.recruittrackpro.model.person.Email;

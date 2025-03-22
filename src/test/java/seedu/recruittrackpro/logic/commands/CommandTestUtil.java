@@ -16,6 +16,7 @@ import java.util.List;
 
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.logic.commands.exceptions.CommandException;
+import seedu.recruittrackpro.logic.descriptors.EditPersonDescriptor;
 import seedu.recruittrackpro.logic.predicates.NameContainsKeywordsPredicate;
 import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.RecruitTrackPro;
@@ -61,8 +62,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditPersonDescriptor DESC_AMY;
+    public static final EditPersonDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

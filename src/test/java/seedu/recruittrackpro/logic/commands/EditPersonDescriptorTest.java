@@ -14,7 +14,7 @@ import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_TAG_HUS
 
 import org.junit.jupiter.api.Test;
 
-import seedu.recruittrackpro.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.recruittrackpro.logic.descriptors.EditPersonDescriptor;
 import seedu.recruittrackpro.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {

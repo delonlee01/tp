@@ -40,7 +40,7 @@ import org.junit.jupiter.api.Test;
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.logic.Messages;
 import seedu.recruittrackpro.logic.commands.EditCommand;
-import seedu.recruittrackpro.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.recruittrackpro.logic.descriptors.EditPersonDescriptor;
 import seedu.recruittrackpro.model.person.Address;
 import seedu.recruittrackpro.model.person.Comment;
 import seedu.recruittrackpro.model.person.Email;

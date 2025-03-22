@@ -10,7 +10,7 @@ import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.recruittrackpro.logic.commands.AddCommand;
-import seedu.recruittrackpro.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.recruittrackpro.logic.descriptors.EditPersonDescriptor;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.tag.Tag;
 
