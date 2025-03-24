@@ -25,16 +25,16 @@ public class SwitchSortCommandTest {
     }
 
     @Test
-    public void execute_sortingIsAscending_switchesToDescending() {
+    public void execute_switchSortingSuccess() {
         expectedModel.switchPersonListSorting();
 
-        assertCommandSuccess(new SwitchSortCommand(), model, SwitchSortCommand.MESSAGE_SUCCESS, expectedModel);
-    }
+        assertCommandSuccess(new SwitchSortCommand(), model,
+                SwitchSortCommand.MESSAGE_SUCCESS_DESCENDING, expectedModel);
 
-    @Test
-    public void execute_sortingIsDescending_switchesToAscending() {
         expectedModel.switchPersonListSorting();
 
-        assertCommandSuccess(new SwitchSortCommand(), model, SwitchSortCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new SwitchSortCommand(), model,
+                SwitchSortCommand.MESSAGE_SUCCESS_ASCENDING, expectedModel);
     }
+
 }
