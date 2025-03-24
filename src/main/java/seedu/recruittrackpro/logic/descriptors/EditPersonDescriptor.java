@@ -1,10 +1,7 @@
 package seedu.recruittrackpro.logic.descriptors;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.recruittrackpro.commons.util.CollectionUtil;
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
@@ -13,7 +10,7 @@ import seedu.recruittrackpro.model.person.Comment;
 import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Phone;
-import seedu.recruittrackpro.model.tag.Tag;
+import seedu.recruittrackpro.model.tag.Tags;
 
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the
@@ -24,7 +21,7 @@ public class EditPersonDescriptor {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Tags tags;
     private Comment comment;
 
     public EditPersonDescriptor() {}
@@ -83,19 +80,16 @@ public class EditPersonDescriptor {
 
     /**
      * Sets {@code tags} to this object's {@code tags}.
-     * A defensive copy of {@code tags} is used internally.
      */
-    public void setTags(Set<Tag> tags) {
-        this.tags = (tags != null) ? new HashSet<>(tags) : null;
+    public void setTags(Tags tags) {
+        this.tags = tags;
     }
 
     /**
-     * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     * Returns {@code Optional#empty()} if {@code tags} is null.
+     * Returns an optional {@code Tags} instance, if present.
      */
-    public Optional<Set<Tag>> getTags() {
-        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+    public Optional<Tags> getTags() {
+        return Optional.ofNullable(tags);
     }
 
     public void setComment(Comment comment) {

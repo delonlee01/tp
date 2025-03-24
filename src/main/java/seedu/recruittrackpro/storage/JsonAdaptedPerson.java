@@ -17,6 +17,7 @@ import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.person.Phone;
 import seedu.recruittrackpro.model.tag.Tag;
+import seedu.recruittrackpro.model.tag.Tags;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -59,7 +60,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tags.addAll(source.getTags().stream()
+        tags.addAll(source.getTags().toStream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         comment = source.getComment().value;
@@ -71,7 +72,7 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final Set<Tag> personTags = new HashSet<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
@@ -108,14 +109,13 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-
         if (!Comment.isValidComment(comment)) {
             throw new IllegalValueException(Comment.MESSAGE_CONSTRAINTS);
         }
         final Comment modelComment = new Comment(comment);
 
+        final Tags modelTags = new Tags(personTags);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelComment);
     }
-
 }
