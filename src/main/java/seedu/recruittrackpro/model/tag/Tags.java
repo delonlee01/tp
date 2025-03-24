@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.logic.parser.ParserUtil.parseTag;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;

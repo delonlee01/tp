@@ -9,7 +9,6 @@ import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_EMAIL_B
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.recruittrackpro.testutil.Assert.assertThrows;
 import static seedu.recruittrackpro.testutil.TypicalPersons.ALICE;
 import static seedu.recruittrackpro.testutil.TypicalPersons.BOB;
 
