@@ -2,6 +2,7 @@ package seedu.recruittrackpro.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.recruittrackpro.model.person.Person.PERSON_COMPARATOR;
 
 import java.util.Iterator;
 import java.util.List;
@@ -46,6 +47,7 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+        FXCollections.sort(internalList, PERSON_COMPARATOR);
     }
 
     /**
@@ -66,6 +68,7 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.set(index, editedPerson);
+        FXCollections.sort(internalList, PERSON_COMPARATOR);
     }
 
     /**
@@ -77,11 +80,13 @@ public class UniquePersonList implements Iterable<Person> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+        FXCollections.sort(internalList, PERSON_COMPARATOR);
     }
 
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        FXCollections.sort(internalList, PERSON_COMPARATOR);
     }
 
     /**
@@ -95,6 +100,7 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+        FXCollections.sort(internalList, PERSON_COMPARATOR);
     }
 
     /**
