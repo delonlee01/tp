@@ -15,6 +15,7 @@ import seedu.recruittrackpro.commons.core.GuiSettings;
 import seedu.recruittrackpro.commons.core.LogsCenter;
 import seedu.recruittrackpro.logic.Logic;
 import seedu.recruittrackpro.logic.commands.CommandResult;
+import seedu.recruittrackpro.logic.commands.SwitchSortCommand;
 import seedu.recruittrackpro.logic.commands.exceptions.CommandException;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 
@@ -169,7 +170,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleSortSwitch() throws CommandException, ParseException {
-        executeCommand("switch");
+        executeCommand(SwitchSortCommand.COMMAND_WORD);
     }
 
     private void updateSortButton() {
