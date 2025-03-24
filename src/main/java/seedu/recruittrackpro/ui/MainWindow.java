@@ -163,6 +163,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void handleSortSwitch() {
+        logic.switchPersonListSorting();
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
