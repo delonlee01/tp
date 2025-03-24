@@ -108,6 +108,10 @@ public class RecruitTrackPro implements ReadOnlyRecruitTrackPro {
         return persons.asUnmodifiableObservableList();
     }
 
+    public UniquePersonList getUniquePersonList() {
+        return persons;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

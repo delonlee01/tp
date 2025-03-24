@@ -84,4 +84,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Switches sorting between ascending and descending then lists all persons.
+     */
+    void switchPersonListSorting();
 }

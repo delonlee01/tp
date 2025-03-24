@@ -2,8 +2,10 @@ package seedu.recruittrackpro.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.recruittrackpro.model.person.Person.PERSON_COMPARATOR;
+import static seedu.recruittrackpro.model.person.Person.PERSON_COMPARATOR_ASCENDING;
+import static seedu.recruittrackpro.model.person.Person.PERSON_COMPARATOR_DESCENDING;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,6 +31,18 @@ public class UniquePersonList implements Iterable<Person> {
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    private boolean isAscending = true;
+    private Comparator<Person> comparatorInUse = PERSON_COMPARATOR_ASCENDING;
+
+    /**
+     * Switches between ascending and descending sorting.
+     */
+    public void switchSorting() {
+        isAscending = !isAscending;
+        comparatorInUse = isAscending ? PERSON_COMPARATOR_ASCENDING : PERSON_COMPARATOR_DESCENDING;
+        FXCollections.sort(internalList, comparatorInUse);
+    }
+
     /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
@@ -47,7 +61,7 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
-        FXCollections.sort(internalList, PERSON_COMPARATOR);
+        FXCollections.sort(internalList, comparatorInUse);
     }
 
     /**
@@ -68,7 +82,7 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.set(index, editedPerson);
-        FXCollections.sort(internalList, PERSON_COMPARATOR);
+        FXCollections.sort(internalList, comparatorInUse);
     }
 
     /**
@@ -80,13 +94,13 @@ public class UniquePersonList implements Iterable<Person> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
-        FXCollections.sort(internalList, PERSON_COMPARATOR);
+        FXCollections.sort(internalList, comparatorInUse);
     }
 
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
-        FXCollections.sort(internalList, PERSON_COMPARATOR);
+        FXCollections.sort(internalList, comparatorInUse);
     }
 
     /**
@@ -100,7 +114,7 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
-        FXCollections.sort(internalList, PERSON_COMPARATOR);
+        FXCollections.sort(internalList, comparatorInUse);
     }
 
     /**

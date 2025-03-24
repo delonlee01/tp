@@ -27,10 +27,12 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Comment comment;
 
-    // Comparator
-    public static final Comparator<Person> PERSON_COMPARATOR = Comparator
+    // Comparators
+    public static final Comparator<Person> PERSON_COMPARATOR_ASCENDING = Comparator
             .comparing((Person person) -> person.getName().toString().toLowerCase())
             .thenComparing((Person person) -> person.getPhone().toString());
+    public static final Comparator<Person> PERSON_COMPARATOR_DESCENDING =
+            PERSON_COMPARATOR_ASCENDING.reversed();
 
     /**
      * Every field must be present and not null.
