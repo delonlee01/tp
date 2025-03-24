@@ -21,14 +21,19 @@ import seedu.recruittrackpro.model.tag.Tag;
  */
 public class RemoveTagCommand extends Command {
     public static final String COMMAND_WORD = "remove-tag";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes a specified tag from a candidate "
-            + "using the index number from the displayed person list. "
-            + "The specified tag will be removed from the person's existing tag list if it matches exactly, "
+
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD
+            + ": Removes a specified tag from a candidate "
+            + "using the index number from the displayed list.";
+
+    public static final String MESSAGE_USAGE = SHORT_MESSAGE_USAGE
+            + " The specified tag will be removed from the candidate's existing tag list if it matches exactly, "
             + "ignoring case sensitivity.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "Java Developer";
+
     public static final String MESSAGE_REMOVE_TAGS_SUCCESS = "Tag removed from %1$s: %2$s";
     public static final String MESSAGE_TAG_NOT_IN_LIST = "Tag specified is not in the persons tag list.";
     public static final String MESSAGE_EMPTY_LIST = "No candidates to edit! The displayed list is empty.";
@@ -50,7 +55,7 @@ public class RemoveTagCommand extends Command {
      * Creates a new person with the specified tags removed.
      *
      * @param targetPerson The original person.
-     * @param tagToRemove The tag to be removed.
+     * @param tagToRemove  The tag to be removed.
      * @return A new Person object with updated tags.
      */
     private Person createUpdatedPerson(Person targetPerson, Tag tagToRemove) throws CommandException {

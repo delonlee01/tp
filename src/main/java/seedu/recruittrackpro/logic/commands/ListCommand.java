@@ -12,6 +12,11 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
+    /**
+     * Represents the usage message for {@code ListCommand}. This is needed for {@code HelpCommand} to work.
+     */
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + ": List all candidates.";
+
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
 

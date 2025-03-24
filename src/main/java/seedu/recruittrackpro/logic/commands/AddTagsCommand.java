@@ -24,9 +24,11 @@ public class AddTagsCommand extends Command {
 
     public static final String COMMAND_WORD = "add-tags";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds one or more tags to a candidate "
-            + "using the index number from the displayed person list. "
-            + "New tags will be appended to the person's existing tag list.\n"
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + ": Adds one or more tags to a candidate "
+            + "using the index number from the displayed person list.";
+
+    public static final String MESSAGE_USAGE = SHORT_MESSAGE_USAGE
+            + " New tags will be appended to the person's existing tag list.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -68,9 +70,9 @@ public class AddTagsCommand extends Command {
     /**
      * Creates a new updated person with the added tags.
      *
-     * @param targetPerson The original person.
+     * @param targetPerson   The original person.
      * @param newlyAddedTags The new tags to be added.
-     * @param currentTags The current tags of the person.
+     * @param currentTags    The current tags of the person.
      * @return A new Person object with updated tags.
      */
     private Person createUpdatedPerson(Person targetPerson, Set<Tag> newlyAddedTags, Set<Tag> currentTags) {
@@ -82,9 +84,9 @@ public class AddTagsCommand extends Command {
     /**
      * Constructs the result message indicating which tags were added and which were duplicates.
      *
-     * @param targetPerson The person whose tags were updated.
+     * @param targetPerson   The person whose tags were updated.
      * @param newlyAddedTags The newly added tags.
-     * @param duplicateTags The tags that were already present.
+     * @param duplicateTags  The tags that were already present.
      * @return A formatted success message.
      */
     private String constructResultMessage(Person targetPerson, Set<Tag> newlyAddedTags, Set<Tag> duplicateTags) {

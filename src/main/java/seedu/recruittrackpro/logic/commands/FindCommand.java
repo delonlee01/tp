@@ -22,10 +22,12 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all persons whose names or attributes contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: "
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all candidates whose names or attributes contain any of "
+            + "the specified keywords (case-insensitive).";
+
+    public static final String MESSAGE_USAGE = SHORT_MESSAGE_USAGE
+            + "\nParameters: "
             + PREFIX_NAME + " NAME [MORE_NAMES] or \n"
             + PREFIX_TAG + " TAG [MORE_TAGS] or \n"
             + PREFIX_ADDRESS + " ADDRESS [MORE_ADDRESSES] or \n"
