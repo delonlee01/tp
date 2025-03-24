@@ -73,12 +73,15 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
+     * Parses the given tag strings into a {@code Tags} object and sets it in the {@code EditPersonDescriptor}.
+     *
+     * @param tags Varargs of tag names as {@code String}s.
+     * @return This builder for method chaining.
+     * @throws IllegalArgumentException if any tag string is invalid.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
         try {
-            Tags tagWrapper = Tags.fromListToTags(Stream.of(tags).toList());
+            Tags tagWrapper = new Tags(Stream.of(tags).toList());
             descriptor.setTags(tagWrapper);
         } catch (ParseException e) {
             throw new IllegalArgumentException("Invalid tag provided: " + e.getMessage(), e);

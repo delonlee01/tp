@@ -5,17 +5,13 @@ import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recruittrackpro.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import javafx.util.Pair;
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
 import seedu.recruittrackpro.logic.Messages;
 import seedu.recruittrackpro.logic.commands.exceptions.CommandException;
 import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.person.Person;
-import seedu.recruittrackpro.model.tag.Tag;
 import seedu.recruittrackpro.model.tag.Tags;
 
 /**
@@ -77,13 +73,13 @@ public class AddTagsCommand extends Command {
         Person targetPerson = getTargetPerson(lastShownList);
 
         Tags currentTags = targetPerson.getTags();
-        Pair<Tags, Tags> result = currentTags.checkDuplicates(tagsToAdd);
-        Tags uniqueTagsToAdd = result.getKey();
-        Tags duplicateTags = result.getValue();
+        Tags.TagSeparationResult result = currentTags.separateNewFromExisting(tagsToAdd);
+        Tags uniqueTagsToAdd = result.newTags();
+        Tags duplicateTags = result.duplicateTags();
 
         if (uniqueTagsToAdd.isEmpty()) {
             return new CommandResult(
-                    String.format(MESSAGE_DUPLICATE_TAGS, targetPerson.getName(), formatTags(duplicateTags.toSet()))
+                    String.format(MESSAGE_DUPLICATE_TAGS, targetPerson.getName(), duplicateTags)
             );
         }
 
@@ -116,7 +112,7 @@ public class AddTagsCommand extends Command {
      * @return A new Person object with updated tag list.
      */
     private Person createUpdatedPerson(Person original, Tags tagsToAppend) {
-        Tags combinedTags = original.getTags().addTags(tagsToAppend);
+        Tags combinedTags = original.getTags().combineTags(tagsToAppend);
         return new Person(original.getName(), original.getPhone(), original.getEmail(),
                 original.getAddress(), combinedTags, original.getComment());
     }
@@ -130,26 +126,23 @@ public class AddTagsCommand extends Command {
      * @return Result message string.
      */
     private String constructResultMessage(Person person, Tags addedTags, Tags duplicateTags) {
-        String added = formatTags(addedTags.toSet());
-        StringBuilder result = new StringBuilder(String.format(MESSAGE_ADD_TAGS_SUCCESS, person.getName(), added));
+        StringBuilder result = new StringBuilder(
+                String.format(
+                        MESSAGE_ADD_TAGS_SUCCESS,
+                        person.getName(),
+                        addedTags)
+        );
 
         if (!duplicateTags.isEmpty()) {
-            String duplicates = formatTags(duplicateTags.toSet());
-            result.append("\n").append(String.format(MESSAGE_DUPLICATE_TAGS, person.getName(), duplicates));
+            result.append("\n").append(
+                    String.format(
+                            MESSAGE_DUPLICATE_TAGS,
+                            person.getName(),
+                            duplicateTags
+                    )
+            );
         }
         return result.toString();
-    }
-
-    /**
-     * Converts a set of tags to a printable string.
-     *
-     * @param tags The tag set.
-     * @return A formatted string like ["Tag1", "Tag2"].
-     */
-    private static String formatTags(Set<Tag> tags) {
-        return tags.stream()
-                .map(tag -> "\"" + tag.tagName + "\"")
-                .collect(Collectors.joining(", ", "[", "]"));
     }
 
     @Override

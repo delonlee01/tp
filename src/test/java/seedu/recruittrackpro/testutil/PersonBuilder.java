@@ -1,5 +1,8 @@
 package seedu.recruittrackpro.testutil;
 
+import java.util.Arrays;
+
+import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.person.Address;
 import seedu.recruittrackpro.model.person.Comment;
 import seedu.recruittrackpro.model.person.Email;
@@ -7,7 +10,6 @@ import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.person.Phone;
 import seedu.recruittrackpro.model.tag.Tags;
-import seedu.recruittrackpro.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -63,7 +65,11 @@ public class PersonBuilder {
      * Sets the {@code Tags} of the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String... tagNames) {
-        this.tags = SampleDataUtil.getTags(tagNames);
+        try {
+            this.tags = new Tags(Arrays.asList(tagNames));
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Invalid tag provided: " + e.getMessage(), e);
+        }
         return this;
     }
 
@@ -71,8 +77,12 @@ public class PersonBuilder {
      * Adds tag(s) to the current {@code Tags} of the person being built.
      */
     public PersonBuilder addTags(String... tagNames) {
-        Tags newTags = SampleDataUtil.getTags(tagNames);
-        this.tags = this.tags.addTags(newTags);
+        try {
+            Tags newTags = new Tags(Arrays.asList(tagNames));
+            this.tags = this.tags.combineTags(newTags);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Invalid tag provided: " + e.getMessage(), e);
+        }
         return this;
     }
 
@@ -80,8 +90,12 @@ public class PersonBuilder {
      * Removes tag(s) from the current {@code Tags} of the person being built.
      */
     public PersonBuilder removeTags(String... tagNames) {
-        Tags tagsToRemove = SampleDataUtil.getTags(tagNames);
-        this.tags = this.tags.removeTags(tagsToRemove);
+        try {
+            Tags tagsToRemove = new Tags(Arrays.asList(tagNames));
+            this.tags = this.tags.excludeTags(tagsToRemove);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Invalid tag provided: " + e.getMessage(), e);
+        }
         return this;
     }
 

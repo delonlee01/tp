@@ -151,6 +151,29 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseTag_nullInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    }
+
+    @Test
+    public void parseTag_invalidFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    }
+
+    @Test
+    public void parseTag_validInputWithoutWhitespace_returnsTag() throws Exception {
+        Tag expected = new Tag(VALID_TAG_1);
+        assertEquals(expected, ParserUtil.parseTag(VALID_TAG_1));
+    }
+
+    @Test
+    public void parseTag_validInputWithWhitespace_returnsTrimmedTag() throws Exception {
+        Tag expected = new Tag(VALID_TAG_1);
+        String padded = WHITESPACE + VALID_TAG_1 + WHITESPACE;
+        assertEquals(expected, ParserUtil.parseTag(padded));
+    }
+
+    @Test
     public void parseTags_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
     }
@@ -162,7 +185,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_emptyCollection_returnsEmptyTags() throws Exception {
-        Tags expected = new Tags(Collections.emptySet());
+        Tags expected = new Tags();
         assertEquals(expected, ParserUtil.parseTags(Collections.emptyList()));
     }
 

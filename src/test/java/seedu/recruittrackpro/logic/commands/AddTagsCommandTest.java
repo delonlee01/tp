@@ -40,7 +40,7 @@ public class AddTagsCommandTest {
     @Test
     public void execute_addNewTags_success() throws ParseException {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Tags newTags = Tags.fromListToTags(List.of("Java", "Spring"));
+        Tags newTags = new Tags(List.of("Java", "Spring"));
 
         AddTagsCommand command = new AddTagsCommand(INDEX_FIRST_PERSON, newTags);
 
@@ -77,8 +77,8 @@ public class AddTagsCommandTest {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         Tags existingTags = personToEdit.getTags();
-        Tags newTags = Tags.fromListToTags(List.of("Python"));
-        Tags combinedTags = existingTags.addTags(newTags);
+        Tags newTags = new Tags(List.of("Python"));
+        Tags combinedTags = existingTags.combineTags(newTags);
 
         AddTagsCommand command = new AddTagsCommand(INDEX_FIRST_PERSON, combinedTags);
 
@@ -97,7 +97,7 @@ public class AddTagsCommandTest {
 
     @Test
     public void execute_invalidIndex_throwsCommandException() throws ParseException {
-        Tags tags = Tags.fromListToTags(List.of("Java"));
+        Tags tags = new Tags(List.of("Java"));
 
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         AddTagsCommand command = new AddTagsCommand(outOfBoundIndex, tags);
@@ -115,8 +115,8 @@ public class AddTagsCommandTest {
 
     @Test
     public void equals() throws ParseException {
-        Tags tagsA = Tags.fromListToTags(List.of("Java"));
-        Tags tagsB = Tags.fromListToTags(List.of("Python"));
+        Tags tagsA = new Tags(List.of("Java"));
+        Tags tagsB = new Tags(List.of("Python"));
 
         AddTagsCommand commandA = new AddTagsCommand(INDEX_FIRST_PERSON, tagsA);
         AddTagsCommand commandB = new AddTagsCommand(INDEX_FIRST_PERSON, tagsB);
@@ -144,7 +144,7 @@ public class AddTagsCommandTest {
 
     @Test
     public void toStringTest() throws ParseException {
-        Tags tags = Tags.fromListToTags(List.of("Java"));
+        Tags tags = new Tags(List.of("Java"));
         Index index = Index.fromOneBased(1);
 
         AddTagsCommand command = new AddTagsCommand(index, tags);

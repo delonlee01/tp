@@ -7,12 +7,13 @@ import static seedu.recruittrackpro.testutil.Assert.assertThrows;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.util.Pair;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
+import seedu.recruittrackpro.model.tag.Tags.TagSeparationResult;
 
 public class TagsTest {
 
@@ -21,27 +22,60 @@ public class TagsTest {
     private static final String INVALID_TAG = " ";
     private static final String WHITESPACE = " \t\n";
 
+    // ========== Constructors ==========
+
+    @Test
+    public void constructor_collectionStringNullInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Tags((List<String>) null));
+    }
+
+    @Test
+    public void constructor_collectionStringContainsInvalid_throwsParseException() {
+        List<String> input = Arrays.asList(VALID_TAG_1, INVALID_TAG);
+        assertThrows(ParseException.class, () -> new Tags(input));
+    }
+
+    @Test
+    public void constructor_collectionStringValidTags_success() throws ParseException {
+        Tags tags = new Tags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        Set<Tag> expected = Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2));
+        assertEquals(expected, tags.toSet());
+    }
+
+    @Test
+    public void constructor_empty_success() {
+        Tags tags = new Tags();
+        assertEquals(Collections.emptySet(), tags.toSet());
+    }
+
+    @Test
+    public void constructor_setOfTags_success() {
+        Set<Tag> tagSet = Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2));
+        Tags tags = new Tags(tagSet);
+        assertEquals(tagSet, tags.toSet());
+    }
+
     // ========== Tag Collection Behavior Tests ==========
 
     @Test
-    public void addTags_tagsNotPresent_addsSuccessfully() {
+    public void combineTags_tagsNotPresent_addsSuccessfully() {
         Tags base = new Tags(Set.of(new Tag(VALID_TAG_1)));
         Tags toAdd = new Tags(Set.of(new Tag(VALID_TAG_2)));
 
-        Tags result = base.addTags(toAdd);
+        Tags result = base.combineTags(toAdd);
         Set<Tag> expected = Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2));
 
         assertEquals(expected, result.toSet());
     }
 
     @Test
-    public void removeTags_tagsPresent_removesSuccessfully() {
+    public void excludeTags_tagsPresent_removesSuccessfully() {
         Tag tag1 = new Tag(VALID_TAG_1);
         Tag tag2 = new Tag(VALID_TAG_2);
         Tags base = new Tags(Set.of(tag1, tag2));
         Tags toRemove = new Tags(Set.of(tag1));
 
-        Tags result = base.removeTags(toRemove);
+        Tags result = base.excludeTags(toRemove);
         assertEquals(Set.of(tag2), result.toSet());
     }
 
@@ -75,88 +109,38 @@ public class TagsTest {
         assertNotEquals(tags1, tags2);
     }
 
-    // ========== Tag Parsing Tests ==========
+    // ========== TagSeparationResult Tests ==========
 
     @Test
-    public void parseTag_nullInput_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> Tags.parseTag(null));
-    }
-
-    @Test
-    public void parseTag_invalidFormat_throwsParseException() {
-        assertThrows(ParseException.class, () -> Tags.parseTag(INVALID_TAG));
-    }
-
-    @Test
-    public void parseTag_validInputWithoutWhitespace_returnsTag() throws Exception {
-        Tag expected = new Tag(VALID_TAG_1);
-        assertEquals(expected, Tags.parseTag(VALID_TAG_1));
-    }
-
-    @Test
-    public void parseTag_validInputWithWhitespace_returnsTrimmedTag() throws Exception {
-        Tag expected = new Tag(VALID_TAG_1);
-        String padded = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        assertEquals(expected, Tags.parseTag(padded));
-    }
-
-    // ========== List to Tags Conversion Tests ==========
-
-    @Test
-    public void fromListToTags_nullInput_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> Tags.fromListToTags(null));
-    }
-
-    @Test
-    public void fromListToTags_containsInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> Tags.fromListToTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-    }
-
-    @Test
-    public void fromListToTags_emptyList_returnsEmptyTags() throws Exception {
-        Tags tags = Tags.fromListToTags(Collections.emptyList());
-        assertEquals(Collections.emptySet(), tags.toSet());
-    }
-
-    @Test
-    public void fromListToTags_allValidTags_returnsTagsInstance() throws Exception {
-        Tags tags = Tags.fromListToTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expected = Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2));
-        assertEquals(expected, tags.toSet());
-    }
-
-    // ========== Duplicate Check Tests ==========
-
-    @Test
-    public void checkDuplicates_mixedInput_returnsCorrectSeparation() {
+    public void separateNewFromExisting_mixedInput_returnsCorrectSeparation() {
         Tags existing = new Tags(Set.of(new Tag(VALID_TAG_1)));
         Tags incoming = new Tags(Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
-        Pair<Tags, Tags> result = existing.checkDuplicates(incoming);
+        TagSeparationResult result = existing.separateNewFromExisting(incoming);
         Tags expectedUnique = new Tags(Set.of(new Tag(VALID_TAG_2)));
         Tags expectedDuplicates = new Tags(Set.of(new Tag(VALID_TAG_1)));
 
-        assertEquals(expectedUnique, result.getKey());
-        assertEquals(expectedDuplicates, result.getValue());
+        assertEquals(expectedUnique, result.newTags());
+        assertEquals(expectedDuplicates, result.duplicateTags());
     }
 
     @Test
-    public void checkDuplicates_allDuplicates_returnsEmptyUnique() {
+    public void separateNewFromExisting_allDuplicates_returnsEmptyUnique() {
         Tags existing = new Tags(Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
         Tags incoming = new Tags(Set.of(new Tag(VALID_TAG_2)));
 
-        Pair<Tags, Tags> result = existing.checkDuplicates(incoming);
-        assertEquals(new Tags(), result.getKey()); // No new tags
-        assertEquals(new Tags(Set.of(new Tag(VALID_TAG_2))), result.getValue());
+        TagSeparationResult result = existing.separateNewFromExisting(incoming);
+        assertEquals(new Tags(), result.newTags());
+        assertEquals(new Tags(Set.of(new Tag(VALID_TAG_2))), result.duplicateTags());
     }
 
     @Test
-    public void checkDuplicates_allUnique_returnsAllInUnique() {
+    public void separateNewFromExisting_allUnique_returnsAllInUnique() {
         Tags existing = new Tags(Set.of(new Tag("existing")));
         Tags incoming = new Tags(Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
-        Pair<Tags, Tags> result = existing.checkDuplicates(incoming);
-        assertEquals(new Tags(Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2))), result.getKey());
-        assertEquals(new Tags(), result.getValue()); // No duplicates
+        TagSeparationResult result = existing.separateNewFromExisting(incoming);
+        assertEquals(new Tags(Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2))), result.newTags());
+        assertEquals(new Tags(), result.duplicateTags());
     }
 }

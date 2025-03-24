@@ -40,7 +40,7 @@ public class AddTagsCommandParser implements Parser<AddTagsCommand> {
 
         // Process valid tags
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        Tags tags = Tags.fromListToTags(tagValues);
+        Tags tags = new Tags(tagValues);
 
         if (tags.isEmpty()) {
             throw new ParseException(AddTagsCommand.MESSAGE_NO_TAGS_FOUND);

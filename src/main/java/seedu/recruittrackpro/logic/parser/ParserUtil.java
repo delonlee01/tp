@@ -12,6 +12,7 @@ import seedu.recruittrackpro.model.person.Comment;
 import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Phone;
+import seedu.recruittrackpro.model.tag.Tag;
 import seedu.recruittrackpro.model.tag.Tags;
 
 /**
@@ -95,11 +96,26 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+    /**
      * Parses {@code Collection<String> tagList} into a {@code Tags}.
      */
     public static Tags parseTags(Collection<String> tagList) throws ParseException {
         requireNonNull(tagList);
-        return Tags.fromListToTags(tagList);
+        return new Tags(tagList);
     }
 
     /**

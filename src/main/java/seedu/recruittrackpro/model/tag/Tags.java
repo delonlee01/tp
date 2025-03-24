@@ -1,14 +1,15 @@
 package seedu.recruittrackpro.model.tag;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.recruittrackpro.logic.parser.ParserUtil.parseTag;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-import javafx.util.Pair;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 
 /**
@@ -16,6 +17,20 @@ import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
  */
 public class Tags {
     private final Set<Tag> tags;
+
+    /**
+     * Constructs a {@code Tags} instance from a collection of raw tag names.
+     *
+     * @param tagList The list of tag strings to parse and wrap.
+     * @throws ParseException if any tag is invalid.
+     */
+    public Tags(Collection<String> tagList) throws ParseException {
+        requireNonNull(tagList);
+        this.tags = new HashSet<>();
+        for (String tagName : tagList) {
+            this.tags.add(parseTag(tagName));
+        }
+    }
 
     /**
      * Constructs a {@code Tags} instance from a set of {@link Tag}.
@@ -40,7 +55,7 @@ public class Tags {
      * @param toAdd Tag(s) to be added.
      * @return A new {@code Tags} instance.
      */
-    public Tags addTags(Tags toAdd) {
+    public Tags combineTags(Tags toAdd) {
         requireNonNull(toAdd);
         Set<Tag> updated = new HashSet<>(this.tags);
         updated.addAll(toAdd.tags);
@@ -53,43 +68,11 @@ public class Tags {
      * @param toRemove Tag(s) to be removed.
      * @return A new {@code Tags} instance.
      */
-    public Tags removeTags(Tags toRemove) {
+    public Tags excludeTags(Tags toRemove) {
         requireNonNull(toRemove);
         Set<Tag> updated = new HashSet<>(this.tags);
         updated.removeAll(toRemove.tags);
         return new Tags(updated);
-    }
-
-    /**
-     * Parses a collection of tag name strings into a {@code Tags} object.
-     *
-     * @param tagList A collection of tag name strings.
-     * @return A {@code Tags} object containing parsed {@link Tag} instances.
-     * @throws ParseException if any tag is invalid.
-     */
-    public static Tags fromListToTags(Collection<String> tagList) throws ParseException {
-        requireNonNull(tagList);
-        Set<Tag> parsedTags = new HashSet<>();
-        for (String tagName : tagList) {
-            parsedTags.add(parseTag(tagName));
-        }
-        return new Tags(parsedTags);
-    }
-
-    /**
-     * Parses a single {@code String} into a {@link Tag}.
-     *
-     * @param tag The raw tag name.
-     * @return A valid {@link Tag} instance.
-     * @throws ParseException if the tag format is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
     }
 
     /**
@@ -113,25 +96,31 @@ public class Tags {
     }
 
     /**
-     * Checks for duplicates between current and incoming tags.
+     * Splits the incoming tags into new and duplicate tags with respect to this instance.
      *
      * @param incoming Tags to be added.
-     * @return A {@code Pair}: (newUniqueTags, duplicateTags)
+     * @return A {@code TagSeparationResult} with new tags and duplicates.
      */
-    public Pair<Tags, Tags> checkDuplicates(Tags incoming) {
+    public TagSeparationResult separateNewFromExisting(Tags incoming) {
         Set<Tag> newTags = new HashSet<>();
-        Set<Tag> dupes = new HashSet<>();
+        Set<Tag> duplicateTags = new HashSet<>();
 
         for (Tag tag : incoming.tags) {
             if (this.tags.contains(tag)) {
-                dupes.add(tag);
+                duplicateTags.add(tag);
             } else {
                 newTags.add(tag);
             }
         }
-        return new Pair<>(new Tags(newTags), new Tags(dupes));
+
+        return new TagSeparationResult(new Tags(newTags), new Tags(duplicateTags));
     }
 
+    /**
+     * Returns {@code true} if this {@code Tags} instance contains no tags.
+     *
+     * @return {@code true} if the internal tag set is empty; {@code false} otherwise.
+     */
     public boolean isEmpty() {
         return tags.isEmpty();
     }
@@ -155,6 +144,21 @@ public class Tags {
 
     @Override
     public String toString() {
-        return tags.toString();
+        return tags.stream()
+                .map(tag -> "\"" + tag.tagName + "\"")
+                .collect(Collectors.joining(", ", "[", "]"));
+    }
+
+    /**
+     * Represents the result of separating incoming tags into new and duplicate tags.
+     *
+     * @param newTags Tags that do not yet exist and can be added.
+     * @param duplicateTags Tags that are already present in the existing {@code Tags} instance.
+     */
+    public record TagSeparationResult(Tags newTags, Tags duplicateTags) {
+        @Override
+        public String toString() {
+            return "New: " + newTags + ", Duplicates: " + duplicateTags;
+        }
     }
 }
