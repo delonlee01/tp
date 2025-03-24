@@ -60,7 +60,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tags.addAll(source.getTags().toSet().stream()
+        tags.addAll(source.getTags().toStream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         comment = source.getComment().value;

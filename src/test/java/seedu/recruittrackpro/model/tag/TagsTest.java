@@ -38,21 +38,22 @@ public class TagsTest {
     @Test
     public void constructor_collectionStringValidTags_success() throws ParseException {
         Tags tags = new Tags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expected = Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2));
-        assertEquals(expected, tags.toSet());
+        Tags expected = new Tags(Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        assertEquals(expected, tags);
     }
 
     @Test
     public void constructor_empty_success() {
         Tags tags = new Tags();
-        assertEquals(Collections.emptySet(), tags.toSet());
+        assertEquals(new Tags(), tags);
     }
 
     @Test
     public void constructor_setOfTags_success() {
         Set<Tag> tagSet = Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2));
         Tags tags = new Tags(tagSet);
-        assertEquals(tagSet, tags.toSet());
+        Tags expected = new Tags(tagSet);
+        assertEquals(expected, tags);
     }
 
     // ========== Tag Collection Behavior Tests ==========
@@ -63,9 +64,9 @@ public class TagsTest {
         Tags toAdd = new Tags(Set.of(new Tag(VALID_TAG_2)));
 
         Tags result = base.combineTags(toAdd);
-        Set<Tag> expected = Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2));
+        Tags expected = new Tags(Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
-        assertEquals(expected, result.toSet());
+        assertEquals(expected, result);
     }
 
     @Test
@@ -76,20 +77,19 @@ public class TagsTest {
         Tags toRemove = new Tags(Set.of(tag1));
 
         Tags result = base.excludeTags(toRemove);
-        assertEquals(Set.of(tag2), result.toSet());
+        Tags expected = new Tags(Set.of(tag2));
+        assertEquals(expected, result);
     }
 
     @Test
-    public void toSet_modifyingReturnedSet_doesNotAffectOriginal() {
+    public void stream_doesNotAllowModifyingOriginalSet() {
         Tag tag = new Tag(VALID_TAG_1);
         Tags tags = new Tags(Set.of(tag));
 
-        Set<Tag> returnedSet = tags.toSet();
-        Set<Tag> modifiedCopy = new HashSet<>(returnedSet);
-        modifiedCopy.remove(tag); // safe, not touching the internal set
+        Set<Tag> streamCopy = tags.toStream().collect(java.util.stream.Collectors.toSet());
+        streamCopy.remove(tag); // safe: this does not affect original tags
 
-        // Confirm the internal set in Tags remains unchanged
-        assertEquals(Set.of(tag), tags.toSet());
+        assertEquals(new Tags(Set.of(tag)), tags); // still equals original
     }
 
     @Test

@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 
@@ -76,11 +77,14 @@ public class Tags {
     }
 
     /**
-     * Returns an unmodifiable copy of the internal tag set.
-     * Any attempt to modify the returned set will throw {@link UnsupportedOperationException}.
+     * Returns a sequential {@code Stream} over the tag set.
+     * <p>
+     * This provides a functional way to operate on the tags while preserving immutability.
+     *
+     * @return a stream of tags.
      */
-    public Set<Tag> toSet() {
-        return Collections.unmodifiableSet(new HashSet<>(tags));
+    public Stream<Tag> toStream() {
+        return tags.stream(); // safe as streams don't allow modification
     }
 
     /**

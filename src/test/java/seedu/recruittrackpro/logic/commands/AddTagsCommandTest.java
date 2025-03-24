@@ -123,7 +123,10 @@ public class AddTagsCommandTest {
         AddTagsCommand commandC = new AddTagsCommand(INDEX_SECOND_PERSON, tagsA);
 
         // same values -> returns true
-        AddTagsCommand commandWithSameValues = new AddTagsCommand(INDEX_FIRST_PERSON, new Tags(tagsA.toSet()));
+        AddTagsCommand commandWithSameValues = new AddTagsCommand(
+                INDEX_FIRST_PERSON,
+                new Tags(tagsA.toStream().map(tag -> tag.tagName).toList())
+        );
         assertTrue(commandA.equals(commandWithSameValues));
 
         // same object -> returns true

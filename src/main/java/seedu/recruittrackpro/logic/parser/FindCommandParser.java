@@ -84,7 +84,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (containsPrefix(argumentMultimap, PREFIX_TAG)) {
             Tags tags = ParserUtil.parseTags(argumentMultimap.getAllValues(PREFIX_TAG));
-            tagKeywordArray[1] = tags.toSet().stream().map(tag -> tag.tagName).toArray(String[]::new);
+            tagKeywordArray[1] = tags.toStream().map(tag -> tag.tagName).toArray(String[]::new);
         }
         return tagKeywordArray;
     }

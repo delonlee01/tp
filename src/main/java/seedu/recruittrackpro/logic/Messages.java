@@ -69,7 +69,7 @@ public class Messages {
                 .append("; Comments: ")
                 .append(person.getComment())
                 .append("; Tags: ");
-        person.getTags().toSet().forEach(builder::append);
+        person.getTags().toStream().forEach(builder::append);
         return builder.toString();
     }
 
