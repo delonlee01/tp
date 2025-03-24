@@ -73,8 +73,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void switchPersonListSorting() {
-        model.switchPersonListSorting();
+    public boolean isAscending() {
+        return model.isAscending();
     }
 
     @Override

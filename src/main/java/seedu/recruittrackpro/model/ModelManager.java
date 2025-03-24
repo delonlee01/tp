@@ -135,6 +135,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isAscending() {
+        return recruitTrackPro.getUniquePersonList().isAscending();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

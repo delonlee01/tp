@@ -168,9 +168,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @FXML
-    private void handleSortSwitch() {
-        logic.switchPersonListSorting();
-        sortButton.setText(sortButton.getText().equals("↑") ? "↓" : "↑");
+    private void handleSortSwitch() throws CommandException, ParseException {
+        executeCommand("switch");
+    }
+
+    private void updateSortButton() {
+        sortButton.setText(logic.isAscending() ? "↑" : "↓");
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -196,6 +199,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            updateSortButton();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);

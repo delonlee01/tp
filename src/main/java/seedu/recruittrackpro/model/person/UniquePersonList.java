@@ -43,6 +43,11 @@ public class UniquePersonList implements Iterable<Person> {
         FXCollections.sort(internalList, comparatorInUse);
     }
 
+    /** Returns ascending or descending status */
+    public boolean isAscending() {
+        return isAscending;
+    }
+
     /**
      * Returns true if the list contains an equivalent person as the given argument.
      */

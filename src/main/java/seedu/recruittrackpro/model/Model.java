@@ -89,4 +89,9 @@ public interface Model {
      * Switches sorting between ascending and descending then lists all persons.
      */
     void switchPersonListSorting();
+
+    /**
+     * Returns ascending or descending sorting status;
+     */
+    boolean isAscending();
 }

@@ -33,8 +33,8 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Switches sorting between ascending and descending */
-    void switchPersonListSorting();
+    /** Returns ascending or descending sorting status */
+    boolean isAscending();
 
     /**
      * Returns the user prefs' address book file path.
