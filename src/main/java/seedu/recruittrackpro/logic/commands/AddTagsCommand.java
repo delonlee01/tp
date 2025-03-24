@@ -70,9 +70,9 @@ public class AddTagsCommand extends Command {
     /**
      * Creates a new updated person with the added tags.
      *
-     * @param targetPerson   The original person.
+     * @param targetPerson The original person.
      * @param newlyAddedTags The new tags to be added.
-     * @param currentTags    The current tags of the person.
+     * @param currentTags The current tags of the person.
      * @return A new Person object with updated tags.
      */
     private Person createUpdatedPerson(Person targetPerson, Set<Tag> newlyAddedTags, Set<Tag> currentTags) {
@@ -84,9 +84,9 @@ public class AddTagsCommand extends Command {
     /**
      * Constructs the result message indicating which tags were added and which were duplicates.
      *
-     * @param targetPerson   The person whose tags were updated.
+     * @param targetPerson The person whose tags were updated.
      * @param newlyAddedTags The newly added tags.
-     * @param duplicateTags  The tags that were already present.
+     * @param duplicateTags The tags that were already present.
      * @return A formatted success message.
      */
     private String constructResultMessage(Person targetPerson, Set<Tag> newlyAddedTags, Set<Tag> duplicateTags) {
