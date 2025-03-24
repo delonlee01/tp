@@ -19,6 +19,7 @@ import seedu.recruittrackpro.logic.commands.FindCommand;
 import seedu.recruittrackpro.logic.commands.HelpCommand;
 import seedu.recruittrackpro.logic.commands.ListCommand;
 import seedu.recruittrackpro.logic.commands.RemoveTagCommand;
+import seedu.recruittrackpro.logic.commands.SwitchSortCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 
 /**
@@ -84,6 +85,9 @@ public class RecruitTrackProParser {
 
         case RemoveTagCommand.COMMAND_WORD:
             return new RemoveTagCommandParser().parse(arguments);
+
+        case SwitchSortCommand.COMMAND_WORD:
+            return new SwitchSortCommand();
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
