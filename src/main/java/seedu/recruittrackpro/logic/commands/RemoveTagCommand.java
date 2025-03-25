@@ -11,6 +11,8 @@ import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
 import seedu.recruittrackpro.logic.Messages;
 import seedu.recruittrackpro.logic.commands.exceptions.CommandException;
+import seedu.recruittrackpro.logic.descriptors.EditPersonDescriptor;
+import seedu.recruittrackpro.logic.util.EditPersonUtil;
 import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.tag.Tag;
@@ -47,23 +49,21 @@ public class RemoveTagCommand extends Command {
     }
 
     /**
-     * Creates a new person with the specified tags removed.
+     * Returns a new {@code Person} object with the specified tags removed.
      *
-     * @param targetPerson The original person.
-     * @param tagToRemove The tag to be removed.
-     * @return A new Person object with updated tags.
+     * <p>This method excludes all tags in {@code tagsToRemove} from the target person's
+     * current tag set, and constructs an {@code EditPersonDescriptor} with the updated tags.
+     * It then uses {@code EditPersonUtil} to generate and return the edited person.
+     *
+     * @param targetPerson The person whose tags are to be removed.
+     * @param tagsToRemove The set of tags to be removed from the person.
+     * @return A new {@code Person} object with the specified tags removed.
      */
-    private Person createUpdatedPerson(Person targetPerson, Tag tagToRemove) throws CommandException {
-        Tags updatedTags = targetPerson.getTags();
-
-        if (!updatedTags.contains(tagToRemove)) {
-            throw new CommandException(MESSAGE_TAG_NOT_IN_LIST);
-        }
-
-        Tags newTags = updatedTags.excludeTags(new Tags(Set.of(tagToRemove)));
-
-        return new Person(targetPerson.getName(), targetPerson.getPhone(), targetPerson.getEmail(),
-                targetPerson.getAddress(), newTags, targetPerson.getComment());
+    Person removeTags(Person targetPerson, Tags tagsToRemove) {
+        Tags personTags = targetPerson.getTags();
+        EditPersonDescriptor editedDescriptor = new EditPersonDescriptor();
+        editedDescriptor.setTags(personTags.excludeTags(tagsToRemove));
+        return EditPersonUtil.createEditedPerson(targetPerson, editedDescriptor);
     }
 
     @Override
@@ -80,7 +80,12 @@ public class RemoveTagCommand extends Command {
         }
 
         Person targetPerson = lastShownList.get(targetIndex.getZeroBased());
-        Person updatedPerson = createUpdatedPerson(targetPerson, tagToRemove);
+
+        if (!targetPerson.getTags().contains(tagToRemove)) {
+            throw new CommandException(MESSAGE_TAG_NOT_IN_LIST);
+        }
+
+        Person updatedPerson = removeTags(targetPerson, new Tags(Set.of(tagToRemove)));
         model.setPerson(targetPerson, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
