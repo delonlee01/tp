@@ -15,7 +15,7 @@ import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the RecruitTrackPro.
  */
 public class AddCommand extends Command {
 

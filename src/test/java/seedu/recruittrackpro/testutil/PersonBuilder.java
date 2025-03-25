@@ -1,16 +1,15 @@
 package seedu.recruittrackpro.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Arrays;
 
+import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.person.Address;
 import seedu.recruittrackpro.model.person.Comment;
 import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.person.Phone;
-import seedu.recruittrackpro.model.tag.Tag;
-import seedu.recruittrackpro.model.util.SampleDataUtil;
+import seedu.recruittrackpro.model.tag.Tags;
 
 /**
  * A utility class to help with building Person objects.
@@ -27,7 +26,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Tags tags;
     private Comment comment;
 
     /**
@@ -38,7 +37,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        tags = new Tags();
         comment = new Comment(DEFAULT_COMMENT);
     }
 
@@ -50,7 +49,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        tags = personToCopy.getTags();
         comment = personToCopy.getComment();
     }
 
@@ -63,31 +62,40 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Sets the {@code Tags} of the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withTags(String... tagNames) {
+        try {
+            this.tags = new Tags(Arrays.asList(tagNames));
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Invalid tag provided: " + e.getMessage(), e);
+        }
         return this;
     }
 
     /**
-     * Adds the specified {@code tags} to the existing set of tags for the {@code Person} being built,
-     * preserving previously added tags.
+     * Adds tag(s) to the current {@code Tags} of the person being built.
      */
-    public PersonBuilder addTags(String ... tags) {
-        this.tags.addAll(SampleDataUtil.getTagSet(tags));
+    public PersonBuilder addTags(String... tagNames) {
+        try {
+            Tags newTags = new Tags(Arrays.asList(tagNames));
+            this.tags = this.tags.combineTags(newTags);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Invalid tag provided: " + e.getMessage(), e);
+        }
         return this;
     }
 
-
     /**
-     * Removes a specified tag from the person's tag list.
-     *
-     * @param tag The tag to be removed.
-     * @return The updated PersonBuilder instance.
+     * Removes tag(s) from the current {@code Tags} of the person being built.
      */
-    public PersonBuilder removeTags(String tag) {
-        this.tags.remove(new Tag(tag));
+    public PersonBuilder removeTags(String... tagNames) {
+        try {
+            Tags tagsToRemove = new Tags(Arrays.asList(tagNames));
+            this.tags = this.tags.excludeTags(tagsToRemove);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Invalid tag provided: " + e.getMessage(), e);
+        }
         return this;
     }
 
