@@ -1,5 +1,12 @@
 package seedu.recruittrackpro.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_FROM;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TO;
+
+import java.util.List;
+import java.util.Set;
+
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
 import seedu.recruittrackpro.logic.Messages;
@@ -11,12 +18,9 @@ import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.tag.Tag;
 import seedu.recruittrackpro.model.tag.Tags;
 
-import java.util.List;
-import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_FROM;
-import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TO;
+
+
 
 
 /**
