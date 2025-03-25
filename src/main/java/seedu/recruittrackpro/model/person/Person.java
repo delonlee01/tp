@@ -2,9 +2,7 @@ package seedu.recruittrackpro.model.person;
 
 import static seedu.recruittrackpro.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Objects;
 
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
