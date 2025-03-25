@@ -5,10 +5,13 @@ import static seedu.recruittrackpro.logic.parser.CommandParserTestUtil.assertPar
 import static seedu.recruittrackpro.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.recruittrackpro.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.recruittrackpro.logic.commands.RemoveTagCommand;
 import seedu.recruittrackpro.model.tag.Tag;
+import seedu.recruittrackpro.model.tag.Tags;
 
 public class RemoveTagCommandParserTest {
     private RemoveTagCommandParser parser = new RemoveTagCommandParser();
@@ -16,7 +19,7 @@ public class RemoveTagCommandParserTest {
     @Test
     public void parse_validArgs_returnsRemoveTagCommand() {
         assertParseSuccess(parser, "1 t/friends",
-                new RemoveTagCommand(INDEX_FIRST_PERSON, new Tag("friends")));
+                new RemoveTagCommand(INDEX_FIRST_PERSON, new Tags(Set.of(new Tag("friends")))));
     }
 
     @Test

@@ -5,7 +5,6 @@ import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recruittrackpro.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
@@ -15,7 +14,6 @@ import seedu.recruittrackpro.logic.descriptors.EditPersonDescriptor;
 import seedu.recruittrackpro.logic.util.EditPersonUtil;
 import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.person.Person;
-import seedu.recruittrackpro.model.tag.Tag;
 import seedu.recruittrackpro.model.tag.Tags;
 
 /**
@@ -32,20 +30,20 @@ public class RemoveTagCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "Java Developer";
     public static final String MESSAGE_REMOVE_TAGS_SUCCESS = "Tag removed from %1$s: %2$s";
-    public static final String MESSAGE_TAG_NOT_IN_LIST = "Tag specified is not in the persons tag list.";
+    public static final String MESSAGE_TAG_NOT_IN_LIST = "The following tags do not exist for %1$s: %2$s";
     public static final String MESSAGE_EMPTY_LIST = "No candidates to edit! The displayed list is empty.";
 
     private final Index targetIndex;
-    private final Tag tagToRemove;
+    private final Tags tagsToRemove;
 
     /**
      * Creates a RemoveTagCommand to remove a specified {@code tag} to the person at {@code index}.
      */
-    public RemoveTagCommand(Index targetIndex, Tag tagToRemove) {
+    public RemoveTagCommand(Index targetIndex, Tags tagsToRemove) {
         requireNonNull(targetIndex);
-        requireNonNull(tagToRemove);
+        requireNonNull(tagsToRemove);
         this.targetIndex = targetIndex;
-        this.tagToRemove = tagToRemove;
+        this.tagsToRemove = tagsToRemove;
     }
 
     /**
@@ -81,15 +79,27 @@ public class RemoveTagCommand extends Command {
 
         Person targetPerson = lastShownList.get(targetIndex.getZeroBased());
 
-        if (!targetPerson.getTags().contains(tagToRemove)) {
-            throw new CommandException(MESSAGE_TAG_NOT_IN_LIST);
-        }
+        Tags currentTags = targetPerson.getTags();
+        Tags.TagSeparationResult result = currentTags.separateNewFromExisting(tagsToRemove);
+        Tags invalidTags = result.newTags(); //not in person's tag list
+        Tags removedTags = result.duplicateTags(); //in list and will be removed
 
-        Person updatedPerson = removeTags(targetPerson, new Tags(Set.of(tagToRemove)));
+        Person updatedPerson = removeTags(targetPerson, removedTags);
         model.setPerson(targetPerson, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_REMOVE_TAGS_SUCCESS, targetPerson.getName(), tagToRemove));
+        return new CommandResult(constructResultMessage(targetPerson, removedTags, invalidTags));
+    }
+
+    private String constructResultMessage(Person person, Tags removedTags, Tags invalidTags) {
+        StringBuilder result = new StringBuilder(
+                String.format(MESSAGE_REMOVE_TAGS_SUCCESS, person.getName(), removedTags));
+
+        if (!invalidTags.isEmpty()) {
+            result.append("\n").append(
+                    String.format(MESSAGE_TAG_NOT_IN_LIST, person.getName(), invalidTags));
+        }
+        return result.toString();
     }
 
     @Override
@@ -104,14 +114,14 @@ public class RemoveTagCommand extends Command {
 
         RemoveTagCommand otherRemoveTagCommand = (RemoveTagCommand) other;
         return targetIndex.equals(otherRemoveTagCommand.targetIndex)
-                && tagToRemove.equals(otherRemoveTagCommand.tagToRemove);
+                && tagsToRemove.equals(otherRemoveTagCommand.tagsToRemove);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("targetIndex", targetIndex)
-                .add("tagToRemove", tagToRemove)
+                .add("tagToRemove", tagsToRemove)
                 .toString();
     }
 }
