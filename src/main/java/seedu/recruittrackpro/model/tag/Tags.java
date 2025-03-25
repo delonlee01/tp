@@ -108,11 +108,16 @@ public class Tags {
         Set<Tag> newTags = new HashSet<>();
         Set<Tag> duplicateTags = new HashSet<>();
 
-        for (Tag tag : incoming.tags) {
-            if (this.tags.contains(tag)) {
-                duplicateTags.add(tag);
+        for (Tag incomingTag : incoming.tags) {
+            Tag existingTag = this.tags.stream()
+                    .filter(t -> t.equals(incomingTag))
+                    .findFirst()
+                    .orElse(null);
+
+            if (existingTag != null) {
+                duplicateTags.add(existingTag); // Adds tag from this set
             } else {
-                newTags.add(tag);
+                newTags.add(incomingTag);
             }
         }
 
