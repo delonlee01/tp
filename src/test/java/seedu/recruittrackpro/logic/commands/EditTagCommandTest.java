@@ -1,11 +1,11 @@
 package seedu.recruittrackpro.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.recruittrackpro.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.recruittrackpro.testutil.TypicalPersons.getTypicalRecruitTrackPro;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,9 +55,11 @@ public class EditTagCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Index outOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditTagCommand command = new EditTagCommand(outOfBounds, new Tag("friends"), new Tag("newtag"));
+        EditTagCommand command = new EditTagCommand(outOfBounds,
+                new Tag("friends"), new Tag("newtag"));
 
-        assertCommandFailure(command, model, seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(command, model,
+                seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
