@@ -9,23 +9,20 @@ import static seedu.recruittrackpro.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.recruittrackpro.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.recruittrackpro.testutil.TypicalPersons.getTypicalRecruitTrackPro;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.logic.Messages;
+import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.ModelManager;
 import seedu.recruittrackpro.model.RecruitTrackPro;
 import seedu.recruittrackpro.model.UserPrefs;
 import seedu.recruittrackpro.model.person.Person;
-import seedu.recruittrackpro.model.tag.Tag;
+import seedu.recruittrackpro.model.tag.Tags;
 import seedu.recruittrackpro.testutil.PersonBuilder;
 
 /**
@@ -35,42 +32,22 @@ public class AddTagsCommandTest {
 
     private Model model;
 
-    /**
-     * Generates a set of tags
-     */
-    private Set<Tag> generateTags(String... tagNames) {
-        return Arrays.stream(tagNames)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-    }
-
-    /**
-     * Formats a set of tags into a string representation: ["Tag1", "Tag2"]
-     */
-    private static String formatTags(Set<Tag> tags) {
-        return tags.stream()
-                .map(tag -> "\"" + tag.toString().replaceAll("^\\[|\\]$", "") + "\"")
-                .collect(Collectors.joining(", ", "[", "]"));
-    }
-
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalRecruitTrackPro(), new UserPrefs());
     }
 
     @Test
-    public void execute_addNewTags_success() {
+    public void execute_addNewTags_success() throws ParseException {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Set<Tag> newTags = generateTags("Java", "Spring");
+        Tags newTags = new Tags(List.of("Java", "Spring"));
 
         AddTagsCommand command = new AddTagsCommand(INDEX_FIRST_PERSON, newTags);
 
         Person updatedPerson = new PersonBuilder(personToEdit).addTags("Java", "Spring").build();
 
-        String formattedNewTags = formatTags(newTags);
-
         String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAGS_SUCCESS,
-                updatedPerson.getName(), formattedNewTags);
+                updatedPerson.getName(), newTags.toString());
 
         Model expectedModel = new ModelManager(new RecruitTrackPro(model.getRecruitTrackPro()), new UserPrefs());
         expectedModel.setPerson(personToEdit, updatedPerson);
@@ -81,14 +58,13 @@ public class AddTagsCommandTest {
     @Test
     public void execute_addDuplicateTags_onlyShowDuplicates() {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Set<Tag> duplicateTags = new HashSet<>(personToEdit.getTags());
-        String formattedDuplicateTags = formatTags(duplicateTags);
+        Tags duplicateTags = personToEdit.getTags();
 
         AddTagsCommand command = new AddTagsCommand(INDEX_FIRST_PERSON, duplicateTags);
         String expectedMessage = String.format(
                 AddTagsCommand.MESSAGE_DUPLICATE_TAGS,
                 personToEdit.getName(),
-                formattedDuplicateTags
+                duplicateTags.toString()
         );
 
         Model expectedModel = new ModelManager(new RecruitTrackPro(model.getRecruitTrackPro()), new UserPrefs());
@@ -97,26 +73,21 @@ public class AddTagsCommandTest {
     }
 
     @Test
-    public void execute_addNewAndDuplicateTags_mixedResponse() {
+    public void execute_addNewAndDuplicateTags_mixedResponse() throws ParseException {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        Set<Tag> mixedTags = new HashSet<>(personToEdit.getTags());
-        mixedTags.add(new Tag("Python"));
+        Tags existingTags = personToEdit.getTags();
+        Tags newTags = new Tags(List.of("Python"));
+        Tags combinedTags = existingTags.combineTags(newTags);
 
-        AddTagsCommand command = new AddTagsCommand(INDEX_FIRST_PERSON, mixedTags);
-
-        Set<Tag> newlyAddedTags = generateTags("Python");
-        String formattedNewTags = formatTags(newlyAddedTags);
-
-        Set<Tag> duplicateTags = new HashSet<>(personToEdit.getTags());
-        String formattedDuplicateTags = formatTags(duplicateTags);
+        AddTagsCommand command = new AddTagsCommand(INDEX_FIRST_PERSON, combinedTags);
 
         Person updatedPerson = new PersonBuilder(personToEdit).addTags("Python").build();
 
         String expectedMessage = String.format(AddTagsCommand.MESSAGE_ADD_TAGS_SUCCESS,
-                updatedPerson.getName(), formattedNewTags)
+                updatedPerson.getName(), newTags.toString())
                 + "\n" + String.format(AddTagsCommand.MESSAGE_DUPLICATE_TAGS,
-                updatedPerson.getName(), formattedDuplicateTags);
+                updatedPerson.getName(), existingTags.toString());
 
         Model expectedModel = new ModelManager(new RecruitTrackPro(model.getRecruitTrackPro()), new UserPrefs());
         expectedModel.setPerson(personToEdit, updatedPerson);
@@ -125,8 +96,8 @@ public class AddTagsCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_throwsCommandException() {
-        Set<Tag> tags = generateTags("Java");
+    public void execute_invalidIndex_throwsCommandException() throws ParseException {
+        Tags tags = new Tags(List.of("Java"));
 
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         AddTagsCommand command = new AddTagsCommand(outOfBoundIndex, tags);
@@ -136,24 +107,26 @@ public class AddTagsCommandTest {
 
     @Test
     public void execute_noTagsProvided_throwsCommandException() {
-        Set<Tag> emptyTags = Collections.emptySet();
+        Tags emptyTags = new Tags();
         AddTagsCommand command = new AddTagsCommand(INDEX_FIRST_PERSON, emptyTags);
 
         assertCommandFailure(command, model, AddTagsCommand.MESSAGE_NO_TAGS_FOUND);
     }
 
     @Test
-    public void equals() {
-        Set<Tag> tagsA = generateTags("Java");
-
-        Set<Tag> tagsB = generateTags("Python");
+    public void equals() throws ParseException {
+        Tags tagsA = new Tags(List.of("Java"));
+        Tags tagsB = new Tags(List.of("Python"));
 
         AddTagsCommand commandA = new AddTagsCommand(INDEX_FIRST_PERSON, tagsA);
         AddTagsCommand commandB = new AddTagsCommand(INDEX_FIRST_PERSON, tagsB);
         AddTagsCommand commandC = new AddTagsCommand(INDEX_SECOND_PERSON, tagsA);
 
         // same values -> returns true
-        AddTagsCommand commandWithSameValues = new AddTagsCommand(INDEX_FIRST_PERSON, new HashSet<>(tagsA));
+        AddTagsCommand commandWithSameValues = new AddTagsCommand(
+                INDEX_FIRST_PERSON,
+                new Tags(tagsA.toStream().map(tag -> tag.tagName).toList())
+        );
         assertTrue(commandA.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -173,12 +146,13 @@ public class AddTagsCommandTest {
     }
 
     @Test
-    public void toStringMethod() {
-        Set<Tag> tags = generateTags("Java");
+    public void toStringTest() throws ParseException {
+        Tags tags = new Tags(List.of("Java"));
         Index index = Index.fromOneBased(1);
 
         AddTagsCommand command = new AddTagsCommand(index, tags);
-        String expected = AddTagsCommand.class.getCanonicalName() + "{index=" + index + ", tagsToAdd=" + tags + "}";
+        String expected = AddTagsCommand.class.getCanonicalName()
+                + "{index=" + index + ", tagsToAdd=" + tags + "}";
         assertEquals(expected, command.toString());
     }
 }

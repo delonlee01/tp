@@ -8,7 +8,6 @@ import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.recruittrackpro.logic.commands.AddCommand;
@@ -19,7 +18,7 @@ import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.person.Phone;
-import seedu.recruittrackpro.model.tag.Tag;
+import seedu.recruittrackpro.model.tag.Tags;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -45,10 +44,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Tags tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Comment comment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENT).orElseGet(() -> ""));
 
-        Person person = new Person(name, phone, email, address, tagList, comment);
+        Person person = new Person(name, phone, email, address, tags, comment);
 
         return new AddCommand(person);
     }

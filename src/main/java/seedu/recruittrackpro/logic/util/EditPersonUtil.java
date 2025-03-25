@@ -1,7 +1,5 @@
 package seedu.recruittrackpro.logic.util;
 
-import java.util.Set;
-
 import seedu.recruittrackpro.logic.descriptors.EditPersonDescriptor;
 import seedu.recruittrackpro.model.person.Address;
 import seedu.recruittrackpro.model.person.Comment;
@@ -9,7 +7,7 @@ import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.person.Phone;
-import seedu.recruittrackpro.model.tag.Tag;
+import seedu.recruittrackpro.model.tag.Tags;
 
 /**
  * Utility methods for editing a Person.
@@ -27,7 +25,7 @@ public class EditPersonUtil {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Tags updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Comment updatedComment = editPersonDescriptor.getComment().orElse(personToEdit.getComment());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedComment);
