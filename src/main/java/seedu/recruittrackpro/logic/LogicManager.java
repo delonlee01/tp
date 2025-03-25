@@ -16,7 +16,6 @@ import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.ReadOnlyRecruitTrackPro;
 import seedu.recruittrackpro.model.person.Person;
-import seedu.recruittrackpro.model.person.UniquePersonList;
 import seedu.recruittrackpro.storage.Storage;
 
 /**

@@ -25,10 +25,10 @@ public class Person {
     private final Comment comment;
 
     // Comparators
-    public static final Comparator<Person> PERSON_COMPARATOR_ASCENDING = Comparator
+    public final static Comparator<Person> PERSON_COMPARATOR_ASCENDING = Comparator
             .comparing((Person person) -> person.getName().toString().toLowerCase())
             .thenComparing((Person person) -> person.getPhone().toString());
-    public static final Comparator<Person> PERSON_COMPARATOR_DESCENDING =
+    public final static Comparator<Person> PERSON_COMPARATOR_DESCENDING =
             PERSON_COMPARATOR_ASCENDING.reversed();
 
     /**
