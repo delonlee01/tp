@@ -14,6 +14,13 @@ import seedu.recruittrackpro.model.tag.Tags;
  */
 public class Person {
 
+    // Comparators
+    public static final Comparator<Person> PERSON_COMPARATOR_ASCENDING = Comparator
+            .comparing((Person person) -> person.getName().toString().toLowerCase())
+            .thenComparing((Person person) -> person.getPhone().toString());
+    public static final Comparator<Person> PERSON_COMPARATOR_DESCENDING =
+            PERSON_COMPARATOR_ASCENDING.reversed();
+
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -23,13 +30,6 @@ public class Person {
     private final Address address;
     private final Tags tags;
     private final Comment comment;
-
-    // Comparators
-    public final static Comparator<Person> PERSON_COMPARATOR_ASCENDING = Comparator
-            .comparing((Person person) -> person.getName().toString().toLowerCase())
-            .thenComparing((Person person) -> person.getPhone().toString());
-    public final static Comparator<Person> PERSON_COMPARATOR_DESCENDING =
-            PERSON_COMPARATOR_ASCENDING.reversed();
 
     /**
      * Every field must be present and not null.
