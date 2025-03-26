@@ -33,7 +33,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns ascending or descending sorting status */
+    /**
+     * Returns the sorting order, {@code true} if ascending, {@code false} if descending.
+     */
     boolean isAscending();
 
     /**
