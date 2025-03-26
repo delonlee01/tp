@@ -26,9 +26,11 @@ public class AddTagsCommand extends Command {
 
     public static final String COMMAND_WORD = "add-tags";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds one or more tags to a candidate "
-            + "using the index number from the displayed person list. "
-            + "New tags will be appended to the person's existing tag list.\n"
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + ": Adds one or more tags to a candidate "
+            + "using the index number from the displayed person list.";
+
+    public static final String MESSAGE_USAGE = SHORT_MESSAGE_USAGE
+            + " New tags will be appended to the person's existing tag list.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
