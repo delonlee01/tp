@@ -3,6 +3,7 @@ package seedu.recruittrackpro.logic.parser;
 import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -94,5 +95,16 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " " + PREFIX_PHONE + " \n 911", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validCommentArgs_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        Object[] commentKeywords = {PREFIX_COMMENT, new String[]{"test"}};
+        FindCommand expectedFindCommand = new FindCommand(new ContainsKeywordsPredicate(commentKeywords));
+        assertParseSuccess(parser, " " + PREFIX_COMMENT + "test", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " " + PREFIX_COMMENT + " \n test", expectedFindCommand);
     }
 }
