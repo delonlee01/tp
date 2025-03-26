@@ -17,7 +17,7 @@ import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.tag.Tags;
 
 /**
- * Removes a specified tag from an existing candidate in the address book.
+ * Removes one or more specified tags from an existing candidate in the address book.
  */
 public class RemoveTagCommand extends Command {
     public static final String COMMAND_WORD = "remove-tag";
@@ -37,7 +37,10 @@ public class RemoveTagCommand extends Command {
     private final Tags tagsToRemove;
 
     /**
-     * Creates a RemoveTagCommand to remove a specified {@code tag} to the person at {@code index}.
+     * Creates a RemoveTagCommand to remove one or more specified tags from a candidate.
+     *
+     * @param targetIndex Index of the target person.
+     * @param tagsToRemove Tags to remove (multiple allowed).
      */
     public RemoveTagCommand(Index targetIndex, Tags tagsToRemove) {
         requireNonNull(targetIndex);
@@ -47,20 +50,17 @@ public class RemoveTagCommand extends Command {
     }
 
     /**
-     * Returns a new {@code Person} object with the specified tags removed.
+     * Returns a new {@code Person} object with specified tags removed.
      *
-     * <p>This method excludes all tags in {@code tagsToRemove} from the target person's
-     * current tag set, and constructs an {@code EditPersonDescriptor} with the updated tags.
-     * It then uses {@code EditPersonUtil} to generate and return the edited person.
-     *
-     * @param targetPerson The person whose tags are to be removed.
-     * @param tagsToRemove The set of tags to be removed from the person.
-     * @return A new {@code Person} object with the specified tags removed.
+     * @param targetPerson Person whose tags are to be modified.
+     * @param tagsToRemove Tags to remove.
+     * @return Updated person with tags removed.
      */
     Person removeTags(Person targetPerson, Tags tagsToRemove) {
         Tags personTags = targetPerson.getTags();
         EditPersonDescriptor editedDescriptor = new EditPersonDescriptor();
-        editedDescriptor.setTags(personTags.excludeTags(tagsToRemove));
+        Tags updatedTags = personTags.excludeTags(tagsToRemove);
+        editedDescriptor.setTags(updatedTags);
         return EditPersonUtil.createEditedPerson(targetPerson, editedDescriptor);
     }
 
