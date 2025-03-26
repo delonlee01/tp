@@ -1,7 +1,7 @@
 package seedu.recruittrackpro.logic.commands;
 
 import static seedu.recruittrackpro.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.recruittrackpro.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
+import static seedu.recruittrackpro.logic.commands.HelpCommand.ALL_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ public class HelpCommandTest {
 
     @Test
     public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        CommandResult expectedCommandResult = new CommandResult(ALL_HELP_MESSAGE, false);
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
 }
