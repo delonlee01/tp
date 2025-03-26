@@ -73,7 +73,7 @@ public class LogicManager implements Logic {
 
     @Override
     public boolean isAscending() {
-        return model.isAscending();
+        return model.isRecruitTrackProAscending();
     }
 
     @Override

@@ -129,13 +129,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void switchPersonListSorting() {
-        recruitTrackPro.getUniquePersonList().switchSorting();
+    public void switchRecruitTrackProSorting() {
+        recruitTrackPro.switchPersonListSorting();
     }
 
     @Override
-    public boolean isAscending() {
-        return recruitTrackPro.getUniquePersonList().isAscending();
+    public boolean isRecruitTrackProAscending() {
+        return recruitTrackPro.isPersonListAscending();
     }
 
     @Override

@@ -26,12 +26,12 @@ public class SwitchSortCommandTest {
 
     @Test
     public void execute_switchSortingSuccess() {
-        expectedModel.switchPersonListSorting();
+        expectedModel.switchRecruitTrackProSorting();
 
         assertCommandSuccess(new SwitchSortCommand(), model,
                 SwitchSortCommand.MESSAGE_SUCCESS_DESCENDING, expectedModel);
 
-        expectedModel.switchPersonListSorting();
+        expectedModel.switchRecruitTrackProSorting();
 
         assertCommandSuccess(new SwitchSortCommand(), model,
                 SwitchSortCommand.MESSAGE_SUCCESS_ASCENDING, expectedModel);

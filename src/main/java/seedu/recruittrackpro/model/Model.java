@@ -86,12 +86,12 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Switches sorting between ascending and descending then lists all persons.
+     * Switches current sorting order between ascending and descending.
      */
-    void switchPersonListSorting();
+    void switchRecruitTrackProSorting();
 
     /**
-     * Returns ascending or descending sorting status;
+     * Returns the current sorting order, {@code true} if ascending, {@code false} if descending.
      */
-    boolean isAscending();
+    boolean isRecruitTrackProAscending();
 }

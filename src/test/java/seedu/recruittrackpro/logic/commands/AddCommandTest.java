@@ -159,12 +159,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void switchPersonListSorting() {
+        public void switchRecruitTrackProSorting() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean isAscending() {
+        public boolean isRecruitTrackProAscending() {
             throw new AssertionError("This method should not be called.");
         }
     }

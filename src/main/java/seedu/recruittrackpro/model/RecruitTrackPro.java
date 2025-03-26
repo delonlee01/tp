@@ -94,6 +94,14 @@ public class RecruitTrackPro implements ReadOnlyRecruitTrackPro {
         persons.remove(key);
     }
 
+    public void switchPersonListSorting() {
+        persons.switchSorting();
+    }
+
+    public boolean isPersonListAscending() {
+        return persons.isAscending();
+    }
+
     //// util methods
 
     @Override
@@ -106,10 +114,6 @@ public class RecruitTrackPro implements ReadOnlyRecruitTrackPro {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
-    }
-
-    public UniquePersonList getUniquePersonList() {
-        return persons;
     }
 
     @Override

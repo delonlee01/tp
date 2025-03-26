@@ -35,7 +35,7 @@ public class UniquePersonList implements Iterable<Person> {
     private Comparator<Person> comparatorInUse = PERSON_COMPARATOR_ASCENDING;
 
     /**
-     * Switches between ascending and descending sorting.
+     * Switches current sorting order between ascending and descending.
      */
     public void switchSorting() {
         isAscending = !isAscending;
@@ -43,7 +43,9 @@ public class UniquePersonList implements Iterable<Person> {
         FXCollections.sort(internalList, comparatorInUse);
     }
 
-    /** Returns ascending or descending status */
+    /**
+     * Returns the current sorting order, {@code true} if ascending, {@code false} if descending.
+     */
     public boolean isAscending() {
         return isAscending;
     }

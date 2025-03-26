@@ -20,8 +20,8 @@ public class SwitchSortCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.switchPersonListSorting();
+        model.switchRecruitTrackProSorting();
         return new CommandResult(
-                model.isAscending() ? MESSAGE_SUCCESS_ASCENDING : MESSAGE_SUCCESS_DESCENDING);
+                model.isRecruitTrackProAscending() ? MESSAGE_SUCCESS_ASCENDING : MESSAGE_SUCCESS_DESCENDING);
     }
 }
