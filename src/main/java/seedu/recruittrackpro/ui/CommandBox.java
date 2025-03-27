@@ -35,7 +35,7 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
-        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::filterKeyPressed);
     }
 
     private void updateCommandHistory(String commandText) {
@@ -54,7 +54,7 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandEntered() {
         String commandText = commandTextField.getText();
-        if (commandText.equals("")) {
+        if (commandText.isEmpty()) {
             return;
         }
 
@@ -68,8 +68,12 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
+    /**
+     * Handles the Up arrow button pressed event.
+     */
     private void handleUpKey() {
         if (referenceCommand == null) {
+            // entering the command history
             originalUserInput = commandTextField.getText();
             referenceCommand = commandHistory.getLast();
             commandTextField.setText(referenceCommand.getValue());
@@ -78,30 +82,42 @@ public class CommandBox extends UiPart<Region> {
 
         ExecutedCommand previous = referenceCommand.getPrevious();
         if (previous == null) {
+            // at the head of the command history
             return;
         }
 
+        // in the middle of the command history
         referenceCommand = previous;
         commandTextField.setText(referenceCommand.getValue());
     }
 
+    /**
+     * Handles the Down arrow button pressed event.
+     */
     private void handleDownKey() {
         if (referenceCommand == null) {
+            // outside the command history
             return;
         }
 
         ExecutedCommand next = referenceCommand.getNext();
         if (next == null) {
+            // exiting the command history
             commandTextField.setText(originalUserInput);
             referenceCommand = null;
             return;
         }
 
+        // in the middle of the command history
         referenceCommand = next;
         commandTextField.setText(referenceCommand.getValue());
     }
 
-    private void handleKeyPressed(KeyEvent event) {
+
+    /**
+     * Filters button pressed events.
+     */
+    private void filterKeyPressed(KeyEvent event) {
         String keyPressed = event.getCode().toString();
         if ((!keyPressed.equals("UP") && !keyPressed.equals("DOWN"))) {
             return;
@@ -118,7 +134,7 @@ public class CommandBox extends UiPart<Region> {
             handleDownKey();
         }
 
-        commandTextField.end();
+        commandTextField.end(); // move the text cursor to the end
     }
 
     /**
@@ -154,6 +170,9 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
+    /**
+     * Represents a string representation of a command that was previously executed.
+     */
     private static class ExecutedCommand {
 
         private final String value;
