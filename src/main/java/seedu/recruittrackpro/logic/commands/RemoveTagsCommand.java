@@ -21,15 +21,19 @@ import seedu.recruittrackpro.model.tag.Tags;
  */
 public class RemoveTagsCommand extends Command {
     public static final String COMMAND_WORD = "remove-tags";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes a specified tag from a candidate "
-            + "using the index number from the displayed person list. "
-            + "The specified tag will be removed from the person's existing tag list if it matches exactly, "
+
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD
+            + ": Removes one or more specified tags from a candidate "
+            + "using the index number from the displayed list.";
+
+    public static final String MESSAGE_USAGE = SHORT_MESSAGE_USAGE
+            + "The specified tags will be removed from the person's existing tag list if it matches exactly, "
             + "ignoring case sensitivity.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "Java Developer";
-    public static final String MESSAGE_REMOVE_TAGS_SUCCESS = "Tag removed from %1$s: %2$s";
+    public static final String MESSAGE_REMOVE_TAGS_SUCCESS = "Tags removed from %1$s: %2$s";
     public static final String MESSAGE_TAG_NOT_IN_LIST = "The following tags do not exist for %1$s: %2$s";
     public static final String MESSAGE_EMPTY_LIST = "No candidates to edit! The displayed list is empty.";
 
