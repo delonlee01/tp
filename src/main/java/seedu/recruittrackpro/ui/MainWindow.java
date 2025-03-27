@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -14,6 +15,7 @@ import seedu.recruittrackpro.commons.core.GuiSettings;
 import seedu.recruittrackpro.commons.core.LogsCenter;
 import seedu.recruittrackpro.logic.Logic;
 import seedu.recruittrackpro.logic.commands.CommandResult;
+import seedu.recruittrackpro.logic.commands.SwitchSortCommand;
 import seedu.recruittrackpro.logic.commands.exceptions.CommandException;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 
@@ -50,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private Button sortButton;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -78,6 +83,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -163,6 +169,15 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void handleSortSwitch() throws CommandException, ParseException {
+        executeCommand(SwitchSortCommand.COMMAND_WORD);
+    }
+
+    private void updateSortButton() {
+        sortButton.setText(logic.isAscending() ? "↑" : "↓");
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -178,14 +193,11 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
             if (commandResult.isExit()) {
                 handleExit();
             }
 
+            updateSortButton();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);

@@ -21,8 +21,10 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the RecruitTrackPro. "
-            + "Parameters: "
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + ": Adds a candidate to the address book.";
+
+    public static final String MESSAGE_USAGE = SHORT_MESSAGE_USAGE
+            + " Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "

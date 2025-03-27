@@ -129,6 +129,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void switchRecruitTrackProSorting() {
+        recruitTrackPro.switchPersonListSorting();
+    }
+
+    @Override
+    public boolean isRecruitTrackProAscending() {
+        return recruitTrackPro.isPersonListAscending();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

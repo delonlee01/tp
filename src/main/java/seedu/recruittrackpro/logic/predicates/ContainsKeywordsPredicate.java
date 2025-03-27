@@ -49,6 +49,10 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
                     predicatesList.add(new PhoneContainsKeywordsPredicate(
                             Arrays.asList((String[]) keywordsArray[1])));
                     break;
+                case "c/":
+                    predicatesList.add(new CommentContainsKeywordsPredicate(
+                            Arrays.asList((String[]) keywordsArray[1])));
+                    break;
                 default:
                     break;
                 }
