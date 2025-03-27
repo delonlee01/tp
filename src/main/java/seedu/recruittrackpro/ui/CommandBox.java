@@ -21,7 +21,7 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandExecutor commandExecutor;
     private final LinkedList<ExecutedCommand> history = new LinkedList<>();
-    private ExecutedCommand referencedCommand;
+    private ExecutedCommand referenceCommand;
 
     @FXML
     private TextField commandTextField;
@@ -50,7 +50,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
-            referencedCommand = null;
+            referenceCommand = null;
 
             ExecutedCommand commandEntered = new ExecutedCommand(commandText);
             if (!history.isEmpty()) {
@@ -64,43 +64,56 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
-    @FXML
+    private void handleUpKey() {
+        if (referenceCommand == null) {
+            referenceCommand = history.getLast();
+            commandTextField.setText(referenceCommand.getValue());
+            return;
+        }
+
+        ExecutedCommand previous = referenceCommand.getPrevious();
+        if (previous == null) {
+            return;
+        }
+
+        referenceCommand = previous;
+        commandTextField.setText(referenceCommand.getValue());
+    }
+
+    private void handleDownKey() {
+        if (referenceCommand == null) {
+            return;
+        }
+
+        ExecutedCommand next = referenceCommand.getNext();
+        if (next == null) {
+            commandTextField.setText("");
+            referenceCommand = null;
+            return;
+        }
+
+        referenceCommand = next;
+        commandTextField.setText(referenceCommand.getValue());
+    }
+
     private void handleKeyPressed(KeyEvent event) {
         String keyPressed = event.getCode().toString();
-        if ((!keyPressed.equals("UP") && !keyPressed.equals("DOWN")) || history.isEmpty()) {
+        if ((!keyPressed.equals("UP") && !keyPressed.equals("DOWN"))) {
             return;
         }
+        event.consume(); // to override default behaviour
 
-        if (keyPressed.equals("UP") && referencedCommand == null) {
-            referencedCommand = history.getLast();
-            commandTextField.setText(referencedCommand.getValue());
-            return;
-        }
-
-        if (keyPressed.equals("DOWN") && referencedCommand == null) {
-            return;
-        }
-
-        ExecutedCommand previous = referencedCommand.getPrevious();
-        ExecutedCommand next = referencedCommand.getNext();
-
-        if (keyPressed.equals("UP") && previous == null) {
-            return;
-        }
-
-        if (keyPressed.equals("DOWN") && next == null) {
-            commandTextField.setText("");
-            referencedCommand = null;
+        if (history.isEmpty()) {
             return;
         }
 
         if (keyPressed.equals("UP")) {
-            referencedCommand = previous;
+            handleUpKey();
         } else {
-            referencedCommand = next;
+            handleDownKey();
         }
 
-        commandTextField.setText(referencedCommand.getValue());
+        commandTextField.end();
     }
 
     /**
