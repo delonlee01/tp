@@ -19,5 +19,5 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "0..1" Comment
+Person *--> Comment
 @enduml
