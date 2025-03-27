@@ -3,6 +3,7 @@ package seedu.recruittrackpro.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -14,6 +15,7 @@ import seedu.recruittrackpro.logic.commands.FindCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.logic.predicates.ContainsKeywordsPredicate;
 import seedu.recruittrackpro.model.person.Address;
+import seedu.recruittrackpro.model.person.Comment;
 import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Phone;
@@ -32,10 +34,11 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_NAME, PREFIX_TAG, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_COMMENT);
 
         if (!hasAtLeastOnePrefixPresent(argMultimap,
-                PREFIX_NAME, PREFIX_TAG, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE)
+                PREFIX_NAME, PREFIX_TAG, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_COMMENT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -46,9 +49,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         Object[] addressKeywords = getKeywords(argMultimap, PREFIX_ADDRESS);
         Object[] emailKeywords = getKeywords(argMultimap, PREFIX_EMAIL);
         Object[] phoneKeywords = getKeywords(argMultimap, PREFIX_PHONE);
+        Object[] commentKeywords = getKeywords(argMultimap, PREFIX_COMMENT);
 
         return new FindCommand(new ContainsKeywordsPredicate(nameKeywords,
-                tagKeywords, addressKeywords, emailKeywords, phoneKeywords));
+                tagKeywords, addressKeywords, emailKeywords, phoneKeywords, commentKeywords));
     }
 
     /**
@@ -81,6 +85,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                     throw new ParseException(Email.MESSAGE_CONSTRAINTS);
                 case "p/":
                     throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+                case "c/":
+                    throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
                 default:
                     break;
                 }

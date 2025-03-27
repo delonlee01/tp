@@ -34,6 +34,11 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns the current sorting order, {@code true} if ascending, {@code false} if descending.
+     */
+    boolean isAscending();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getRecruitTrackProFilePath();

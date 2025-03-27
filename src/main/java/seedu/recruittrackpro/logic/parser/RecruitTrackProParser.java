@@ -14,11 +14,13 @@ import seedu.recruittrackpro.logic.commands.ClearCommand;
 import seedu.recruittrackpro.logic.commands.Command;
 import seedu.recruittrackpro.logic.commands.DeleteCommand;
 import seedu.recruittrackpro.logic.commands.EditCommand;
+import seedu.recruittrackpro.logic.commands.EditTagCommand;
 import seedu.recruittrackpro.logic.commands.ExitCommand;
 import seedu.recruittrackpro.logic.commands.FindCommand;
 import seedu.recruittrackpro.logic.commands.HelpCommand;
 import seedu.recruittrackpro.logic.commands.ListCommand;
 import seedu.recruittrackpro.logic.commands.RemoveTagsCommand;
+import seedu.recruittrackpro.logic.commands.SwitchSortCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 
 /**
@@ -85,7 +87,13 @@ public class RecruitTrackProParser {
         case RemoveTagsCommand.COMMAND_WORD:
             return new RemoveTagsCommandParser().parse(arguments);
 
-        default:
+        case EditTagCommand.COMMAND_WORD:
+            return new EditTagCommandParser().parse(arguments);
+
+        case SwitchSortCommand.COMMAND_WORD:
+            return new SwitchSortCommand();
+
+            default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

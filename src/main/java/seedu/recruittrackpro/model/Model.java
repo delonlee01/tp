@@ -84,4 +84,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Switches current sorting order between ascending and descending.
+     */
+    void switchRecruitTrackProSorting();
+
+    /**
+     * Returns the current sorting order, {@code true} if ascending, {@code false} if descending.
+     */
+    boolean isRecruitTrackProAscending();
 }

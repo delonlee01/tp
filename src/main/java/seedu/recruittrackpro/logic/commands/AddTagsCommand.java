@@ -10,6 +10,8 @@ import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
 import seedu.recruittrackpro.logic.Messages;
 import seedu.recruittrackpro.logic.commands.exceptions.CommandException;
+import seedu.recruittrackpro.logic.descriptors.EditPersonDescriptor;
+import seedu.recruittrackpro.logic.util.EditPersonUtil;
 import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.tag.Tags;
@@ -24,9 +26,11 @@ public class AddTagsCommand extends Command {
 
     public static final String COMMAND_WORD = "add-tags";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds one or more tags to a candidate "
-            + "using the index number from the displayed person list. "
-            + "New tags will be appended to the person's existing tag list.\n"
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + ": Adds one or more tags to a candidate "
+            + "using the index number from the displayed person list.";
+
+    public static final String MESSAGE_USAGE = SHORT_MESSAGE_USAGE
+            + " New tags will be appended to the person's existing tag list.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -83,7 +87,7 @@ public class AddTagsCommand extends Command {
             );
         }
 
-        Person updatedPerson = createUpdatedPerson(targetPerson, uniqueTagsToAdd);
+        Person updatedPerson = addTagsToPerson(targetPerson, uniqueTagsToAdd);
         model.setPerson(targetPerson, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
@@ -105,16 +109,17 @@ public class AddTagsCommand extends Command {
     }
 
     /**
-     * Creates a new Person instance with the new tags added.
+     * Returns a new {@code Person} object with the new tags added.
      *
      * @param original     The original Person.
      * @param tagsToAppend The tags to be appended.
      * @return A new Person object with updated tag list.
      */
-    private Person createUpdatedPerson(Person original, Tags tagsToAppend) {
+    private Person addTagsToPerson(Person original, Tags tagsToAppend) {
         Tags combinedTags = original.getTags().combineTags(tagsToAppend);
-        return new Person(original.getName(), original.getPhone(), original.getEmail(),
-                original.getAddress(), combinedTags, original.getComment());
+        EditPersonDescriptor editedDescriptor = new EditPersonDescriptor();
+        editedDescriptor.setTags(combinedTags);
+        return EditPersonUtil.createEditedPerson(original, editedDescriptor);
     }
 
     /**

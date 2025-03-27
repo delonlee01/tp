@@ -72,6 +72,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public boolean isAscending() {
+        return model.isRecruitTrackProAscending();
+    }
+
+    @Override
     public Path getRecruitTrackProFilePath() {
         return model.getRecruitTrackProFilePath();
     }

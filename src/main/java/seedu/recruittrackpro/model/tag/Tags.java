@@ -76,6 +76,22 @@ public class Tags {
     }
 
     /**
+     * Returns a new {@code Tags} instance with one tag replaced by another.
+     *
+     * @param oldTag The tag to replace.
+     * @param newTag The new tag to insert.
+     * @return A new {@code Tags} instance with the updated tag.
+     */
+    public Tags replaceTag(Tag oldTag, Tag newTag) {
+        requireNonNull(oldTag);
+        requireNonNull(newTag);
+        Set<Tag> updatedTagSet = new HashSet<>(this.tags);
+        updatedTagSet.remove(oldTag);
+        updatedTagSet.add(newTag);
+        return new Tags(updatedTagSet);
+    }
+
+    /**
      * Returns a sequential {@code Stream} over the tag set.
      * <p>
      * This provides a functional way to operate on the tags while preserving immutability.

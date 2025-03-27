@@ -2,6 +2,7 @@ package seedu.recruittrackpro.model.person;
 
 import static seedu.recruittrackpro.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
@@ -12,6 +13,13 @@ import seedu.recruittrackpro.model.tag.Tags;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+
+    // Comparators
+    public static final Comparator<Person> PERSON_COMPARATOR_ASCENDING = Comparator
+            .comparing((Person person) -> person.getName().toString().toLowerCase())
+            .thenComparing((Person person) -> person.getPhone().toString());
+    public static final Comparator<Person> PERSON_COMPARATOR_DESCENDING =
+            PERSON_COMPARATOR_ASCENDING.reversed();
 
     // Identity fields
     private final Name name;
