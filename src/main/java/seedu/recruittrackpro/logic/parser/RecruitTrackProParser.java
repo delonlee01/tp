@@ -14,6 +14,7 @@ import seedu.recruittrackpro.logic.commands.ClearCommand;
 import seedu.recruittrackpro.logic.commands.Command;
 import seedu.recruittrackpro.logic.commands.DeleteCommand;
 import seedu.recruittrackpro.logic.commands.EditCommand;
+import seedu.recruittrackpro.logic.commands.EditTagCommand;
 import seedu.recruittrackpro.logic.commands.ExitCommand;
 import seedu.recruittrackpro.logic.commands.FindCommand;
 import seedu.recruittrackpro.logic.commands.HelpCommand;
@@ -85,6 +86,9 @@ public class RecruitTrackProParser {
 
         case RemoveTagCommand.COMMAND_WORD:
             return new RemoveTagCommandParser().parse(arguments);
+
+        case EditTagCommand.COMMAND_WORD:
+            return new EditTagCommandParser().parse(arguments);
 
         case SwitchSortCommand.COMMAND_WORD:
             return new SwitchSortCommand();
