@@ -93,7 +93,7 @@ public class RecruitTrackProParser {
         case SwitchSortCommand.COMMAND_WORD:
             return new SwitchSortCommand();
 
-            default:
+        default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
