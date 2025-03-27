@@ -18,12 +18,15 @@ import seedu.recruittrackpro.model.tag.Tag;
 import seedu.recruittrackpro.model.tag.Tags;
 
 /**
- * Removes a specified tag from an existing candidate in the address book.
+ * Executes the edit-tag command to update a candidate’s tag by replacing an old tag with a new one.
  */
+
 public class EditTagCommand extends Command {
     public static final String COMMAND_WORD = "edit-tag";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a specified tag of a candidate "
-            + "using the index number from the displayed person list. "
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits a specified tag of a candidate "
+            + "using the index number from the displayed list.";
+    public static final String MESSAGE_USAGE = SHORT_MESSAGE_USAGE
             + "The specified tag will only be edited if it matches exactly, "
             + "ignoring case sensitivity.\n"
             + "Parameters: INDEX (must be a positive integer) "
