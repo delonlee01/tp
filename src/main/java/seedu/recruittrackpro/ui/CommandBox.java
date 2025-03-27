@@ -1,8 +1,11 @@
 package seedu.recruittrackpro.ui;
 
+import java.util.LinkedList;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.recruittrackpro.logic.commands.CommandResult;
 import seedu.recruittrackpro.logic.commands.exceptions.CommandException;
@@ -17,6 +20,8 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private final LinkedList<ExecutedCommand> history = new LinkedList<>();
+    private ExecutedCommand referencedCommand;
 
     @FXML
     private TextField commandTextField;
@@ -29,6 +34,7 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
     }
 
     /**
@@ -44,9 +50,57 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
+            referencedCommand = null;
+
+            ExecutedCommand commandEntered = new ExecutedCommand(commandText);
+            if (!history.isEmpty()) {
+                ExecutedCommand lastCommandEntered = history.getLast();
+                lastCommandEntered.setNext(commandEntered);
+                commandEntered.setPrevious(lastCommandEntered);
+            }
+            history.offerLast(commandEntered);
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
+    }
+
+    @FXML
+    private void handleKeyPressed(KeyEvent event) {
+        String keyPressed = event.getCode().toString();
+        if ((!keyPressed.equals("UP") && !keyPressed.equals("DOWN")) || history.isEmpty()) {
+            return;
+        }
+
+        if (keyPressed.equals("UP") && referencedCommand == null) {
+            referencedCommand = history.getLast();
+            commandTextField.setText(referencedCommand.getValue());
+            return;
+        }
+
+        if (keyPressed.equals("DOWN") && referencedCommand == null) {
+            return;
+        }
+
+        ExecutedCommand previous = referencedCommand.getPrevious();
+        ExecutedCommand next = referencedCommand.getNext();
+
+        if (keyPressed.equals("UP") && previous == null) {
+            return;
+        }
+
+        if (keyPressed.equals("DOWN") && next == null) {
+            commandTextField.setText("");
+            referencedCommand = null;
+            return;
+        }
+
+        if (keyPressed.equals("UP")) {
+            referencedCommand = previous;
+        } else {
+            referencedCommand = next;
+        }
+
+        commandTextField.setText(referencedCommand.getValue());
     }
 
     /**
@@ -80,6 +134,38 @@ public class CommandBox extends UiPart<Region> {
          * @see seedu.recruittrackpro.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
+    }
+
+    private static class ExecutedCommand {
+
+        private final String value;
+        private ExecutedCommand previous;
+        private ExecutedCommand next;
+
+        public ExecutedCommand(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return this.value;
+        }
+
+        public ExecutedCommand getPrevious() {
+            return this.previous;
+        }
+
+        public ExecutedCommand getNext() {
+            return this.next;
+        }
+
+        public void setPrevious(ExecutedCommand previous) {
+            this.previous = previous;
+        }
+
+        public void setNext(ExecutedCommand next) {
+            this.next = next;
+        }
+
     }
 
 }
