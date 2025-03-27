@@ -89,10 +89,9 @@ public class RecruitTrackProParser {
 
         case EditTagCommand.COMMAND_WORD:
             return new EditTagCommandParser().parse(arguments);
-            
+
         case SwitchSortCommand.COMMAND_WORD:
             return new SwitchSortCommand();
-
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
