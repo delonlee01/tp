@@ -7,22 +7,22 @@ import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.List;
 
 import seedu.recruittrackpro.commons.core.index.Index;
-import seedu.recruittrackpro.logic.commands.RemoveTagCommand;
+import seedu.recruittrackpro.logic.commands.RemoveTagsCommand;
 import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 import seedu.recruittrackpro.model.tag.Tag;
 import seedu.recruittrackpro.model.tag.Tags;
 
 /**
- * Parses input arguments and creates a new RemoveTagCommand object.
+ * Parses input arguments and creates a new RemoveTagsCommand object.
  */
-public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
+public class RemoveTagsCommandParser implements Parser<RemoveTagsCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the RemoveTagCommand
-     * and returns a RemoveTagCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the RemoveTagsCommand
+     * and returns a RemoveTagsCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public RemoveTagCommand parse(String args) throws ParseException {
+    public RemoveTagsCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
@@ -31,7 +31,7 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
         List<String> tagValues = argMultimap.getAllValues(PREFIX_TAG);
 
         if (preamble.isEmpty() || !preamble.matches("\\d+") || tagValues.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveTagCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveTagsCommand.MESSAGE_USAGE));
         }
 
         if (tagValues.stream().anyMatch(String::isBlank)) {
@@ -48,6 +48,6 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
 
-        return new RemoveTagCommand(index, tags);
+        return new RemoveTagsCommand(index, tags);
     }
 }

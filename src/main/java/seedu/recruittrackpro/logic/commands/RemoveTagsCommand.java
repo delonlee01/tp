@@ -19,8 +19,8 @@ import seedu.recruittrackpro.model.tag.Tags;
 /**
  * Removes one or more specified tags from an existing candidate in the address book.
  */
-public class RemoveTagCommand extends Command {
-    public static final String COMMAND_WORD = "remove-tag";
+public class RemoveTagsCommand extends Command {
+    public static final String COMMAND_WORD = "remove-tags";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes a specified tag from a candidate "
             + "using the index number from the displayed person list. "
             + "The specified tag will be removed from the person's existing tag list if it matches exactly, "
@@ -37,12 +37,12 @@ public class RemoveTagCommand extends Command {
     private final Tags tagsToRemove;
 
     /**
-     * Creates a RemoveTagCommand to remove one or more specified tags from a candidate.
+     * Creates a RemoveTagsCommand to remove one or more specified tags from a candidate.
      *
      * @param targetIndex Index of the target person.
      * @param tagsToRemove Tags to remove (multiple allowed).
      */
-    public RemoveTagCommand(Index targetIndex, Tags tagsToRemove) {
+    public RemoveTagsCommand(Index targetIndex, Tags tagsToRemove) {
         requireNonNull(targetIndex);
         requireNonNull(tagsToRemove);
         this.targetIndex = targetIndex;
@@ -108,13 +108,13 @@ public class RemoveTagCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof RemoveTagCommand)) {
+        if (!(other instanceof RemoveTagsCommand)) {
             return false;
         }
 
-        RemoveTagCommand otherRemoveTagCommand = (RemoveTagCommand) other;
-        return targetIndex.equals(otherRemoveTagCommand.targetIndex)
-                && tagsToRemove.equals(otherRemoveTagCommand.tagsToRemove);
+        RemoveTagsCommand otherRemoveTagsCommand = (RemoveTagsCommand) other;
+        return targetIndex.equals(otherRemoveTagsCommand.targetIndex)
+                && tagsToRemove.equals(otherRemoveTagsCommand.tagsToRemove);
     }
 
     @Override
