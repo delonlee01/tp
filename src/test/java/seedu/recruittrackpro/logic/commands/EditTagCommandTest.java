@@ -25,7 +25,7 @@ public class EditTagCommandTest {
     public void execute_validTagEdit_success() {
         Person targetPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person updatedPerson = new PersonBuilder(targetPerson)
-                .removeTags("friends").addTags("besties").build();
+                .replaceTag("friends", "besties").build();
 
         EditTagCommand command = new EditTagCommand(INDEX_FIRST_PERSON, new Tag("friends"), new Tag("besties"));
 

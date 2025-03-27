@@ -5,7 +5,6 @@ import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TO;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.commons.util.ToStringBuilder;
@@ -17,11 +16,6 @@ import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.tag.Tag;
 import seedu.recruittrackpro.model.tag.Tags;
-
-
-
-
-
 
 /**
  * Removes a specified tag from an existing candidate in the address book.
@@ -75,7 +69,7 @@ public class EditTagCommand extends Command {
             throw new CommandException(MESSAGE_TAG_NOT_IN_LIST);
         }
 
-Tags newTags = currentTags.replaceTag(oldTag, newTag);
+        Tags newTags = currentTags.replaceTag(tagToEdit, newTag);
         EditPersonDescriptor editedDescriptor = new EditPersonDescriptor();
         editedDescriptor.setTags(newTags);
         Person updatedPerson = EditPersonUtil.createEditedPerson(targetPerson, editedDescriptor);

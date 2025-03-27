@@ -9,6 +9,7 @@ import seedu.recruittrackpro.model.person.Email;
 import seedu.recruittrackpro.model.person.Name;
 import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.person.Phone;
+import seedu.recruittrackpro.model.tag.Tag;
 import seedu.recruittrackpro.model.tag.Tags;
 
 /**
@@ -96,6 +97,15 @@ public class PersonBuilder {
         } catch (ParseException e) {
             throw new IllegalArgumentException("Invalid tag provided: " + e.getMessage(), e);
         }
+        return this;
+    }
+
+    /**
+     * Replaces an existing tag with a new tag for the {@code Person} being built.
+     */
+    public PersonBuilder replaceTag(String oldTag, String newTag) {
+        Tags updatedTags = this.tags.replaceTag(new Tag(oldTag), new Tag(newTag));
+        this.tags = updatedTags;
         return this;
     }
 
