@@ -171,7 +171,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Represents a string representation of a command that was previously executed.
+     * Represents a {@code String} that conforms to a command previously executed.
      */
     private static class ExecutedCommand {
 
