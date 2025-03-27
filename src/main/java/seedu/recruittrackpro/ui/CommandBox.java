@@ -20,8 +20,9 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
-    private final LinkedList<ExecutedCommand> history = new LinkedList<>();
+    private final LinkedList<ExecutedCommand> commandHistory = new LinkedList<>();
     private ExecutedCommand referenceCommand;
+    private String originalUserInput;
 
     @FXML
     private TextField commandTextField;
@@ -35,6 +36,16 @@ public class CommandBox extends UiPart<Region> {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
+    }
+
+    private void updateCommandHistory(String commandText) {
+        ExecutedCommand commandEntered = new ExecutedCommand(commandText);
+        if (!commandHistory.isEmpty()) {
+            ExecutedCommand lastCommandEntered = commandHistory.getLast();
+            lastCommandEntered.setNext(commandEntered);
+            commandEntered.setPrevious(lastCommandEntered);
+        }
+        commandHistory.offerLast(commandEntered);
     }
 
     /**
@@ -51,14 +62,7 @@ public class CommandBox extends UiPart<Region> {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
             referenceCommand = null;
-
-            ExecutedCommand commandEntered = new ExecutedCommand(commandText);
-            if (!history.isEmpty()) {
-                ExecutedCommand lastCommandEntered = history.getLast();
-                lastCommandEntered.setNext(commandEntered);
-                commandEntered.setPrevious(lastCommandEntered);
-            }
-            history.offerLast(commandEntered);
+            updateCommandHistory(commandText);
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
@@ -66,7 +70,8 @@ public class CommandBox extends UiPart<Region> {
 
     private void handleUpKey() {
         if (referenceCommand == null) {
-            referenceCommand = history.getLast();
+            originalUserInput = commandTextField.getText();
+            referenceCommand = commandHistory.getLast();
             commandTextField.setText(referenceCommand.getValue());
             return;
         }
@@ -87,7 +92,7 @@ public class CommandBox extends UiPart<Region> {
 
         ExecutedCommand next = referenceCommand.getNext();
         if (next == null) {
-            commandTextField.setText("");
+            commandTextField.setText(originalUserInput);
             referenceCommand = null;
             return;
         }
@@ -103,7 +108,7 @@ public class CommandBox extends UiPart<Region> {
         }
         event.consume(); // to override default behaviour
 
-        if (history.isEmpty()) {
+        if (commandHistory.isEmpty()) {
             return;
         }
 
