@@ -75,7 +75,7 @@ public class EditTagCommand extends Command {
             throw new CommandException(MESSAGE_TAG_NOT_IN_LIST);
         }
 
-        Tags newTags = currentTags.excludeTags(new Tags(Set.of(tagToEdit))).combineTags(new Tags(Set.of(newTag)));
+Tags newTags = currentTags.replaceTag(oldTag, newTag);
         EditPersonDescriptor editedDescriptor = new EditPersonDescriptor();
         editedDescriptor.setTags(newTags);
         Person updatedPerson = EditPersonUtil.createEditedPerson(targetPerson, editedDescriptor);
