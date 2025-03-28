@@ -158,7 +158,7 @@ Classes used by multiple components are in the `seedu.recruittrackpro.commons` p
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Switch-sort feature
+### Switch sort feature
 Given below is the activity diagram of a `SwitchSortCommand`.
 
 <puml src="diagrams/SwitchSortActivityDiagram.puml" alt="SwitchSortActivityDiagram" />
