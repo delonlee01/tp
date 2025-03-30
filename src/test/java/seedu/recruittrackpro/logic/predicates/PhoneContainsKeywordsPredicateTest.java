@@ -38,6 +38,10 @@ public class PhoneContainsKeywordsPredicateTest {
         PhoneContainsKeywordsPredicate predicate =
                 new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}), false);
         assertFalse(predicate.test(new PersonBuilder().withPhone("23456789").build()));
+
+        PhoneContainsKeywordsPredicate predicate2 =
+                new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}), true);
+        assertFalse(predicate2.test(new PersonBuilder().withPhone("23456789").build()));
     }
 
 

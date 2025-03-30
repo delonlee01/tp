@@ -40,6 +40,12 @@ public class FindCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + " " + PREFIX_NAME + "Alice Bob",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // containsAll preamble
+        Object[] nameKeywords = {PREFIX_NAME, new String[]{"Bernice", "Yu"}};
+        FindCommand expectedFindCommand = new FindCommand(new ContainsKeywordsPredicate(true, nameKeywords));
+        assertParseSuccess(parser, "--contain-all " + PREFIX_NAME + "Bernice Yu",
+                expectedFindCommand);
     }
 
     @Test

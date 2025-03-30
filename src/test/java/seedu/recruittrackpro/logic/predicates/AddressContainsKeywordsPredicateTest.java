@@ -31,6 +31,10 @@ public class AddressContainsKeywordsPredicateTest {
         AddressContainsKeywordsPredicate predicate =
                 new AddressContainsKeywordsPredicate(List.of(new String[]{"keyword1"}), false);
         assertTrue(predicate.test(new PersonBuilder().withAddress("keyword1").build()));
+
+        AddressContainsKeywordsPredicate predicate2 =
+                new AddressContainsKeywordsPredicate(List.of(new String[]{"keyword1", "keyword2"}), true);
+        assertTrue(predicate2.test(new PersonBuilder().withAddress("keyword1 keyword2").build()));
     }
 
     @Test

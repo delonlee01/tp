@@ -38,6 +38,10 @@ public class EmailContainsKeywordsPredicateTest {
         EmailContainsKeywordsPredicate predicate =
                 new EmailContainsKeywordsPredicate(List.of(new String[]{"keyword1@example.com"}), false);
         assertFalse(predicate.test(new PersonBuilder().withEmail("keyword2@example.com").build()));
+
+        EmailContainsKeywordsPredicate predicate2 =
+                new EmailContainsKeywordsPredicate(List.of(new String[]{"keyword1@example.com"}), true);
+        assertFalse(predicate2.test(new PersonBuilder().withEmail("keyword2@example.com").build()));
     }
 
 
