@@ -37,9 +37,12 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_NAME, PREFIX_TAG, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_COMMENT);
 
+        String preamble = argMultimap.getPreamble();
+        boolean shouldContainAll = preamble.equals("--contain-all") || preamble.equals("-ca") ;
+
         if (!hasAtLeastOnePrefixPresent(argMultimap,
                 PREFIX_NAME, PREFIX_TAG, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_COMMENT)
-                || !argMultimap.getPreamble().isEmpty()) {
+                || (!preamble.isEmpty() && !shouldContainAll)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
@@ -51,7 +54,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         Object[] phoneKeywords = getKeywords(argMultimap, PREFIX_PHONE);
         Object[] commentKeywords = getKeywords(argMultimap, PREFIX_COMMENT);
 
-        return new FindCommand(new ContainsKeywordsPredicate(nameKeywords,
+        return new FindCommand(new ContainsKeywordsPredicate(shouldContainAll, nameKeywords,
                 tagKeywords, addressKeywords, emailKeywords, phoneKeywords, commentKeywords));
     }
 

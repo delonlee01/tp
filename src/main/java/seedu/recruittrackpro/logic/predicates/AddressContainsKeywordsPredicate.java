@@ -12,13 +12,19 @@ import seedu.recruittrackpro.model.person.Person;
  */
 public class AddressContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
+    private boolean containAll;
 
-    public AddressContainsKeywordsPredicate(List<String> keywords) {
+    public AddressContainsKeywordsPredicate(List<String> keywords, boolean containAll) {
         this.keywords = keywords;
+        this.containAll = containAll;
     }
 
     @Override
     public boolean test(Person person) {
+        if (containAll) {
+            return keywords.stream()
+                    .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().value, keyword));
+        }
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().value, keyword));
     }
