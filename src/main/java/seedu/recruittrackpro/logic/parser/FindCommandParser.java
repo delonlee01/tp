@@ -38,7 +38,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                         PREFIX_NAME, PREFIX_TAG, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_COMMENT);
 
         String preamble = argMultimap.getPreamble();
-        boolean shouldContainAll = preamble.equals("--contain-all") || preamble.equals("-ca") ;
+        boolean shouldContainAll = preamble.equals("--contain-all") || preamble.equals("-ca");
 
         if (!hasAtLeastOnePrefixPresent(argMultimap,
                 PREFIX_NAME, PREFIX_TAG, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_COMMENT)

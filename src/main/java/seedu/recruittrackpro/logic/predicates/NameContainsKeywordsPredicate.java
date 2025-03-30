@@ -14,6 +14,12 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
     private boolean containAll;
 
+    /**
+     * Creates a NameContainsKeywordsPredicate Object.
+     *
+     * @param keywords List of keywords.
+     * @param containAll Boolean to determine if all keywords must be present.
+     */
     public NameContainsKeywordsPredicate(List<String> keywords, boolean containAll) {
         this.keywords = keywords;
         this.containAll = containAll;
