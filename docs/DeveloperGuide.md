@@ -160,6 +160,26 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Proposed\] Undo/redo feature
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Add Tags feature
+Given below is the activity diagram of a `AddTagsCommand`.
+
+<puml src="diagrams/AddTagsActivityDiagram.puml" alt="AddTagsActivityDiagram" />
+
 #### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `RecruitTrackPro` with an undo/redo history, stored internally as an `recruitTrackProStateList` and `currentStatePointer`. Additionally, it implements the following operations:
