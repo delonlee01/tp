@@ -11,7 +11,7 @@ public class ExitCommand extends Command {
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + ": Saves all changes and exits.";
 
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting RecruitTrackPro as requested ...";
 
     @Override
     public CommandResult execute(Model model) {

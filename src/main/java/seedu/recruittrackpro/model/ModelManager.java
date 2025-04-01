@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyRecruitTrackPro recruitTrackPro, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(recruitTrackPro, userPrefs);
 
-        logger.fine("Initializing with address book: " + recruitTrackPro + " and user prefs " + userPrefs);
+        logger.fine("Initializing with RecruitTrackPro: " + recruitTrackPro + " and user prefs " + userPrefs);
 
         this.recruitTrackPro = new RecruitTrackPro(recruitTrackPro);
         this.userPrefs = new UserPrefs(userPrefs);

@@ -14,7 +14,7 @@ public class ClearCommand extends Command {
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + ": Deletes all candidates.";
 
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "RecruitTrackPro has been cleared!";
 
 
     @Override
