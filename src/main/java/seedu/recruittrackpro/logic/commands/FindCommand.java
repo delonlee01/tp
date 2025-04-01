@@ -2,6 +2,7 @@ package seedu.recruittrackpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -28,11 +29,12 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = SHORT_MESSAGE_USAGE
             + "\nParameters: "
-            + PREFIX_NAME + " NAME [MORE_NAMES] or \n"
-            + PREFIX_TAG + " TAG [MORE_TAGS] or \n"
-            + PREFIX_ADDRESS + " ADDRESS [MORE_ADDRESSES] or \n"
-            + PREFIX_EMAIL + " EMAIL [MORE_EMAILS] or \n"
-            + PREFIX_PHONE + " PHONE [MORE_PHONES] \n"
+            + PREFIX_NAME + "NAME [MORE_NAMES] or \n"
+            + PREFIX_TAG + "TAG [MORE_TAGS] or \n"
+            + PREFIX_ADDRESS + "ADDRESS [MORE_ADDRESSES] or \n"
+            + PREFIX_EMAIL + "EMAIL [MORE_EMAILS] or \n"
+            + PREFIX_PHONE + "PHONE [MORE_PHONES] or \n"
+            + PREFIX_COMMENT + "COMMENT [MORE_COMMENTS] \n"
             + "Options: --contain-all or -ca \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice bob charlie"
             + " " + PREFIX_EMAIL + "alice@gmail.com bob@yahoo.com charlie@hotmail.com \n"

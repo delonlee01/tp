@@ -158,6 +158,22 @@ Classes used by multiple components are in the `seedu.recruittrackpro.commons` p
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+### Remove tags feature
+Given below is the activity diagram of a `RemoveTagsCommand`.
+
+<puml src="diagrams/RemoveTagsActivityDiagram.puml" alt="RemoveTagsActivityDiagram" />
+
+### Edit tag feature
+Given below is the activity diagram of a `EditTagCommand`.
+
+<puml src="diagrams/EditTagActivityDiagram.puml" alt="EditTagActivityDiagram" />
+
+### Switch sort feature
+Given below is the activity diagram of a `SwitchSortCommand`.
+
+<puml src="diagrams/SwitchSortActivityDiagram.puml" alt="SwitchSortActivityDiagram" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

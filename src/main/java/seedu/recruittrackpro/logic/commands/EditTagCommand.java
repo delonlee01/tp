@@ -38,24 +38,23 @@ public class EditTagCommand extends Command {
     public static final String MESSAGE_EMPTY_LIST = "No candidates to edit! The displayed list is empty.";
 
     private final Index targetIndex;
-    private final Tag tagToEdit;
+    private final Tag inputTag;
     private final Tag newTag;
 
     /**
      * Creates an EditTagCommand to edit a specified {@code tag} of the person at {@code index}.
      */
-    public EditTagCommand(Index targetIndex, Tag tagToEdit, Tag newTag) {
+    public EditTagCommand(Index targetIndex, Tag inputTag, Tag newTag) {
         requireNonNull(targetIndex);
-        requireNonNull(tagToEdit);
+        requireNonNull(inputTag);
         this.targetIndex = targetIndex;
-        this.tagToEdit = tagToEdit;
+        this.inputTag = inputTag;
         this.newTag = newTag;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (lastShownList.isEmpty()) {
@@ -68,18 +67,24 @@ public class EditTagCommand extends Command {
         Person targetPerson = lastShownList.get(targetIndex.getZeroBased());
 
         Tags currentTags = targetPerson.getTags();
-        if (!currentTags.contains(tagToEdit)) {
+
+        Tag existingTag = currentTags.toStream()
+                .filter(t -> t.equals(inputTag))
+                .findFirst()
+                .orElse(null);
+
+        if (existingTag == null) {
             throw new CommandException(MESSAGE_TAG_NOT_IN_LIST);
         }
 
-        Tags newTags = currentTags.replaceTag(tagToEdit, newTag);
+        Tags newTags = currentTags.replaceTag(inputTag, newTag);
         EditPersonDescriptor editedDescriptor = new EditPersonDescriptor();
         editedDescriptor.setTags(newTags);
         Person updatedPerson = EditPersonUtil.createEditedPerson(targetPerson, editedDescriptor);
         model.setPerson(targetPerson, updatedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_TAGS_SUCCESS, targetPerson.getName(), tagToEdit, newTag));
+        return new CommandResult(String.format(MESSAGE_EDIT_TAGS_SUCCESS, targetPerson.getName(), existingTag, newTag));
     }
 
     @Override
@@ -94,7 +99,7 @@ public class EditTagCommand extends Command {
 
         EditTagCommand otherEditTagCommand = (EditTagCommand) other;
         return targetIndex.equals(otherEditTagCommand.targetIndex)
-                && tagToEdit.equals(otherEditTagCommand.tagToEdit)
+                && inputTag.equals(otherEditTagCommand.inputTag)
                 && newTag.equals(otherEditTagCommand.newTag);
     }
 
@@ -102,7 +107,7 @@ public class EditTagCommand extends Command {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("targetIndex", targetIndex)
-                .add("tagToEdit", tagToEdit)
+                .add("tagToEdit", inputTag)
                 .add("newTag", newTag)
                 .toString();
     }
