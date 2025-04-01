@@ -38,6 +38,21 @@ public class RemoveTagsCommandTest {
     }
 
     @Test
+    public void execute_tagNotInList_returnsTagNotInListMessage() {
+        Person targetPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Tags tagsToRemove = new Tags(Set.of(new Tag("nonexistent"))); // Not in person's tags
+        RemoveTagsCommand command = new RemoveTagsCommand(INDEX_FIRST_PERSON, tagsToRemove);
+
+        String expectedMessage = String.format(RemoveTagsCommand.MESSAGE_TAG_NOT_IN_LIST,
+                targetPerson.getName(), tagsToRemove);
+
+        //tags remain unchanged in the model
+        Model expectedModel = new ModelManager(new RecruitTrackPro(model.getRecruitTrackPro()), new UserPrefs());
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_removeTag_success() {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person updatedPerson = new PersonBuilder(model.getFilteredPersonList()
