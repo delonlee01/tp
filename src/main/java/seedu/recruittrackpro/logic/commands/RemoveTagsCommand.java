@@ -2,7 +2,6 @@ package seedu.recruittrackpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.recruittrackpro.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
