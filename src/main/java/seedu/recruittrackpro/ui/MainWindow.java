@@ -175,7 +175,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void updateSortButton() {
-        sortButton.setText(logic.isAscending() ? "↑" : "↓");
+        sortButton.setText(logic.isAscending() ? "A → Z" : "Z → A");
     }
 
     public PersonListPanel getPersonListPanel() {
