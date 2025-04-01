@@ -14,11 +14,11 @@ public class PhoneContainsKeywordsPredicateTest {
     @Test
     public void equals() {
         PhoneContainsKeywordsPredicate predicate1 =
-                new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}));
+                new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}), false);
         PhoneContainsKeywordsPredicate predicate2 =
-                new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}));
+                new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}), false);
         PhoneContainsKeywordsPredicate predicate3 =
-                new PhoneContainsKeywordsPredicate(List.of(new String[]{"23456789"}));
+                new PhoneContainsKeywordsPredicate(List.of(new String[]{"23456789"}), false);
         assertTrue(predicate1.equals(predicate1));
         assertTrue(predicate1.equals(predicate2));
         assertFalse(predicate1.equals(predicate3));
@@ -29,22 +29,26 @@ public class PhoneContainsKeywordsPredicateTest {
     @Test
     public void test_containPhoneKeywords_returnsTrue() {
         PhoneContainsKeywordsPredicate predicate =
-                new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}));
+                new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}), false);
         assertTrue(predicate.test(new PersonBuilder().withPhone("12345678").build()));
     }
 
     @Test
     public void test_doesNotContainPhoneKeywords_returnsFalse() {
         PhoneContainsKeywordsPredicate predicate =
-                new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}));
+                new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}), false);
         assertFalse(predicate.test(new PersonBuilder().withPhone("23456789").build()));
+
+        PhoneContainsKeywordsPredicate predicate2 =
+                new PhoneContainsKeywordsPredicate(List.of(new String[]{"12345678"}), true);
+        assertFalse(predicate2.test(new PersonBuilder().withPhone("23456789").build()));
     }
 
 
     @Test
     public void toStringMethod() {
         List<String> keywords = List.of("12345678", "23456789");
-        PhoneContainsKeywordsPredicate predicate = new PhoneContainsKeywordsPredicate(keywords);
+        PhoneContainsKeywordsPredicate predicate = new PhoneContainsKeywordsPredicate(keywords, false);
 
         String expected = PhoneContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
         assertEquals(expected, predicate.toString());

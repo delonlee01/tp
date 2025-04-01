@@ -23,7 +23,8 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
      * Initialises a combinedPredicate using "or" on all predicates.
      */
     //nameKeywords, tagKeywords, addressKeywords, emailKeywords, phoneKeywords
-    public ContainsKeywordsPredicate(Object[] ... keywordsArrays) {
+    public ContainsKeywordsPredicate(boolean containAll, Object[] ... keywordsArrays) {
+
         predicatesList = new ArrayList<>();
 
         for (Object[] keywordsArray : keywordsArrays) {
@@ -31,23 +32,23 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
                 switch (keywordsArray[0].toString()) {
                 case "n/":
                     predicatesList.add(new NameContainsKeywordsPredicate(
-                            Arrays.asList((String[]) keywordsArray[1])));
+                            Arrays.asList((String[]) keywordsArray[1]), containAll));
                     break;
                 case "t/":
                     predicatesList.add(new TagContainsKeywordsPredicate(
-                            Arrays.asList((String[]) keywordsArray[1])));
+                            Arrays.asList((String[]) keywordsArray[1]), containAll));
                     break;
                 case "a/":
                     predicatesList.add(new AddressContainsKeywordsPredicate(
-                            Arrays.asList((String[]) keywordsArray[1])));
+                            Arrays.asList((String[]) keywordsArray[1]), containAll));
                     break;
                 case "e/":
                     predicatesList.add(new EmailContainsKeywordsPredicate(
-                            Arrays.asList((String[]) keywordsArray[1])));
+                            Arrays.asList((String[]) keywordsArray[1]), containAll));
                     break;
                 case "p/":
                     predicatesList.add(new PhoneContainsKeywordsPredicate(
-                            Arrays.asList((String[]) keywordsArray[1])));
+                            Arrays.asList((String[]) keywordsArray[1]), containAll));
                     break;
                 case "c/":
                     predicatesList.add(new CommentContainsKeywordsPredicate(
@@ -60,10 +61,10 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
         }
 
         Predicate<Person> result = predicatesList.isEmpty()
-                ? new NameContainsKeywordsPredicate(Collections.emptyList()) : predicatesList.get(0);
+                ? new NameContainsKeywordsPredicate(Collections.emptyList(), containAll) : predicatesList.get(0);
 
-        for (int i = 1; i < predicatesList.size(); i++) {
-            result = result.or(predicatesList.get(i));
+        for (var predicate : predicatesList) {
+            result = containAll ? result.and(predicate) : result.or(predicate);
         }
         combinedPredicate = result;
     }

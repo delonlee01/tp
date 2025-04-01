@@ -12,13 +12,25 @@ import seedu.recruittrackpro.model.person.Person;
  */
 public class EmailContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
+    private boolean containAll;
 
-    public EmailContainsKeywordsPredicate(List<String> keywords) {
+    /**
+     * Creates a EmailContainsKeywordsPredicate Object.
+     *
+     * @param keywords List of keywords.
+     * @param containAll Boolean to determine if all keywords must be present.
+     */
+    public EmailContainsKeywordsPredicate(List<String> keywords, boolean containAll) {
         this.keywords = keywords;
+        this.containAll = containAll;
     }
 
     @Override
     public boolean test(Person person) {
+        if (containAll) {
+            return keywords.stream()
+                    .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getEmail().value, keyword));
+        }
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getEmail().value, keyword));
     }

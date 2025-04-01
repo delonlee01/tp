@@ -75,7 +75,7 @@ public class RecruitTrackProParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + PREFIX_NAME + keywords.stream().collect(Collectors.joining(" ")));
         Object[] nameKeywords = {PREFIX_NAME, keywords.toArray(new String[0])};
-        assertEquals(new FindCommand(new ContainsKeywordsPredicate(nameKeywords)), command);
+        assertEquals(new FindCommand(new ContainsKeywordsPredicate(false, nameKeywords)), command);
     }
 
     @Test

@@ -12,13 +12,28 @@ import seedu.recruittrackpro.model.person.Person;
  */
 public class TagContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
+    private boolean containAll;
 
-    public TagContainsKeywordsPredicate(List<String> keywords) {
+    /**
+     * Creates a TagContainsKeywordsPredicate Object.
+     *
+     * @param keywords List of keywords.
+     * @param containAll Boolean to determine if all keywords must be present.
+     */
+    public TagContainsKeywordsPredicate(List<String> keywords, boolean containAll) {
         this.keywords = keywords;
+        this.containAll = containAll;
     }
 
     @Override
     public boolean test(Person person) {
+        if (containAll) {
+            return keywords.stream()
+                    .allMatch(keyword -> person.getTags().toStream()
+                            .filter(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword))
+                            .count() > 0);
+
+        }
         return keywords.stream()
                 .flatMap(keyword -> person.getTags().toStream()
                         .filter(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword)))

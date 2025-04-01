@@ -34,7 +34,7 @@
               <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
             </Menu>
           </MenuBar>
-          <Button fx:id="sortButton" text="↑" HBox.hgrow="NEVER" onAction="#handleSortSwitch"/>
+          <Button fx:id="sortButton" text="A → Z" HBox.hgrow="NEVER" onAction="#handleSortSwitch"/>
         </HBox>
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
