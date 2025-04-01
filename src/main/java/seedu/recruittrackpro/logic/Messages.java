@@ -68,8 +68,8 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Comments: ")
                 .append(person.getComment())
-                .append("; Tags: ");
-        person.getTags().toStream().forEach(builder::append);
+                .append("; Tags: ")
+                .append(person.getTags());
         return builder.toString();
     }
 
