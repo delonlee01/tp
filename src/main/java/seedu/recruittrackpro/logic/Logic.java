@@ -16,6 +16,7 @@ import seedu.recruittrackpro.model.person.Person;
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
@@ -30,7 +31,9 @@ public interface Logic {
      */
     ReadOnlyRecruitTrackPro getRecruitTrackPro();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /**
+     * Returns an unmodifiable view of the filtered list of persons
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
@@ -39,7 +42,7 @@ public interface Logic {
     boolean isAscending();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' RecruitTrackPro file path.
      */
     Path getRecruitTrackProFilePath();
 

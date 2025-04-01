@@ -21,7 +21,7 @@ import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.person.Person;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in RecruitTrackPro.
  */
 public class EditCommand extends Command {
 

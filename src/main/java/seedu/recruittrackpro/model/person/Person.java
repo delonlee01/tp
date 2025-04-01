@@ -9,7 +9,7 @@ import seedu.recruittrackpro.commons.util.ToStringBuilder;
 import seedu.recruittrackpro.model.tag.Tags;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in RecruitTrackPro.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {

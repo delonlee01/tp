@@ -17,7 +17,7 @@ import seedu.recruittrackpro.model.person.Person;
 import seedu.recruittrackpro.model.tag.Tags;
 
 /**
- * Removes one or more specified tags from an existing candidate in the address book.
+ * Removes one or more specified tags from an existing candidate in RecruitTrackPro.
  */
 public class RemoveTagsCommand extends Command {
     public static final String COMMAND_WORD = "remove-tags";

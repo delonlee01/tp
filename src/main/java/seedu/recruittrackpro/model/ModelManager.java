@@ -14,7 +14,7 @@ import seedu.recruittrackpro.commons.core.LogsCenter;
 import seedu.recruittrackpro.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of RecruitTrackPro data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

@@ -6,7 +6,7 @@ import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.RecruitTrackPro;
 
 /**
- * Clears the address book.
+ * Clears RecruitTrackPro.
  */
 public class ClearCommand extends Command {
 

@@ -28,10 +28,11 @@ public class RecruitTrackPro implements ReadOnlyRecruitTrackPro {
         persons = new UniquePersonList();
     }
 
-    public RecruitTrackPro() {}
+    public RecruitTrackPro() {
+    }
 
     /**
-     * Creates an RecruitTrackPro using the Persons in the {@code toBeCopied}
+     * Creates a RecruitTrackPro using the Persons in the {@code toBeCopied}
      */
     public RecruitTrackPro(ReadOnlyRecruitTrackPro toBeCopied) {
         this();
@@ -60,7 +61,7 @@ public class RecruitTrackPro implements ReadOnlyRecruitTrackPro {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in RecruitTrackPro.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -68,8 +69,8 @@ public class RecruitTrackPro implements ReadOnlyRecruitTrackPro {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to RecruitTrackPro.
+     * The person must not already exist in RecruitTrackPro.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -77,8 +78,8 @@ public class RecruitTrackPro implements ReadOnlyRecruitTrackPro {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in RecruitTrackPro.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in RecruitTrackPro.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -88,7 +89,7 @@ public class RecruitTrackPro implements ReadOnlyRecruitTrackPro {
 
     /**
      * Removes {@code key} from this {@code RecruitTrackPro}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in RecruitTrackPro.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -101,8 +102,6 @@ public class RecruitTrackPro implements ReadOnlyRecruitTrackPro {
     public boolean isPersonListAscending() {
         return persons.isAscending();
     }
-
-    //// util methods
 
     @Override
     public String toString() {

@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.recruittrackpro.model.person.Person;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of RecruitTrackPro
  */
 public interface ReadOnlyRecruitTrackPro {
 
