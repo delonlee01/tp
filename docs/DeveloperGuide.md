@@ -169,6 +169,11 @@ Given below is the activity diagram of a `EditTagCommand`.
 
 <puml src="diagrams/EditTagActivityDiagram.puml" alt="EditTagActivityDiagram" />
 
+### Switch sort feature
+Given below is the activity diagram of a `SwitchSortCommand`.
+
+<puml src="diagrams/SwitchSortActivityDiagram.puml" alt="SwitchSortActivityDiagram" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
