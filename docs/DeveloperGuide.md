@@ -174,6 +174,11 @@ Given below is the activity diagram of a `FindCommand`.
 
 <puml src="diagrams/FindActivityDiagram.puml" alt="FindActivityDiagram" />
 
+### Switch sort feature
+Given below is the activity diagram of a `SwitchSortCommand`.
+
+<puml src="diagrams/SwitchSortActivityDiagram.puml" alt="SwitchSortActivityDiagram" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
