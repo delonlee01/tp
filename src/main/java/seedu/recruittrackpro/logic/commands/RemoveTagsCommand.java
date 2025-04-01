@@ -2,7 +2,6 @@ package seedu.recruittrackpro.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.recruittrackpro.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -90,12 +89,15 @@ public class RemoveTagsCommand extends Command {
 
         Person updatedPerson = removeTags(targetPerson, removedTags);
         model.setPerson(targetPerson, updatedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(constructResultMessage(targetPerson, removedTags, invalidTags));
     }
 
     private String constructResultMessage(Person person, Tags removedTags, Tags invalidTags) {
+        if (removedTags.isEmpty()) {
+            return String.format(MESSAGE_TAG_NOT_IN_LIST, person.getName(), invalidTags);
+        }
+
         StringBuilder result = new StringBuilder(
                 String.format(MESSAGE_REMOVE_TAGS_SUCCESS, person.getName(), removedTags));
 
