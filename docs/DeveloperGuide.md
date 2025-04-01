@@ -169,6 +169,11 @@ Given below is the activity diagram of a `EditTagCommand`.
 
 <puml src="diagrams/EditTagActivityDiagram.puml" alt="EditTagActivityDiagram" />
 
+### Find tag feature
+Given below is the activity diagram of a `FindCommand`.
+
+<puml src="diagrams/FindActivityDiagram.puml" alt="FindActivityDiagram" />
+
 ### Switch sort feature
 Given below is the activity diagram of a `SwitchSortCommand`.
 
