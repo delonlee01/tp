@@ -11,7 +11,8 @@ import java.util.Locale;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be within 25 characters";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Tags should be within 25 characters, and it should not be blank";
     public static final String VALIDATION_REGEX = "^[^\\s].{0,24}$";
 
     public final String tagName;
