@@ -82,7 +82,6 @@ public class EditTagCommand extends Command {
         editedDescriptor.setTags(newTags);
         Person updatedPerson = EditPersonUtil.createEditedPerson(targetPerson, editedDescriptor);
         model.setPerson(targetPerson, updatedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_EDIT_TAGS_SUCCESS, targetPerson.getName(), existingTag, newTag));
     }
