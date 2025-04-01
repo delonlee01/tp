@@ -14,7 +14,7 @@ public class ListCommand extends Command {
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + ": List all candidates.";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all candidates";
 
 
     @Override
