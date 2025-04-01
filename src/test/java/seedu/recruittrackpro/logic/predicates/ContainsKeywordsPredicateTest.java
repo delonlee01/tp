@@ -21,14 +21,14 @@ public class ContainsKeywordsPredicateTest {
         Object[] secondKeywordsArray = {PREFIX_TAG, new String[]{"friends", "neighbour"}};
 
         ContainsKeywordsPredicate firstPredicate =
-                new ContainsKeywordsPredicate(firstKeywordsArray);
+                new ContainsKeywordsPredicate(false, firstKeywordsArray);
         ContainsKeywordsPredicate secondPredicate =
-                new ContainsKeywordsPredicate(firstKeywordsArray, secondKeywordsArray);
+                new ContainsKeywordsPredicate(false, firstKeywordsArray, secondKeywordsArray);
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ContainsKeywordsPredicate firstPredicateCopy = new ContainsKeywordsPredicate(firstKeywordsArray);
+        ContainsKeywordsPredicate firstPredicateCopy = new ContainsKeywordsPredicate(false, firstKeywordsArray);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -46,27 +46,27 @@ public class ContainsKeywordsPredicateTest {
 
         // One name keyword
         ContainsKeywordsPredicate predicate =
-                new ContainsKeywordsPredicate(new Object[]{PREFIX_NAME, new String[]{"Alice"}});
+                new ContainsKeywordsPredicate(false, new Object[]{PREFIX_NAME, new String[]{"Alice"}});
         assertTrue(predicate.test(new PersonBuilder().withName("Alice").build()));
 
         // One tag keyword
         predicate =
-                new ContainsKeywordsPredicate(new Object[]{PREFIX_TAG, new String[]{"friend"}});
+                new ContainsKeywordsPredicate(false, new Object[]{PREFIX_TAG, new String[]{"friend"}});
         assertTrue(predicate.test(new PersonBuilder().withTags("friend").build()));
 
         // Multiple matching tag keywords
         predicate =
-                new ContainsKeywordsPredicate(new Object[]{PREFIX_TAG, new String[]{"friend", "neighbour"}});
+                new ContainsKeywordsPredicate(false, new Object[]{PREFIX_TAG, new String[]{"friend", "neighbour"}});
         assertTrue(predicate.test(new PersonBuilder().withTags("friend", "neighbour").build()));
 
         // Only one matching tag keyword
         predicate =
-                new ContainsKeywordsPredicate(new Object[]{PREFIX_TAG, new String[]{"friend", "developer"}});
+                new ContainsKeywordsPredicate(false, new Object[]{PREFIX_TAG, new String[]{"friend", "developer"}});
         assertTrue(predicate.test(new PersonBuilder().withTags("friend", "neighbour").build()));
 
         // Mixed-case tag keywords
         predicate =
-                new ContainsKeywordsPredicate(new Object[]{PREFIX_TAG, new String[]{"fRieNd", "NeiGhBOur"}});
+                new ContainsKeywordsPredicate(false, new Object[]{PREFIX_TAG, new String[]{"fRieNd", "NeiGhBOur"}});
         assertTrue(predicate.test(new PersonBuilder().withTags("friend", "neighbour").build()));
     }
 
@@ -75,23 +75,23 @@ public class ContainsKeywordsPredicateTest {
 
         // Zero keyword
         ContainsKeywordsPredicate predicate =
-                new ContainsKeywordsPredicate(new Object[2]);
+                new ContainsKeywordsPredicate(false, new Object[2]);
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
 
         // Non-matching name keyword
         predicate =
-                new ContainsKeywordsPredicate(new Object[]{PREFIX_NAME, new String[]{"Alice"}});
+                new ContainsKeywordsPredicate(false, new Object[]{PREFIX_NAME, new String[]{"Alice"}});
         assertFalse(predicate.test(new PersonBuilder().withName("Bob").build()));
 
         // Non-matching tag keyword
         predicate =
-                new ContainsKeywordsPredicate(new Object[]{PREFIX_TAG, new String[]{"friend"}});
+                new ContainsKeywordsPredicate(false, new Object[]{PREFIX_TAG, new String[]{"friend"}});
         assertFalse(predicate.test(new PersonBuilder().withTags("neighbour").build()));
 
         // Keywords match phone, email and address, but does not match tag
         String[] keywords = new String[]{"Alice", "12345", "alice@email.com", "Main", "Street"};
         predicate =
-                new ContainsKeywordsPredicate(new Object[]{PREFIX_TAG, keywords});
+                new ContainsKeywordsPredicate(false, new Object[]{PREFIX_TAG, keywords});
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street")
                 .withTags("friend", "neighbour").build()));
@@ -104,12 +104,12 @@ public class ContainsKeywordsPredicateTest {
         Object[] secondKeywordsArray = {PREFIX_TAG, new String[]{"friends", "neighbour"}};
 
         ContainsKeywordsPredicate predicate =
-                new ContainsKeywordsPredicate(firstKeywordsArray, secondKeywordsArray);
+                new ContainsKeywordsPredicate(false, firstKeywordsArray, secondKeywordsArray);
 
         NameContainsKeywordsPredicate namePredicate =
-                new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+                new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"), false);
         TagContainsKeywordsPredicate tagPredicate =
-                new TagContainsKeywordsPredicate(Arrays.asList("friends", "neighbour"));
+                new TagContainsKeywordsPredicate(Arrays.asList("friends", "neighbour"), false);
 
         List<String> predicatesList = List.of(namePredicate.toString(), tagPredicate.toString());
 

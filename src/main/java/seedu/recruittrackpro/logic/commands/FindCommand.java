@@ -35,8 +35,11 @@ public class FindCommand extends Command {
             + PREFIX_EMAIL + "EMAIL [MORE_EMAILS] or \n"
             + PREFIX_PHONE + "PHONE [MORE_PHONES] or \n"
             + PREFIX_COMMENT + "COMMENT [MORE_COMMENTS] \n"
+            + "Options: --contain-all or -ca \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice bob charlie"
-            + " " + PREFIX_EMAIL + "alice@gmail.com bob@yahoo.com charlie@hotmail.com";
+            + " " + PREFIX_EMAIL + "alice@gmail.com bob@yahoo.com charlie@hotmail.com \n"
+            + "Example: " + COMMAND_WORD + " -ca " + PREFIX_NAME + "bernice yu"
+            + " " + PREFIX_PHONE + "99272758";
 
     private final Predicate<Person> predicate;
 
