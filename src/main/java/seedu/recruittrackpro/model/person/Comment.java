@@ -8,8 +8,7 @@ import static seedu.recruittrackpro.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidComment(String)}
  */
 public class Comment {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Comments should be within 500 characters, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Comments should be within 500 characters";
 
     public static final String VALIDATION_REGEX = ".{0,500}";
 
