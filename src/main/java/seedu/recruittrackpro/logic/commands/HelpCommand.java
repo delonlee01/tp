@@ -21,6 +21,7 @@ public class HelpCommand extends Command {
             + AddTagsCommand.SHORT_MESSAGE_USAGE + "\n"
             + RemoveTagsCommand.SHORT_MESSAGE_USAGE + "\n"
             + EditTagCommand.SHORT_MESSAGE_USAGE + "\n"
+            + SwitchSortCommand.SHORT_MESSAGE_USAGE + "\n"
             + HelpCommand.SHORT_MESSAGE_USAGE + "\n"
             + ClearCommand.SHORT_MESSAGE_USAGE + "\n"
             + ExitCommand.SHORT_MESSAGE_USAGE;
