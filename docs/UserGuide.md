@@ -79,7 +79,7 @@ Format: `help`
 
 Adds a candidate to the RecruitTrackPro.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [c/COMMENT]`
 
 <box type="tip" seamless>
 
@@ -88,7 +88,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/python e/betsycrowe@example.com a/Newgate Prison p/1234567 t/java`
+* `add n/Bruce Wayne e/bwayne@example.com a/Gotham City p/91234567 c/Owner of Wayne Enterprises`
 
 ### Listing all candidates : `list`
 
@@ -100,7 +101,7 @@ Format: `list`
 
 Edits an existing candidate in the RecruitTrackPro.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [c/COMMENT]`
 
 * Edits the candidate at the specified `INDEX`. The index refers to the index number shown in the displayed candidate list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -108,10 +109,14 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * When editing tags, the existing tags of the candidate will be removed i.e adding of tags is not cumulative.
 * You can remove all the candidate’s tags by typing `t/` without
     specifying any tags after it.
+* When editing the comment, the existing comment of the candidate will be overwritten.
+* You can clear the candidate’s comment by typing `c/` without
+  specifying any comment after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st candidate to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd candidate to be `Betsy Crower` and clears all existing tags.
+*  `edit 3 a/Gotham City c/` Edits the address and comment of the 3rd candidate to be `Gotham City` and empty respectively.
 
 ### Locating candidates by name: `find`
 
@@ -200,13 +205,13 @@ Furthermore, certain edits can cause the RecruitTrackPro to behave in unexpected
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` <br> optional: `--contain-all`
-**List**   | `list`
-**Help**   | `help`
-**Switch sort**   | `switch-sort`
+| Action          | Format, Examples                                                                                                                                                            |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [c/COMMENT]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/java t/python` |
+| **Clear**       | `clear`                                                                                                                                                                     |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                         |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [c/COMMENT]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                      |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` <br> optional: `--contain-all`                                                                                   |
+| **List**        | `list`                                                                                                                                                                      |
+| **Help**        | `help`                                                                                                                                                                      |
+| **Switch sort** | `switch-sort`                                                                                                                                                               |
