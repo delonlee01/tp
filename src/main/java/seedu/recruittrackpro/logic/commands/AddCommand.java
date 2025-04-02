@@ -40,8 +40,8 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney "
             + PREFIX_COMMENT + "owes 5 dollars";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in RecruitTrackPro";
+    public static final String MESSAGE_SUCCESS = "New candidate added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This candidate already exists in RecruitTrackPro";
 
     private final Person toAdd;
 

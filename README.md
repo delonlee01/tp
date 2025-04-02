@@ -1,5 +1,5 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2425S2-CS2103-F15-3/tp/actions)
-[![codecov](https://codecov.io/gh/AY2425S2-CS2103-F15-3/tp/graph/badge.svg?token=Q7Q4ZV4ZP4)](https://codecov.io/gh/AY2425S2-CS2103-F15-3/tp)
+[![CI Status](https://github.com/AY2425S2-CS2103-F15-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2425S2-CS2103-F15-3/tp/actions)
+[![codecov](https://codecov.io/gh/AY2425S2-CS2103-F15-3/tp/graph/badge.svg)](https://codecov.io/gh/AY2425S2-CS2103-F15-3/tp)
 
 ![Ui](docs/images/Ui.png)
 # RecruitTrackPro

@@ -34,7 +34,7 @@ public class EditTagCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_FROM + "Java Developer " + PREFIX_TO + "Python Developer";
     public static final String MESSAGE_EDIT_TAGS_SUCCESS = "%1$s's tag edited from %2$s to %3$s";
-    public static final String MESSAGE_TAG_NOT_IN_LIST = "Tag specified is not in the persons tag list.";
+    public static final String MESSAGE_TAG_NOT_IN_LIST = "Tag specified is not in the candidate's tag list.";
     public static final String MESSAGE_EMPTY_LIST = "No candidates to edit! The displayed list is empty.";
 
     private final Index targetIndex;
