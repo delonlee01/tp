@@ -71,12 +71,9 @@ management tasks done faster than traditional GUI apps.
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows a message that describes the functionality of each command.
 
 Format: `help`
-
 
 ### Adding a person: `add`
 
