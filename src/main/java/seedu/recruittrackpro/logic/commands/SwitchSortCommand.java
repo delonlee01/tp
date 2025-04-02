@@ -11,6 +11,8 @@ public class SwitchSortCommand extends Command {
 
     public static final String COMMAND_WORD = "switch-sort";
 
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + ": Switches alphabetical sorting order.";
+
     public static final String MESSAGE_SUCCESS_ASCENDING =
             "List sorting has been switched to ascending";
     public static final String MESSAGE_SUCCESS_DESCENDING =
