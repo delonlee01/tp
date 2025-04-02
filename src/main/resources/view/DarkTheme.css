@@ -235,8 +235,8 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+    -fx-background-color: #335e96;
+    -fx-text-fill: white;
 }
 
 .button:focused {
