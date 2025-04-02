@@ -152,6 +152,12 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Switching the sorting order : `switch-sort`
+
+Switches the alphabetical sorting order of candidates between ascending (A to Z) and descending (Z to A).
+
+Format: `switch-sort`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -206,3 +212,4 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` <br> optional: `--contain-all`
 **List**   | `list`
 **Help**   | `help`
+**Switch sort**   | `switch-sort`
