@@ -116,6 +116,23 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st candidate to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd candidate to be `Betsy Crower` and clears all existing tags.
 
+### Adding Tag(s) to a Candidate: `add-tags`
+
+Adds one or more tags to an existing candidate in RecruitTrackPro.
+
+Format: `add-tags INDEX t/tag [t/MORE_TAGS]…​`
+
+* Adds the specified tag(s) to the candidate at the specified `INDEX`. The index refers to the number shown in the currently displayed person list. The index **must be a positive integer** (e.g., 1, 2, 3, ...).
+* Tags are added **case-insensitively**. For example, `t/java` and `t/Java` are treated as the same tag.
+* If a tag already exists for the candidate, it will **not** be added again. The system will notify the user of any **duplicate tag(s)**.
+* New, unique tags will be added to the candidate, regardless of casing.
+
+Examples:
+
+*  `add-tags 1 t/Java Developer t/JSP Framework`  Adds the tags `Java Developer` and `JSP Framework` to the first candidate.
+*  `add-tags 2 t/Java t/java`  Adds the tag `Java` to the second candidate (only once), the second tag `java` is ignored.
+*  `add-tags 2 t/jaVa` Informs user that the tag `Java` already exists.
+
 ### Locating candidates by name: `find`
 
 Finds candidates whose names contain any of the given keywords.
@@ -209,6 +226,7 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Add Tag(s)** | `add-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `add-tags 1 t/Java Developer t/C# Developer`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` <br> optional: `--contain-all`
 **List**   | `list`
 **Help**   | `help`
