@@ -89,7 +89,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 case "p/":
                     throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
                 case "c/":
-                    throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
+                    throw new ParseException(Comment.MESSAGE_CONSTRAINTS + ", and it should not be blank");
                 default:
                     break;
                 }
