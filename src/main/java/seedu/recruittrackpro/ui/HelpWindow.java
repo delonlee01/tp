@@ -2,6 +2,7 @@ package seedu.recruittrackpro.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -87,6 +88,17 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
+    }
+
+    public void updateTheme(String newStyleSheet) {
+        // Ensure that the Stage is available and get the Scene from it
+        if (getRoot() != null && getRoot().getScene() != null) {
+            ObservableList<String> stylesheets = getRoot().getScene().getStylesheets();
+            stylesheets.clear();
+            stylesheets.add(newStyleSheet);
+        } else {
+            logger.severe("Stage or Scene is not properly initialized in HelpWindow");
+        }
     }
 
     /**

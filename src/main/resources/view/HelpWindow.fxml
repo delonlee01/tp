@@ -15,11 +15,8 @@
   </icons>
   <scene>
     <Scene>
-      <stylesheets>
-        <URL value="@HelpWindow.css" />
-      </stylesheets>
 
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
+      <HBox alignment="CENTER" fx:id="helpMessageContainer" styleClass="helpMenu">
         <children>
           <Label fx:id="helpMessage" text="Label">
             <HBox.margin>

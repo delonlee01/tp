@@ -2,11 +2,14 @@ package seedu.recruittrackpro.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -32,6 +35,10 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
+    private static final String LIGHT_THEME = "/view/LightTheme.css";
+    private static final String DARK_THEME = "/view/DarkTheme.css";
+    private boolean isLightMode = false;
+
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
@@ -55,6 +62,37 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Button sortButton;
 
+    @FXML
+    private Button themeToggle;
+
+    @FXML
+    private void initialize() {
+        themeToggle.setOnAction(e -> toggleTheme());
+    }
+
+    private void toggleTheme() {
+        Scene scene = getRoot().getScene();
+        ObservableList<String> stylesheets = scene.getStylesheets();
+        String newTheme;
+
+        stylesheets.removeIf(sheet ->
+                sheet.contains("DarkTheme.css") || sheet.contains("LightTheme.css")
+        );
+
+        if (isLightMode) {
+            newTheme = getClass().getResource(LIGHT_THEME).toExternalForm();
+            themeToggle.setText("☾");
+        } else {
+            newTheme = getClass().getResource(DARK_THEME).toExternalForm();
+            themeToggle.setText("☼");
+        }
+
+        stylesheets.add(newTheme);
+        helpWindow.updateTheme(newTheme); // Update the theme of the HelpWindow
+
+        isLightMode = !isLightMode;
+    }
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -71,6 +109,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        toggleTheme(); // Sets initial theme to dark
     }
 
     public Stage getPrimaryStage() {
