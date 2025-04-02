@@ -159,7 +159,7 @@ Classes used by multiple components are in the `seedu.recruittrackpro.commons` p
 This section describes some noteworthy details on how certain features are implemented.
 
 
-### Add Tags feature
+### Add tags feature
 Given below is the activity diagram of a `AddTagsCommand`.
 
 <puml src="diagrams/AddTagsActivityDiagram.puml" alt="AddTagsActivityDiagram" />
@@ -174,8 +174,8 @@ Given below is the activity diagram of a `EditTagCommand`.
 
 <puml src="diagrams/EditTagActivityDiagram.puml" alt="EditTagActivityDiagram" />
 
-### Find tag feature
-Given below is the activity diagram of a `FindCommand`.
+### Find by tag feature
+Given below is the activity diagram of a `FindCommand` using a `t/` prefix only.
 
 <puml src="diagrams/FindActivityDiagram.puml" alt="FindActivityDiagram" />
 
