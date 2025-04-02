@@ -90,6 +90,13 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
+    /**
+     * Updates the HelpWindow's theme by setting a new stylesheet.
+     * Checks if the Stage and Scene are properly initialized before applying the stylesheet.
+     * Logs a severe error if either the Stage or Scene is not initialized.
+     *
+     * @param newStyleSheet The path to the new stylesheet to apply. Must be a valid path accessible at runtime.
+     */
     public void updateTheme(String newStyleSheet) {
         // Ensure that the Stage is available and get the Scene from it
         if (getRoot() != null && getRoot().getScene() != null) {

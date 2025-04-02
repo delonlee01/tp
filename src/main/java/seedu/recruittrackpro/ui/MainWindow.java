@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -29,14 +28,13 @@ import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String LIGHT_THEME = "/view/LightTheme.css";
+    private static final String DARK_THEME = "/view/DarkTheme.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
     private Logic logic;
-
-    private static final String LIGHT_THEME = "/view/LightTheme.css";
-    private static final String DARK_THEME = "/view/DarkTheme.css";
     private boolean isLightMode = false;
 
     // Independent Ui parts residing in this Ui container
@@ -65,6 +63,30 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Button themeToggle;
 
+    /**
+     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     */
+    public MainWindow(Stage primaryStage, Logic logic) {
+        super(FXML, primaryStage);
+
+        // Set dependencies
+        this.primaryStage = primaryStage;
+        this.logic = logic;
+
+        // Configure the UI
+        setWindowDefaultSize(logic.getGuiSettings());
+
+        setAccelerators();
+
+        helpWindow = new HelpWindow();
+
+        toggleTheme(); // Sets initial theme to dark
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
     @FXML
     private void initialize() {
         themeToggle.setOnAction(e -> toggleTheme());
@@ -91,30 +113,6 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.updateTheme(newTheme); // Update the theme of the HelpWindow
 
         isLightMode = !isLightMode;
-    }
-
-    /**
-     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
-     */
-    public MainWindow(Stage primaryStage, Logic logic) {
-        super(FXML, primaryStage);
-
-        // Set dependencies
-        this.primaryStage = primaryStage;
-        this.logic = logic;
-
-        // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
-
-        setAccelerators();
-
-        helpWindow = new HelpWindow();
-
-        toggleTheme(); // Sets initial theme to dark
-    }
-
-    public Stage getPrimaryStage() {
-        return primaryStage;
     }
 
     private void setAccelerators() {
