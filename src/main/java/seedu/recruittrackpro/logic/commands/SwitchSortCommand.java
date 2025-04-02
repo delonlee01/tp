@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.recruittrackpro.model.Model;
 
 /**
- * Switches sort between ascending and descending in the address book.
+ * Switches sort between ascending and descending in RecruitTrackPro.
  */
 public class SwitchSortCommand extends Command {
 

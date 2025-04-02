@@ -21,7 +21,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + ": Adds a candidate to the address book.";
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + ": Adds a candidate to RecruitTrackPro.";
 
     public static final String MESSAGE_USAGE = SHORT_MESSAGE_USAGE
             + " Parameters: "
@@ -41,7 +41,7 @@ public class AddCommand extends Command {
             + PREFIX_COMMENT + "owes 5 dollars";
 
     public static final String MESSAGE_SUCCESS = "New candidate added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This candidate already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This candidate already exists in RecruitTrackPro";
 
     private final Person toAdd;
 

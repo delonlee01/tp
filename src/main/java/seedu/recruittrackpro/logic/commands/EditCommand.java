@@ -21,7 +21,7 @@ import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.person.Person;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in RecruitTrackPro.
  */
 public class EditCommand extends Command {
 
@@ -45,7 +45,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited candidate: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This candidate already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This candidate already exists in RecruitTrackPro.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;

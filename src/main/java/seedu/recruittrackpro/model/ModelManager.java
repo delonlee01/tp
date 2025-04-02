@@ -14,7 +14,7 @@ import seedu.recruittrackpro.commons.core.LogsCenter;
 import seedu.recruittrackpro.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of RecruitTrackPro data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyRecruitTrackPro recruitTrackPro, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(recruitTrackPro, userPrefs);
 
-        logger.fine("Initializing with address book: " + recruitTrackPro + " and user prefs " + userPrefs);
+        logger.fine("Initializing with RecruitTrackPro: " + recruitTrackPro + " and user prefs " + userPrefs);
 
         this.recruitTrackPro = new RecruitTrackPro(recruitTrackPro);
         this.userPrefs = new UserPrefs(userPrefs);

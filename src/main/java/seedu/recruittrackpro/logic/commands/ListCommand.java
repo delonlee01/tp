@@ -6,7 +6,7 @@ import static seedu.recruittrackpro.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.recruittrackpro.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in RecruitTrackPro to the user.
  */
 public class ListCommand extends Command {
 

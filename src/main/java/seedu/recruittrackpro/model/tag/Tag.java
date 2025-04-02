@@ -6,7 +6,7 @@ import static seedu.recruittrackpro.commons.util.AppUtil.checkArgument;
 import java.util.Locale;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag in RecruitTrackPro.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {

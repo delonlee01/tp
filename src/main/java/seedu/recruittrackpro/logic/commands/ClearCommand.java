@@ -6,7 +6,7 @@ import seedu.recruittrackpro.model.Model;
 import seedu.recruittrackpro.model.RecruitTrackPro;
 
 /**
- * Clears the address book.
+ * Clears RecruitTrackPro.
  */
 public class ClearCommand extends Command {
 
@@ -14,7 +14,7 @@ public class ClearCommand extends Command {
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + ": Deletes all candidates.";
 
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "RecruitTrackPro has been cleared!";
 
 
     @Override
