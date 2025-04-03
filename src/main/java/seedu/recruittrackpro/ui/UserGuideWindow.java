@@ -11,15 +11,15 @@ import javafx.stage.Stage;
 import seedu.recruittrackpro.commons.core.LogsCenter;
 
 /**
- * Controller for a help page
+ * Controller for the user guide page
  */
-public class HelpWindow extends UiPart<Stage> {
+public class UserGuideWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2425s2-cs2103-f15-3.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
-    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
-    private static final String FXML = "HelpWindow.fxml";
+    private static final Logger logger = LogsCenter.getLogger(UserGuideWindow.class);
+    private static final String FXML = "UserGuideWindow.fxml";
 
     @FXML
     private Button copyButton;
@@ -28,24 +28,25 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpMessage;
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new UserGuideWindow.
      *
-     * @param root Stage to use as the root of the HelpWindow.
+     * @param root Stage to use as the root of the UserGuideWindow.
      */
-    public HelpWindow(Stage root) {
+    public UserGuideWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new UserGuideWindow.
      */
-    public HelpWindow() {
+    public UserGuideWindow() {
         this(new Stage());
     }
 
     /**
-     * Shows the help window.
+     * Shows the user guide window.
+     *
      * @throws IllegalStateException
      *     <ul>
      *         <li>
@@ -63,27 +64,27 @@ public class HelpWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing user guide page about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the user guide window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the user guide window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the user guide window.
      */
     public void focus() {
         getRoot().requestFocus();

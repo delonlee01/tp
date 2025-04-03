@@ -71,18 +71,15 @@ management tasks done faster than traditional GUI apps.
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows a message that describes the functionality of each command.
 
 Format: `help`
-
 
 ### Adding a person: `add`
 
 Adds a candidate to the RecruitTrackPro.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [c/COMMENT]`
 
 <box type="tip" seamless>
 
@@ -91,7 +88,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/python e/betsycrowe@example.com a/Newgate Prison p/1234567 t/java`
+* `add n/Bruce Wayne e/bwayne@example.com a/Gotham City p/91234567 c/Owner of Wayne Enterprises`
 
 ### Listing all candidates : `list`
 
@@ -103,7 +101,7 @@ Format: `list`
 
 Edits an existing candidate in the RecruitTrackPro.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [c/COMMENT]`
 
 * Edits the candidate at the specified `INDEX`. The index refers to the index number shown in the displayed candidate list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -111,10 +109,14 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * When editing tags, the existing tags of the candidate will be removed i.e adding of tags is not cumulative.
 * You can remove all the candidate’s tags by typing `t/` without
     specifying any tags after it.
+* When editing the comment, the existing comment of the candidate will be overwritten.
+* You can clear the candidate’s comment by typing `c/` without
+  specifying any comment after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st candidate to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd candidate to be `Betsy Crower` and clears all existing tags.
+*  `edit 3 a/Gotham City c/` Edits the address and comment of the 3rd candidate to be `Gotham City` and empty respectively.
 
 ### Adding Tag(s) to a Candidate: `add-tags`
 
@@ -214,20 +216,22 @@ Furthermore, certain edits can cause the RecruitTrackPro to behave in unexpected
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+2. **If you minimize the User Guide Window** and then use the `User Guide` menu, or the keyboard shortcut `F1` again, the original User Guide Window will remain minimized, and no new User Guide Window will appear. The remedy is to manually restore the minimized User Guide Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Add Tag(s)** | `add-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `add-tags 1 t/Java Developer t/C# Developer`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` <br> optional: `--contain-all`
-**List**   | `list`
-**Help**   | `help`
-**Switch sort**   | `switch-sort`
+| Action            | Format, Examples                                                                                                                                                            |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [c/COMMENT]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/java t/python` |
+| **Clear**         | `clear`                                                                                                                                                                     |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                         |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [c/COMMENT]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                      |
+| **Add Tag(s)**    | `add-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `add-tags 1 t/Java Developer t/C# Developer`                                                                             |
+| **Edit Tag**      | `edit-tag INDEX from/OLD_TAG to/NEW_TAG `<br> e.g., `edit-tag 1 from/Java Developer to/JavaScript Developer`                                                                |
+| **Remove Tag(s)** | `remove-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `remove-tags 1 t/JavaScript Developer t/C# Developer`                                                                 |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` <br> optional: `--contain-all`                                                                                   |
+| **List**          | `list`                                                                                                                                                                      |
+| **Help**          | `help`                                                                                                                                                                      |
+| **Switch sort**   | `switch-sort`                                                                                                                                                               |
