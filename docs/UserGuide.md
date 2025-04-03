@@ -135,9 +135,39 @@ Examples:
 *  `add-tags 2 t/Java t/java`  Adds the tag `Java` to the second candidate (only once), the second tag `java` is ignored.
 *  `add-tags 2 t/jaVa` Informs user that the tag `Java` already exists.
 
-### Locating candidates by name: `find`
+### Removing Tag(s) from a Candidate: `remove-tags`
 
-Finds candidates whose names contain any of the given keywords.
+Removes one or more tags from an existing candidate in RecruitTrackPro.
+
+Format: `remove-tags INDEX t/TAG [t/MORE_TAGS]…`
+
+* Removes the specified tag(s) from the candidate at the specified `INDEX`. The index refers to the number shown in the currently displayed person list. The index **must be a positive integer** (e.g., 1, 2, 3, ...).
+* Tags removal is **case-insensitive** and requires an exact match. For example, `t/java` and `t/Java` are treated as the same tag, but `t/java` and `t/java developer` are not.
+* Any specified tags that are not in the person's list will be listed as tags that **do not exist** for the candidate.
+* Existing tags will be removed from the candidate, regardless of casing.
+
+Examples:
+
+*  `remove-tags 1 t/Java Developer t/c++`  Removes the tags `Java Developer` and `c++` from the first candidate.
+
+### Editing a Tag of a Candidate: `edit-tag`
+
+Edits one tag from an existing candidate in RecruitTrackPro.
+
+Format: `edit-tag INDEX from/TAG to/TAG`
+
+* Edits a specified tag of the candidate at the specified `INDEX`. The index refers to the number shown in the currently displayed person list. The index **must be a positive integer** (e.g., 1, 2, 3, ...).
+* The tag specified by `from/TAG` **must be an exact match** in order to be edited, ignoring case sensitivity.  
+
+
+Examples:
+
+*  `edit-tag 1 from/Java Developer to/Python Developer`  Edits the first candidate's tag from `Java Developer` to `Python Developer`.
+
+
+### Locating persons by name: `find`
+
+Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -145,7 +175,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* candidates matching at least one keyword will be returned (i.e. `OR` search).
+* Candidates matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Optional: `--contain-all`
