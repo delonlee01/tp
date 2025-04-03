@@ -103,10 +103,10 @@ public class MainWindow extends UiPart<Stage> {
 
         if (isLightMode) {
             newTheme = getClass().getResource(LIGHT_THEME).toExternalForm();
-            themeToggle.setText(new String(Character.toChars(0x263D)));
+            themeToggle.setText(new String(Character.toChars(0x2600)));
         } else {
             newTheme = getClass().getResource(DARK_THEME).toExternalForm();
-            themeToggle.setText(new String(Character.toChars(0x2600)));
+            themeToggle.setText(new String(Character.toChars(0x263D)));
         }
 
         stylesheets.add(newTheme);
