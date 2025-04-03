@@ -165,27 +165,29 @@ Examples:
 *  `edit-tag 1 from/Java Developer to/Python Developer`  Edits the first candidate's tag from `Java Developer` to `Python Developer`.
 
 
-### Locating persons by name: `find`
+### Locating persons: `find`
 
-Finds persons whose names contain any of the given keywords.
+Find a candidate in RecruitTrackPro whose fields matches the keyword.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find OPTION [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/TAG MORE_TAG] 
+   [a/ADDRESS MORE_ADDRESS] [e/EMAIL MORE_EMAIL] [c/COMMENT MORE_COMMENT]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* At least one of the optional fields must be provided.
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Candidates matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Optional: `--contain-all`
-* `find --contain-all KEYWORDS` will match candidates will all keywords (i.e. `AND` search).
-  e.g. `Hans Bo` will return 0 candidates.  
+Option: `--contain-all` `-ca`
+
+Option changes the default behaviour of the find command from `OR` search to `AND` search.
+* if `OPTION` is not provided, then candidates matching at least one keyword will be returned (i.e. `OR` search).
+* if `OPTION` `--contain-all` or `-ca` is provided, then candidates matching all keyword will be returned (i.e. `AND` search).
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/John doe` returns `john` and `John Doe`
+* `find --contain-all John doe` returns `John Doe`
+* `find n/bernice t/python` returns `Bernice Yu, Roy Balakrishnan`
+* `find -ca n/bernice t/python` returns `Bernice Yu` <br>
 
 ### Deleting a candidate : `delete`
 
@@ -252,16 +254,16 @@ Furthermore, certain edits can cause the RecruitTrackPro to behave in unexpected
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                            |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [c/COMMENT]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/java t/python` |
-| **Clear**         | `clear`                                                                                                                                                                     |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                         |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [c/COMMENT]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                      |
-| **Add Tag(s)**    | `add-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `add-tags 1 t/Java Developer t/C# Developer`                                                                             |
-| **Edit Tag**      | `edit-tag INDEX from/OLD_TAG to/NEW_TAG `<br> e.g., `edit-tag 1 from/Java Developer to/JavaScript Developer`                                                                |
-| **Remove Tag(s)** | `remove-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `remove-tags 1 t/JavaScript Developer t/C# Developer`                                                                 |
-| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` <br> optional: `--contain-all`                                                                                   |
-| **List**          | `list`                                                                                                                                                                      |
-| **Help**          | `help`                                                                                                                                                                      |
-| **Switch sort**   | `switch-sort`                                                                                                                                                               |
+| Action            | Format, Examples                                                                                                                                                                               |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [c/COMMENT]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/java t/python`                    |
+| **Clear**         | `clear`                                                                                                                                                                                        |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                            |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [c/COMMENT]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                         |
+| **Add Tag(s)**    | `add-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `add-tags 1 t/Java Developer t/C# Developer`                                                                                                |
+| **Edit Tag**      | `edit-tag INDEX from/OLD_TAG to/NEW_TAG `<br> e.g., `edit-tag 1 from/Java Developer to/JavaScript Developer`                                                                                   |
+| **Remove Tag(s)** | `remove-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `remove-tags 1 t/JavaScript Developer t/C# Developer`                                                                                    |
+| **Find**          | `find OPTION [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/TAG MORE_TAG] [a/ADDRESS MORE_ADDRESS] [e/EMAIL MORE_EMAIL] [c/COMMENT MORE_COMMENT]`<br> e.g., `find -ca n/John t/Java` |
+| **List**          | `list`                                                                                                                                                                                         |
+| **Help**          | `help`                                                                                                                                                                                         |
+| **Switch sort**   | `switch-sort`                                                                                                                                                                                  |
