@@ -20,15 +20,15 @@ management tasks done faster than traditional GUI apps.
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103-F15-3/tp/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103-F15-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your RecruitTrackPro.
+3. Copy the file to the folder you want to use as the _home folder_ for your RecruitTrackPro.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar recruittrackpro.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar recruittrackpro.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display all available commands.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display all available commands.<br>
    Some example commands you can try:
 
    * `list` : Lists all candidates.
@@ -41,7 +41,7 @@ management tasks done faster than traditional GUI apps.
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -55,7 +55,7 @@ management tasks done faster than traditional GUI apps.
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -180,8 +180,8 @@ Format: `find OPTION [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/TA
 Option: `--contain-all` `-ca`
 
 Option changes the default behaviour of the find command from `OR` search to `AND` search.
-* if `OPTION` is not provided, then candidates matching at least one keyword will be returned (i.e. `OR` search).
-* if `OPTION` `--contain-all` or `-ca` is provided, then candidates matching all keyword will be returned (i.e. `AND` search).
+* If `OPTION` is not provided, then candidates matching at least one keyword will be returned (i.e. `OR` search).
+* If `OPTION` `--contain-all` or `-ca` is provided, then candidates matching all keyword will be returned (i.e. `AND` search).
 
 Examples:
 * `find n/John doe` returns `john` and `John Doe`
