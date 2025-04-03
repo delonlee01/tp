@@ -92,7 +92,7 @@ public class UserGuideWindow extends UiPart<Stage> {
     }
 
     /**
-     * Updates the HelpWindow's theme by setting a new stylesheet.
+     * Updates the UserGuideWindow's theme by setting a new stylesheet.
      * Checks if the Stage and Scene are properly initialized before applying the stylesheet.
      * Logs a severe error if either the Stage or Scene is not initialized.
      *
@@ -105,7 +105,7 @@ public class UserGuideWindow extends UiPart<Stage> {
             stylesheets.clear();
             stylesheets.add(newStyleSheet);
         } else {
-            logger.severe("Stage or Scene is not properly initialized in HelpWindow");
+            logger.severe("Stage or Scene is not properly initialized in UserGuideWindow");
         }
     }
 
