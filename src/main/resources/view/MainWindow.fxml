@@ -34,7 +34,7 @@
                         text="User Guide" />
             </Menu>
           </MenuBar>
-          <Button fx:id="themeToggle" text="&#x2600;" maxHeight="Infinity" />
+          <Button fx:id="themeToggle" text="&#x263D;" maxHeight="Infinity" />
           <Button fx:id="sortButton" text="A → Z" HBox.hgrow="NEVER" onAction="#handleSortSwitch" maxHeight="Infinity" />
         </HBox>
 
