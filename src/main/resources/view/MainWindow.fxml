@@ -20,7 +20,6 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
@@ -35,7 +34,8 @@
                         text="User Guide" />
             </Menu>
           </MenuBar>
-          <Button fx:id="sortButton" text="A → Z" HBox.hgrow="NEVER" onAction="#handleSortSwitch"/>
+          <Button fx:id="themeToggle" text="&#x2600;" maxHeight="Infinity" />
+          <Button fx:id="sortButton" text="A → Z" HBox.hgrow="NEVER" onAction="#handleSortSwitch" maxHeight="Infinity" />
         </HBox>
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">

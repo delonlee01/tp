@@ -2,8 +2,10 @@ package seedu.recruittrackpro.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
@@ -26,11 +28,14 @@ import seedu.recruittrackpro.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String LIGHT_THEME = "/view/LightTheme.css";
+    private static final String DARK_THEME = "/view/DarkTheme.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
     private Logic logic;
+    private boolean isLightMode = false;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -55,6 +60,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Button sortButton;
 
+    @FXML
+    private Button themeToggle;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -71,10 +79,40 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         userGuideWindow = new UserGuideWindow();
+
+        toggleTheme(); // Sets initial theme to dark
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    @FXML
+    private void initialize() {
+        themeToggle.setOnAction(e -> toggleTheme());
+    }
+
+    private void toggleTheme() {
+        Scene scene = getRoot().getScene();
+        ObservableList<String> stylesheets = scene.getStylesheets();
+        String newTheme;
+
+        stylesheets.removeIf(sheet ->
+                sheet.contains("DarkTheme.css") || sheet.contains("LightTheme.css")
+        );
+
+        if (isLightMode) {
+            newTheme = getClass().getResource(LIGHT_THEME).toExternalForm();
+            themeToggle.setText(new String(Character.toChars(0x263D)));
+        } else {
+            newTheme = getClass().getResource(DARK_THEME).toExternalForm();
+            themeToggle.setText(new String(Character.toChars(0x2600)));
+        }
+
+        stylesheets.add(newTheme);
+        userGuideWindow.updateTheme(newTheme);
+
+        isLightMode = !isLightMode;
     }
 
     private void setAccelerators() {
