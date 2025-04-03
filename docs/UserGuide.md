@@ -165,7 +165,7 @@ Examples:
 *  `edit-tag 1 from/Java Developer to/Python Developer`  Edits the first candidate's tag from `Java Developer` to `Python Developer`.
 
 
-### Locating persons by name: `find`
+### Locating persons: `find`
 
 Find a candidate in RecruitTrackPro whose fields matches the keyword.
 
