@@ -28,16 +28,16 @@ management tasks done faster than traditional GUI apps.
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display all available commands.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all candidates.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the RecruitTrackPro.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a candidate named `John Doe` to the RecruitTrackPro.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd candidate shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all candidates.
 
    * `exit` : Exits the app.
 
@@ -69,13 +69,13 @@ management tasks done faster than traditional GUI apps.
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message that describes the functionality of each command.
 
 Format: `help`
 
-### Adding a person: `add`
+### Adding a candidate: `add`
 
 Adds a candidate to the RecruitTrackPro.
 
@@ -91,13 +91,13 @@ Examples:
 * `add n/Betsy Crowe t/python e/betsycrowe@example.com a/Newgate Prison p/1234567 t/java`
 * `add n/Bruce Wayne e/bwayne@example.com a/Gotham City p/91234567 c/Owner of Wayne Enterprises`
 
-### Listing all candidates : `list`
+### Listing all candidates: `list`
 
 Shows a list of all candidates in the RecruitTrackPro.
 
 Format: `list`
 
-### Editing a candidate : `edit`
+### Editing a candidate: `edit`
 
 Edits an existing candidate in the RecruitTrackPro.
 
@@ -124,7 +124,7 @@ Adds one or more tags to an existing candidate in RecruitTrackPro.
 
 Format: `add-tags INDEX t/tag [t/MORE_TAGS]…​`
 
-* Adds the specified tag(s) to the candidate at the specified `INDEX`. The index refers to the number shown in the currently displayed person list. The index **must be a positive integer** (e.g., 1, 2, 3, ...).
+* Adds the specified tag(s) to the candidate at the specified `INDEX`. The index refers to the number shown in the currently displayed candidate list. The index **must be a positive integer** (e.g., 1, 2, 3, ...).
 * Tags are added **case-insensitively**. For example, `t/java` and `t/Java` are treated as the same tag.
 * If a tag already exists for the candidate, it will **not** be added again. The system will notify the user of any **duplicate tag(s)**.
 * New, unique tags will be added to the candidate, regardless of casing.
@@ -141,9 +141,9 @@ Removes one or more tags from an existing candidate in RecruitTrackPro.
 
 Format: `remove-tags INDEX t/TAG [t/MORE_TAGS]…`
 
-* Removes the specified tag(s) from the candidate at the specified `INDEX`. The index refers to the number shown in the currently displayed person list. The index **must be a positive integer** (e.g., 1, 2, 3, ...).
+* Removes the specified tag(s) from the candidate at the specified `INDEX`. The index refers to the number shown in the currently displayed candidate list. The index **must be a positive integer** (e.g., 1, 2, 3, ...).
 * Tags removal is **case-insensitive** and requires an exact match. For example, `t/java` and `t/Java` are treated as the same tag, but `t/java` and `t/java developer` are not.
-* Any specified tags that are not in the person's list will be listed as tags that **do not exist** for the candidate.
+* Any specified tags that are not in the candidate's list will be listed as tags that **do not exist** for the candidate.
 * Existing tags will be removed from the candidate, regardless of casing.
 
 Examples:
@@ -156,7 +156,7 @@ Edits one tag from an existing candidate in RecruitTrackPro.
 
 Format: `edit-tag INDEX from/TAG to/TAG`
 
-* Edits a specified tag of the candidate at the specified `INDEX`. The index refers to the number shown in the currently displayed person list. The index **must be a positive integer** (e.g., 1, 2, 3, ...).
+* Edits a specified tag of the candidate at the specified `INDEX`. The index refers to the number shown in the currently displayed candidate list. The index **must be a positive integer** (e.g., 1, 2, 3, ...).
 * The tag specified by `from/TAG` **must be an exact match** in order to be edited, ignoring case sensitivity.  
 
 
@@ -165,7 +165,7 @@ Examples:
 *  `edit-tag 1 from/Java Developer to/Python Developer`  Edits the first candidate's tag from `Java Developer` to `Python Developer`.
 
 
-### Locating persons: `find`
+### Locating candidates: `find`
 
 Find a candidate in RecruitTrackPro whose fields matches the keyword.
 
@@ -189,7 +189,7 @@ Examples:
 * `find n/bernice t/python` returns `Bernice Yu, Roy Balakrishnan`
 * `find -ca n/bernice t/python` returns `Bernice Yu` <br>
 
-### Deleting a candidate : `delete`
+### Deleting a candidate: `delete`
 
 Deletes the specified candidate from the RecruitTrackPro.
 
@@ -203,19 +203,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd candidate in the RecruitTrackPro.
 * `find Betsy` followed by `delete 1` deletes the 1st candidate in the results of the `find` command.
 
-### Switching the sorting order : `switch-sort`
+### Switching the sorting order: `switch-sort`
 
 Switches the alphabetical sorting order of candidates between ascending (A to Z) and descending (Z to A).
 
 Format: `switch-sort`
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from the RecruitTrackPro.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -257,7 +257,6 @@ Furthermore, certain edits can cause the RecruitTrackPro to behave in unexpected
 | Action            | Format, Examples                                                                                                                                                                               |
 |-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [c/COMMENT]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/java t/python`                    |
-| **Clear**         | `clear`                                                                                                                                                                                        |
 | **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                            |
 | **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [c/COMMENT]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                         |
 | **Add Tag(s)**    | `add-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `add-tags 1 t/Java Developer t/C# Developer`                                                                                                |
@@ -267,3 +266,5 @@ Furthermore, certain edits can cause the RecruitTrackPro to behave in unexpected
 | **List**          | `list`                                                                                                                                                                                         |
 | **Help**          | `help`                                                                                                                                                                                         |
 | **Switch sort**   | `switch-sort`                                                                                                                                                                                  |
+| **Clear**         | `clear`                                                                                                                                                                                        |
+| **Exit**          | `exit`                                                                                                                                                                                         |
