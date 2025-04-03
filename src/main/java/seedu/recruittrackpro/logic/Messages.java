@@ -76,7 +76,6 @@ public class Messages {
                     .append(person.getTags());
         }
 
-        person.getTags().toStream().forEach(builder::append);
         return builder.toString();
     }
 
