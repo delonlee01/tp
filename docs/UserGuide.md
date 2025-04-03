@@ -178,14 +178,27 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Candidates matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Optional: `--contain-all`
-* `find --contain-all KEYWORDS` will match candidates will all keywords (i.e. `AND` search).
-  e.g. `Hans Bo` will return 0 candidates.  
-
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+Optional: `--contain-all` `ca`
+
+Find a candidate in RecruitTrackPro who matches every keyword.
+
+Format: `find OPTION [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/TAG MORE_TAG] 
+   [a/ADDRESS MORE_ADDRESS] [e/EMAIL MORE_EMAIL] [c/COMMENT MORE_COMMENT]`
+
+* The search is case-insensitive. e.g. `hans` will match Hans
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the provided prefixes are searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Candidates matching all keywords will be returned (i.e. `AND` search) 
+  e.g. `Hans Bo` will return 0 candidates.
+
+Examples:
+* `find --contain-all John red` returns `john red` but not `John Doe`
+* `find -ca Hans Bo` returns 0 candidates <br>
 
 ### Deleting a candidate : `delete`
 
