@@ -13,7 +13,7 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -22,6 +22,8 @@ _{ list here sources of all reused/adapted ideas, code, documentation, and third
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -48,6 +50,8 @@ The bulk of the app's work is done by the following four components:
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -65,6 +69,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -81,6 +87,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -114,6 +122,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `RecruitTrackProParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `RecruitTrackProParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -154,20 +164,25 @@ Classes used by multiple components are in the `seedu.recruittrackpro.commons` p
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
 
 ### Add tags feature
 Given below is the activity diagram of a `AddTagsCommand`.
 
 <puml src="diagrams/AddTagsActivityDiagram.puml" alt="AddTagsActivityDiagram" />
 
+<div style="page-break-after: always;"></div>
+
 ### Remove tags feature
 Given below is the activity diagram of a `RemoveTagsCommand`.
 
 <puml src="diagrams/RemoveTagsActivityDiagram.puml" alt="RemoveTagsActivityDiagram" />
+
+<div style="page-break-after: always;"></div>
 
 ### Edit tag feature
 Given below is the activity diagram of a `EditTagCommand`.
@@ -178,6 +193,8 @@ Given below is the activity diagram of a `EditTagCommand`.
 Given below is the activity diagram of a `FindCommand` using a `t/` prefix only.
 
 <puml src="diagrams/FindActivityDiagram.puml" alt="FindActivityDiagram" />
+
+<div style="page-break-after: always;"></div>
 
 ### Switch sort feature
 Given below is the activity diagram of a `SwitchSortCommand`.
@@ -227,6 +244,8 @@ Step 4. The user now decides that adding the candidate was a mistake, and decide
 than attempting to perform the undo.
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how an undo operation goes through the `Logic` component:
 
@@ -548,6 +567,8 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 ### Launch and shutdown
 
