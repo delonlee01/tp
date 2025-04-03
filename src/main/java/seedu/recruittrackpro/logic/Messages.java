@@ -65,12 +65,25 @@ public class Messages {
                 .append("; Email: ")
                 .append(person.getEmail())
                 .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Comments: ")
-                .append(person.getComment())
-                .append("; Tags: ")
-                .append(person.getTags());
+                .append(person.getAddress());
+
+        if (!(isCommentEmpty(person))) {
+            builder.append("; Comments: ")
+                    .append(person.getComment());
+        }
+        if (!(isTagsEmpty(person))) {
+            builder.append("; Tags: ")
+                    .append(person.getTags());
+        }
+
         return builder.toString();
     }
 
+    public static boolean isCommentEmpty(Person person) {
+        return person.getComment().toString().equals("");
+    }
+
+    public static boolean isTagsEmpty(Person person) {
+        return person.getTags().isEmpty();
+    }
 }

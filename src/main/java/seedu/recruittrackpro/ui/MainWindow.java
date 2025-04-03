@@ -40,13 +40,13 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private UserGuideWindow userGuideWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
+    private MenuItem userGuideMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -55,7 +55,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane statusBarPlaceholder;
 
     @FXML
     private Button sortButton;
@@ -78,7 +78,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
+        userGuideWindow = new UserGuideWindow();
 
         toggleTheme(); // Sets initial theme to dark
     }
@@ -110,13 +110,13 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         stylesheets.add(newTheme);
-        helpWindow.updateTheme(newTheme); // Update the theme of the HelpWindow
+        userGuideWindow.updateTheme(newTheme);
 
         isLightMode = !isLightMode;
     }
 
     private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(userGuideMenuItem, KeyCombination.valueOf("F1"));
     }
 
     /**
@@ -139,7 +139,7 @@ public class MainWindow extends UiPart<Stage> {
          * the TextInputControl(s).
          *
          * For now, we add following event filter to capture such key events and open
-         * help window purposely so to support accelerators even when focus is
+         * user guide window purposely so to support accelerators even when focus is
          * in CommandBox or ResultDisplay.
          */
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
@@ -161,7 +161,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getRecruitTrackProFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -180,14 +180,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Opens the user guide window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
+    public void handleUserGuide() {
+        if (!userGuideWindow.isShowing()) {
+            userGuideWindow.show();
         } else {
-            helpWindow.focus();
+            userGuideWindow.focus();
         }
     }
 
@@ -203,7 +203,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
+        userGuideWindow.hide();
         primaryStage.hide();
     }
 
