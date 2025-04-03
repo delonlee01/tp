@@ -43,6 +43,11 @@ management tasks done faster than traditional GUI apps.
 
 6. Refer to the [Features](#features) below for details of each command.
 
+<box type="tip" seamless>
+
+**Tip:** Pressing Up and Down will traverse through the session's command history
+</box>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
