@@ -472,11 +472,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC-006 - Add Free-Form Notes to a Candidate**
+**Use case: UC-006 - Edit Candidate**
 
 **MSS**
 
-1. User requests to add a comment for a candidate.
+1. User requests to edit the field(s) of a specified candidate.
 2. RecruitTrackPro shows the list of candidates with the updated information.
 
    Use case ends.
@@ -484,8 +484,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Candidate specified by the user does not exist.
-
     * 1a1. RecruitTrackPro notifies the user that the candidate does not exist.
+
+      Use case ends.
+
+* 1b. User enters an invalid format for any field.
+    * 1b1. RecruitTrackPro displays an error message based on the invalid field.
 
       Use case ends.
 
