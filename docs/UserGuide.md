@@ -15,6 +15,8 @@ management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
@@ -49,6 +51,8 @@ management tasks done faster than traditional GUI apps.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
