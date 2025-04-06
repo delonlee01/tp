@@ -257,7 +257,6 @@ Furthermore, certain edits can cause the RecruitTrackPro to behave in unexpected
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the User Guide Window** and then use the `User Guide` menu, or the keyboard shortcut `F1` again, the original User Guide Window will remain minimized, and no new User Guide Window will appear. The remedy is to manually restore the minimized User Guide Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
