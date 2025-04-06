@@ -3,6 +3,9 @@ package seedu.recruittrackpro.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.commons.util.StringUtil;
@@ -116,6 +119,22 @@ public class ParserUtil {
     public static Tags parseTags(Collection<String> tagList) throws ParseException {
         requireNonNull(tagList);
         return new Tags(tagList);
+    }
+
+    /**
+     * Returns a list of duplicate tags from the given list, ignoring case.
+     */
+    public static Tags getDuplicateInputTags(List<String> values) throws ParseException {
+        Set<String> seenLowercase = new HashSet<>();
+        Set<String> duplicates = new HashSet<>();
+        for (String val : values) {
+            String trimmed = val.trim();
+            String lower = trimmed.toLowerCase();
+            if (!seenLowercase.add(lower)) {
+                duplicates.add(trimmed);
+            }
+        }
+        return new Tags(duplicates);
     }
 
     /**

@@ -40,6 +40,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+
+        Tags duplicates = ParserUtil.getDuplicateInputTags(argMultimap.getAllValues(PREFIX_TAG));
+        if (!duplicates.isEmpty()) {
+            throw new ParseException("Duplicate tag inputs detected: " + duplicates
+                    + ". Tags must be unique (i.e. case-insensitive).");
+        }
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());

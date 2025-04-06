@@ -33,8 +33,8 @@ public class AddTagsCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TAG + "Junior Java Developer at Microsoft "
-            + PREFIX_TAG + "Masters in Computer Science";
+            + PREFIX_TAG + "Java Developer "
+            + PREFIX_TAG + "C# Developer";
 
     public static final String MESSAGE_ADD_TAGS_SUCCESS = "New tags added to %1$s: %2$s";
     public static final String MESSAGE_NO_TAGS_FOUND = "At least one tag must be provided.";
