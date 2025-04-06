@@ -587,8 +587,6 @@ testers are expected to do more *exploratory* testing.
 
 </box>
 
-<div style="page-break-after: always;"></div>
-
 ### Launch and shutdown
 
 1. Initial launch
