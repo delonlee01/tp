@@ -21,14 +21,16 @@ public class Email {
             + "    - end with a domain label at least 2 characters long\n"
             + "    - have each domain label start and end with alphanumeric characters\n"
             + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
-    // alphanumeric and special characters
-    private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
-    private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
-            + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
-            + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
-    private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
+
+    // Local-part: starts and ends with alphanum, allows special characters in between
+    private static final String LOCAL_PART_REGEX = "^[a-zA-Z0-9](?:[a-zA-Z0-9+_.-]*[a-zA-Z0-9])?";
+
+    // Domain label: alphanum start/end, may contain hyphens
+    private static final String DOMAIN_LABEL_REGEX = "[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?";
+
+    // Domain: multiple domain labels separated by dots, ending with TLD (min 2 letters)
+    private static final String DOMAIN_REGEX = "(" + DOMAIN_LABEL_REGEX + "\\.)+" + "[a-zA-Z]{2,}";
+
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
     public final String value;
