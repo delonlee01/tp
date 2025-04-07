@@ -77,7 +77,7 @@ management tasks done faster than traditional GUI apps.
 
 * For `e/EMAIL`, the email must follow a valid format: `local-part@domain`.<br>
   The local-part may include alphanumeric characters and special characters (`.`, `_`, `-`), but must **not** start or end with a special character, and must **not** contain **consecutive special characters** (e.g., `john..doe@example.com` is invalid).<br>
-  The domain must contain at least one period, and end with a segment of at least 2 letters.
+  The domain must contain at least one period, and end with a **Top-Level Domain (TLD)** of at least 2 letters.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
