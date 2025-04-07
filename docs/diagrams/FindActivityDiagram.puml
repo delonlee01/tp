@@ -3,7 +3,7 @@ start
 
 :User enters "find t/keyword";
 if () then ([keyword is blank])
-    :Message": "t/ cannot be blank";
+    :Message: "t/ cannot be blank";
     stop
 else ([find t/keyword])
     :Get filtered person list;
