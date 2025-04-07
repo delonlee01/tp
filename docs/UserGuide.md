@@ -69,7 +69,7 @@ management tasks done faster than traditional GUI apps.
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* INDEX values must be positive integers, ranging from 1 to 2,147,483,647 (i.e. the range of a 32-bit signed integer). This is to ensure compatibility with internal system limits.
+* `INDEX` must be positive integers, ranging from 1 to 2,147,483,647 (i.e. the range of a 32-bit signed integer).
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
