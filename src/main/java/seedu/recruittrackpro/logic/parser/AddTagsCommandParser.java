@@ -1,5 +1,6 @@
 package seedu.recruittrackpro.logic.parser;
 
+import static seedu.recruittrackpro.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.recruittrackpro.logic.parser.CliSyntax.PREFIX_NAME;
@@ -27,7 +28,7 @@ public class AddTagsCommandParser implements Parser<AddTagsCommand> {
 
         // Ensure the command has both an index and at least one valid t/ prefix
         if (preamble.isEmpty() || !preamble.matches("\\d+") || tagValues.isEmpty()) {
-            throw new ParseException(AddTagsCommand.MESSAGE_USAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagsCommand.MESSAGE_USAGE));
         }
 
         // Ensure all `t/` prefixes have values (no empty tags)
