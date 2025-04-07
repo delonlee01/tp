@@ -455,24 +455,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. RecruitTrackPro shows an error message.
 
       Use case ends.
-  
-* 1c. User searches by phone number but enters an invalid phone number.
+
+* 1c. User enters an invalid option.
     * 1c1. RecruitTrackPro shows an error message.
 
       Use case ends.
 
-* 1d. User searches by email but enters an invalid email address.
-    * 1d1. RecruitTrackPro shows an error message. 
-
-      Use case ends.
-
-* 1e. User enters an invalid option.
-    * 1e1. RecruitTrackPro shows an error message.
-
-      Use case ends.
-
-* 1f. User enters multiple values for the same field.
-    * 1f1. RecruitTrackPro displays an error message based on the duplicated fields.
+* 1d. User enters multiple values for the same field.
+    * 1d1. RecruitTrackPro displays an error message based on the duplicated fields.
 
       Use case ends.
 
