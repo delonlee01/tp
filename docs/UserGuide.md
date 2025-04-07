@@ -75,6 +75,12 @@ management tasks done faster than traditional GUI apps.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* For `e/EMAIL`, the email must follow a valid format: `local-part@domain`.
+    - The local-part may include alphanumeric characters and special characters (`.`, `_`, `-`)
+    - It must **not** start or end with a special character
+    - It must **not** contain **consecutive special characters** (e.g., `john..doe@example.com` is invalid)
+    - The domain must contain at least one period, and end with a segment of at least 2 letters
+
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
