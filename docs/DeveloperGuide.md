@@ -547,6 +547,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+* 1f. User enters the same values for the corresponding fields of the specified candidate.
+    * 1f1. RecruitTrackPro notifies the user no changes were made.
+
+      Use case ends.
+
 **Use case: UC-007 - Remove Tag from a Candidate**
 
 **MSS**
