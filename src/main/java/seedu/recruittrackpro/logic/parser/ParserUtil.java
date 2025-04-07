@@ -2,7 +2,12 @@ package seedu.recruittrackpro.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.commons.util.StringUtil;
@@ -21,6 +26,8 @@ import seedu.recruittrackpro.model.tag.Tags;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final String MESSAGE_DUPLICATE_TAGS = "Duplicate tags found: %s.\nEach tag must be unique, "
+        + "regardless of letter casing (e.g., \"Java\" and \"java\" are considered the same).";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -112,9 +119,19 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tagList} into a {@code Tags}.
+     * Ensures no duplicate tags (case-insensitive).
+     *
+     * @throws ParseException if any tag is invalid or duplicated
      */
     public static Tags parseTags(Collection<String> tagList) throws ParseException {
         requireNonNull(tagList);
+        List<String> duplicates = getDuplicateInputStrings(new ArrayList<>(tagList));
+        if (!duplicates.isEmpty()) {
+            String formatted = duplicates.stream()
+                    .map(s -> "\"" + s + "\"")
+                    .collect(Collectors.joining(", ", "[", "]"));
+            throw new ParseException(String.format(MESSAGE_DUPLICATE_TAGS, formatted));
+        }
         return new Tags(tagList);
     }
 
@@ -131,5 +148,20 @@ public class ParserUtil {
             throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
         }
         return new Comment(trimmedComment);
+    }
+
+    private static List<String> getDuplicateInputStrings(List<String> values) {
+        Map<String, List<String>> grouped = new HashMap<>();
+
+        for (String val : values) {
+            String trimmed = val.trim();
+            String lower = trimmed.toLowerCase();
+            grouped.computeIfAbsent(lower, k -> new ArrayList<>()).add(trimmed);
+        }
+
+        return grouped.values().stream()
+                .filter(list -> list.size() > 1) // only duplicates
+                .flatMap(List::stream) // flatten the list of lists
+                .collect(Collectors.toList());
     }
 }
