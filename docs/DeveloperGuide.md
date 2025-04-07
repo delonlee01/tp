@@ -400,7 +400,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 1e. User enters the same tag (case-insensitive) multiple times.
+* 1e. User enters the same tag multiple times.
     * 1e1. RecruitTrackPro displays an error message that the tag is duplicated.
 
       Use case ends.
@@ -506,7 +506,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 1d. User enters the same tag (case-insensitive) multiple times.
+* 1d. User enters the same tag multiple times.
     * 1d1. RecruitTrackPro notifies the user that the tag is duplicated.
 
       Use case ends.
@@ -537,7 +537,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 1d. User enters the same tag (case-insensitive) multiple times.
+* 1d. User enters the same tag multiple times.
     * 1d1. RecruitTrackPro displays an error message that the tag is duplicated.
 
       Use case ends.
