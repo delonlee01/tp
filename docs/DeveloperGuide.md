@@ -576,14 +576,20 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder.
 
-   2. Double-click the jar file.<br>
+   2. Open a terminal in the folder containing the JAR file and run:
+      ```
+      java -jar recruittrackpro.jar
+      ```
       Expected: Shows the GUI with a set of sample candidates. The window size may not be optimum.
 
 2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the application using the same command:
+      ```
+      java -jar recruittrackpro.jar
+      ```
        Expected: The most recent window size and location is retained.
 
 ### Deleting a candidate
