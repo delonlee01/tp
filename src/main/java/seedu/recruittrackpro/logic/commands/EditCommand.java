@@ -44,6 +44,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited candidate: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NO_CHANGES = "No changes were made as the values to edit are the same.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This candidate already exists in RecruitTrackPro.";
 
     private final Index index;
@@ -75,6 +76,10 @@ public class EditCommand extends Command {
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (personToEdit.equals(editedPerson)) {
+            return new CommandResult(MESSAGE_NO_CHANGES);
         }
 
         model.setPerson(personToEdit, editedPerson);

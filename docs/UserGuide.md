@@ -117,7 +117,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [c/COMME
 * Edits the candidate at the specified `INDEX`. The index refers to the index number shown in the displayed candidate list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the candidate will be removed i.e adding of tags is not cumulative.
+* If the input values are the same as the existing values, then no change will be made.
+* When editing tags, the existing tags of the candidate will be removed i.e. adding of tags is not cumulative.
 * You can remove all the candidate’s tags by typing `t/` without
     specifying any tags after it.
 * When editing the comment, the existing comment of the candidate will be overwritten.
