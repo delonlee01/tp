@@ -217,7 +217,13 @@ Examples:
 
 ### Switching the sorting order: `switch-sort`
 
-Switches the alphabetical sorting order of candidates between ascending (A to Z) and descending (Z to A).
+Switches the sorting order of candidates between ascending (A to Z) and descending (Z to A). Sorting is done by case-insensitive lexicographical order. If candidates have identical names, they are then sorted by their phone number.
+
+Example (given A to Z sorting order):
+
+![SwitchSort](images/SwitchSortExample.png)
+
+`Alex Yeoh` has the same ordering value as `alex yeoh`, so the two candidates are sorted by phone number, of which `99765432` is lexicographically after `98765432`. `Bob Ross` is lexicographically after `Alex Yeoh` and `alex yeoh`.
 
 Format: `switch-sort`
 
