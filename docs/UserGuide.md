@@ -181,7 +181,7 @@ Examples:
 
 Find a candidate in RecruitTrackPro whose fields matches the keyword.
 
-Format: `find OPTION [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/TAG MORE_TAG] 
+Format: `find [Option] [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/TAG MORE_TAG] 
    [a/ADDRESS MORE_ADDRESS] [e/EMAIL MORE_EMAIL] [c/COMMENT MORE_COMMENT]`
 
 * At least one of the optional fields must be provided.
@@ -192,8 +192,8 @@ Format: `find OPTION [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/TA
 Option: `--contain-all` `-ca`
 
 Option changes the default behaviour of the find command from `OR` search to `AND` search.
-* If `OPTION` is not provided, then candidates matching at least one keyword will be returned (i.e. `OR` search).
-* If `OPTION` `--contain-all` or `-ca` is provided, then candidates matching all keyword will be returned (i.e. `AND` search).
+* If `Option` is not provided, then candidates matching at least one keyword will be returned (i.e. `OR` search).
+* If `Option` `--contain-all` or `-ca` is provided, then candidates matching all keyword will be returned (i.e. `AND` search).
 
 Examples:
 * `find n/John doe` returns `john` and `John Doe`
