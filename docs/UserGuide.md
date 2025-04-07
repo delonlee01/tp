@@ -81,6 +81,9 @@ management tasks done faster than traditional GUI apps.
   The local-part may include alphanumeric characters and special characters (`.`, `_`, `-`), but must **not** start or end with a special character, and must **not** contain **consecutive special characters** (e.g., `john..doe@example.com` is invalid).<br>
   The domain must contain at least one period, and end with a **Top-Level Domain (TLD)** of at least 2 letters.
 
+* For `t/TAG`, tags are trimmed of leading and trailing whitespace, and any internal sequences of spaces or tabs are replaced with a single space.  
+  e.g. <code>&nbsp;&nbsp;Java&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Developer&nbsp;</code> will be treated the same as `Java Developer`.
+
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </box>

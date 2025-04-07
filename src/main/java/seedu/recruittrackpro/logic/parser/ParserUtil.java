@@ -104,17 +104,17 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
+     * All spaces will be replaced with a singular space, leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
+        String normalizedTag = tag.trim().replaceAll("\\s+", " ");
+        if (!Tag.isValidTagName(normalizedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Tag(normalizedTag);
     }
 
     /**
@@ -155,7 +155,7 @@ public class ParserUtil {
 
         for (String val : values) {
             String trimmed = val.trim();
-            String lower = trimmed.toLowerCase();
+            String lower = trimmed.replaceAll("\\s+", " ").toLowerCase();
             grouped.computeIfAbsent(lower, k -> new ArrayList<>()).add(trimmed);
         }
 
