@@ -30,7 +30,7 @@ public class EditTagCommand extends Command {
             + "The specified tag will only be edited if it matches exactly, "
             + "ignoring case sensitivity.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_FROM + "TAG] [" + PREFIX_TO + "TAG]\n"
+            + PREFIX_FROM + "TAG " + PREFIX_TO + "TAG\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_FROM + "Java Developer " + PREFIX_TO + "Python Developer";
     public static final String MESSAGE_EDIT_TAGS_SUCCESS = "%1$s's tag edited from %2$s to %3$s";
