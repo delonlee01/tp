@@ -3,19 +3,22 @@ start
 
 :User enters "find t/tags";
 
-:FindCommand is executed;
-
-:Get filtered person list;
-
 if () then ([FindCommand is null])
-    :Message: "Tags names should be within 25 characters";
+    :Message: "Tags should be within 25 characters, and it should not be blank";
     stop
 else ([FindCommand is not null])
-    :Update FilteredPersonList with tags;
+    :FindCommand is executed;
 
-    :Message: FilteredPersonList.size() + " persons listed!";
+    if () then (isValidTagName is False)
+        :Message": "Tags should be within 25 characters, and it should not be blank";
+        stop
+    else (isValidTagName is True)
+        :Get filtered person list;
 
-    :Display filtered persons to User;
+        :Update FilteredPersonList with tags;
 
-stop
+        :Message: FilteredPersonList.size() + " persons listed!";
+
+        :Display filtered persons to User;
+        stop
 @enduml
