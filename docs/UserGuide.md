@@ -69,6 +69,8 @@ management tasks done faster than traditional GUI apps.
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
+* `INDEX` must be positive integers, ranging from 1 to 2,147,483,647 (i.e. the range of a 32-bit signed integer).
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -115,7 +117,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [c/COMME
 * Edits the candidate at the specified `INDEX`. The index refers to the index number shown in the displayed candidate list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the candidate will be removed i.e adding of tags is not cumulative.
+* If the input values are the same as the existing values, then no change will be made.
+* When editing tags, the existing tags of the candidate will be removed i.e. adding of tags is not cumulative.
 * You can remove all the candidate’s tags by typing `t/` without
     specifying any tags after it.
 * When editing the comment, the existing comment of the candidate will be overwritten.
@@ -257,7 +260,6 @@ Furthermore, certain edits can cause the RecruitTrackPro to behave in unexpected
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the User Guide Window** and then use the `User Guide` menu, or the keyboard shortcut `F1` again, the original User Guide Window will remain minimized, and no new User Guide Window will appear. The remedy is to manually restore the minimized User Guide Window.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -26,8 +26,8 @@ import seedu.recruittrackpro.model.tag.Tags;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    private static final String MESSAGE_DUPLICATE_TAGS =
-            "Duplicate tag inputs detected: %s. Tags must be unique (i.e. case-insensitive).";
+    private static final String MESSAGE_DUPLICATE_TAGS = "Duplicate tags found: %s.\nEach tag must be unique, "
+        + "regardless of letter casing (e.g., \"Java\" and \"java\" are considered the same).";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -119,26 +119,20 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tagList} into a {@code Tags}.
+     * Ensures no duplicate tags (case-insensitive).
+     *
+     * @throws ParseException if any tag is invalid or duplicated
      */
     public static Tags parseTags(Collection<String> tagList) throws ParseException {
         requireNonNull(tagList);
-        return new Tags(tagList);
-    }
-
-    /**
-     * Throws a ParseException if there are duplicate tags in the given list (case-insensitive).
-     *
-     * @param tagValues list of tag input strings
-     * @throws ParseException if duplicates are found
-     */
-    public static void throwIfDuplicateTags(List<String> tagValues) throws ParseException {
-        List<String> duplicates = getDuplicateInputStrings(tagValues);
+        List<String> duplicates = getDuplicateInputStrings(new ArrayList<>(tagList));
         if (!duplicates.isEmpty()) {
             String formatted = duplicates.stream()
                     .map(s -> "\"" + s + "\"")
                     .collect(Collectors.joining(", ", "[", "]"));
             throw new ParseException(String.format(MESSAGE_DUPLICATE_TAGS, formatted));
         }
+        return new Tags(tagList);
     }
 
     /**

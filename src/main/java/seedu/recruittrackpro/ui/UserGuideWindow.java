@@ -88,6 +88,7 @@ public class UserGuideWindow extends UiPart<Stage> {
      * Focuses on the user guide window.
      */
     public void focus() {
+        getRoot().setIconified(false);
         getRoot().requestFocus();
     }
 

@@ -557,6 +557,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+
+1. **Add support for other languages**: The current system is only able to properly handle inputs in English. It does 
+not handle inputs in other languages well. We plan to improve the system by adding support for non-English languages 
+(e.g. Chinese, Tamil) and right-to-left languages (e.g. Arabic).
+2. **Allow names to have special characters**: The current implementation does not allow the `name` field to include 
+special characters. We plan to allow special characters that are commonly used in actual names (e.g. `,`, `-`, `/`).
+3. **Make `find` handle partial match**: The current implementation for the `find` command does not handle partial 
+matches<br> (e.g. `find a/01` does not match the unit number `#01-23` of an address). We plan to make the `find` command 
+handle partial matches for all the parameters.
+4. **Update command parameter format**: The current implementation identifies command parameters using prefixes<br> 
+(e.g. `n/`, `a/`, `c/`). If the command parameter has a value that resembles a valid prefix, the parser will not be 
+able to parse it correctly (e.g. `n/Bob a/l John` is treated as `name=Bob`, `address=l John`). We plan to change the 
+format of command parameters to be enclosed in `{}` (e.g. `n/NAME` becomes `n{NAME}`).
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -568,22 +587,26 @@ testers are expected to do more *exploratory* testing.
 
 </box>
 
-<div style="page-break-after: always;"></div>
-
 ### Launch and shutdown
 
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder.
 
-   2. Double-click the jar file.<br>
+   2. Open a terminal in the folder containing the JAR file and run:
+      ```
+      java -jar recruittrackpro.jar
+      ```
       Expected: Shows the GUI with a set of sample candidates. The window size may not be optimum.
 
 2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the application using the same command:
+      ```
+      java -jar recruittrackpro.jar
+      ```
        Expected: The most recent window size and location is retained.
 
 ### Deleting a candidate
