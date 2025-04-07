@@ -37,17 +37,18 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
+     * All spaces will be replaced with a singular space, and
+     * leading and trailing whitespaces will be trimmed,
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+        String cleanedName = name.replaceAll("\\s+", " ").trim();
+        if (!Name.isValidName(cleanedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Name(cleanedName);
     }
 
     /**
