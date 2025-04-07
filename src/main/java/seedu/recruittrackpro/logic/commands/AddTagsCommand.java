@@ -31,7 +31,7 @@ public class AddTagsCommand extends Command {
     public static final String MESSAGE_USAGE = SHORT_MESSAGE_USAGE
             + " New tags will be appended to the candidate's existing tag list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_TAG + "TAG [" + PREFIX_TAG + "MORE_TAGS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "Java Developer "
             + PREFIX_TAG + "C# Developer";
