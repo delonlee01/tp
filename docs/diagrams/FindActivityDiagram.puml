@@ -5,7 +5,7 @@ start
 if () then ([keyword is blank])
     :Message: "t/ cannot be blank";
     stop
-else ([find t/keyword])
+else ([else])
     :Get filtered person list;
 
     :Update FilteredPersonList with tags;
