@@ -17,18 +17,22 @@ public class EditTagCommandParser implements Parser<EditTagCommand> {
     public EditTagCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 args, PREFIX_FROM, PREFIX_TO);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_FROM, PREFIX_TO);
 
         String tagName = argMultimap.getValue(PREFIX_FROM).orElse("").trim();
-        String newTag = argMultimap.getValue(PREFIX_TO).orElse("").trim();
+        String newTagName = argMultimap.getValue(PREFIX_TO).orElse("").trim();
 
-        if (tagName.isEmpty() || newTag.isEmpty()) {
+        if (tagName.isEmpty() || newTagName.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTagCommand.MESSAGE_USAGE));
         }
+
+        Tag oldTag = ParserUtil.parseTag(tagName);
+        Tag newTag = ParserUtil.parseTag(newTagName);
 
         try {
             String preamble = argMultimap.getPreamble().trim();
             Index index = ParserUtil.parseIndex(preamble);
-            return new EditTagCommand(index, new Tag(tagName), new Tag(newTag));
+            return new EditTagCommand(index, oldTag, newTag);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTagCommand.MESSAGE_USAGE), pe);
