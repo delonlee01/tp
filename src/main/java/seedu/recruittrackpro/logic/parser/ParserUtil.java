@@ -155,7 +155,7 @@ public class ParserUtil {
 
         for (String val : values) {
             String trimmed = val.trim();
-            String lower = trimmed.toLowerCase();
+            String lower = trimmed.replaceAll("\\s+", " ").toLowerCase();
             grouped.computeIfAbsent(lower, k -> new ArrayList<>()).add(trimmed);
         }
 
