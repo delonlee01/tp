@@ -46,11 +46,7 @@ public class AddTagsCommandParser implements Parser<AddTagsCommand> {
             throw new ParseException(AddTagsCommand.MESSAGE_NO_TAGS_FOUND);
         }
 
-        Tags duplicates = ParserUtil.getDuplicateInputTags(argMultimap.getAllValues(PREFIX_TAG));
-        if (!duplicates.isEmpty()) {
-            throw new ParseException("Duplicate tag inputs detected: " + duplicates
-                    + ". Tags must be unique (i.e. case-insensitive).");
-        }
+        ParserUtil.throwIfDuplicateTags(argMultimap.getAllValues(PREFIX_TAG));
 
         return new AddTagsCommand(index, tags);
     }

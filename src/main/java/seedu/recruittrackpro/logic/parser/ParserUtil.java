@@ -2,10 +2,12 @@ package seedu.recruittrackpro.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import seedu.recruittrackpro.commons.core.index.Index;
 import seedu.recruittrackpro.commons.util.StringUtil;
@@ -24,6 +26,8 @@ import seedu.recruittrackpro.model.tag.Tags;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final String MESSAGE_DUPLICATE_TAGS =
+            "Duplicate tag inputs detected: %s. Tags must be unique (i.e. case-insensitive).";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -122,19 +126,19 @@ public class ParserUtil {
     }
 
     /**
-     * Returns a list of duplicate tags from the given list, ignoring case.
+     * Throws a ParseException if there are duplicate tags in the given list (case-insensitive).
+     *
+     * @param tagValues list of tag input strings
+     * @throws ParseException if duplicates are found
      */
-    public static Tags getDuplicateInputTags(List<String> values) throws ParseException {
-        Set<String> seenLowercase = new HashSet<>();
-        Set<String> duplicates = new HashSet<>();
-        for (String val : values) {
-            String trimmed = val.trim();
-            String lower = trimmed.toLowerCase();
-            if (!seenLowercase.add(lower)) {
-                duplicates.add(trimmed);
-            }
+    public static void throwIfDuplicateTags(List<String> tagValues) throws ParseException {
+        List<String> duplicates = getDuplicateInputStrings(tagValues);
+        if (!duplicates.isEmpty()) {
+            String formatted = duplicates.stream()
+                    .map(s -> "\"" + s + "\"")
+                    .collect(Collectors.joining(", ", "[", "]"));
+            throw new ParseException(String.format(MESSAGE_DUPLICATE_TAGS, formatted));
         }
-        return new Tags(duplicates);
     }
 
     /**
@@ -150,5 +154,20 @@ public class ParserUtil {
             throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
         }
         return new Comment(trimmedComment);
+    }
+
+    private static List<String> getDuplicateInputStrings(List<String> values) {
+        Map<String, List<String>> grouped = new HashMap<>();
+
+        for (String val : values) {
+            String trimmed = val.trim();
+            String lower = trimmed.toLowerCase();
+            grouped.computeIfAbsent(lower, k -> new ArrayList<>()).add(trimmed);
+        }
+
+        return grouped.values().stream()
+                .filter(list -> list.size() > 1) // only duplicates
+                .flatMap(List::stream) // flatten the list of lists
+                .collect(Collectors.toList());
     }
 }
