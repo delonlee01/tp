@@ -17,6 +17,7 @@ public class EditTagCommandParser implements Parser<EditTagCommand> {
     public EditTagCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 args, PREFIX_FROM, PREFIX_TO);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_FROM, PREFIX_TO);
 
         String tagName = argMultimap.getValue(PREFIX_FROM).orElse("").trim();
         String newTag = argMultimap.getValue(PREFIX_TO).orElse("").trim();
