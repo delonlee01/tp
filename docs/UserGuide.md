@@ -71,7 +71,7 @@ management tasks done faster than traditional GUI apps.
 
 * `INDEX` must be positive integers, ranging from 1 to 2,147,483,647 (i.e. the range of a 32-bit signed integer).
 
-* Parameters can be in any order.<br>
+* Parameters except `INDEX` and `[OPTION]` can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -181,7 +181,7 @@ Examples:
 
 Find a candidate in RecruitTrackPro whose fields matches the keyword.
 
-Format: `find [Option] [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/TAG MORE_TAG] 
+Format: `find [OPTION] [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/TAG MORE_TAG] 
    [a/ADDRESS MORE_ADDRESS] [e/EMAIL MORE_EMAIL] [c/COMMENT MORE_COMMENT]`
 
 * At least one of the optional fields must be provided.
@@ -189,11 +189,11 @@ Format: `find [Option] [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 
-Option: `--contain-all` `-ca`
+OPTION: `--contain-all` `-ca`
 
-Option changes the default behaviour of the find command from `OR` search to `AND` search.
-* If `Option` is not provided, then candidates matching at least one keyword will be returned (i.e. `OR` search).
-* If `Option` `--contain-all` or `-ca` is provided, then candidates matching all keyword will be returned (i.e. `AND` search).
+OPTION changes the default behaviour of the find command from `OR` search to `AND` search.
+* If `OPTION` is not provided, then candidates matching at least one keyword will be returned (i.e. `OR` search).
+* If `OPTION` `--contain-all` or `-ca` is provided, then candidates matching all keyword will be returned (i.e. `AND` search).
 
 Examples:
 * `find n/John doe` returns `john` and `John Doe`
@@ -273,7 +273,7 @@ Furthermore, certain edits can cause the RecruitTrackPro to behave in unexpected
 | **Add Tag(s)**    | `add-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `add-tags 1 t/Java Developer t/C# Developer`                                                                                                  |
 | **Edit Tag**      | `edit-tag INDEX from/OLD_TAG to/NEW_TAG `<br> e.g., `edit-tag 1 from/Java Developer to/JavaScript Developer`                                                                                     |
 | **Remove Tag(s)** | `remove-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `remove-tags 1 t/JavaScript Developer t/C# Developer`                                                                                      |
-| **Find**          | `find [Option] [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/TAG MORE_TAG] [a/ADDRESS MORE_ADDRESS] [e/EMAIL MORE_EMAIL] [c/COMMENT MORE_COMMENT]`<br> e.g., `find -ca n/John t/Java` |
+| **Find**          | `find [OPTION] [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/TAG MORE_TAG] [a/ADDRESS MORE_ADDRESS] [e/EMAIL MORE_EMAIL] [c/COMMENT MORE_COMMENT]`<br> e.g., `find -ca n/John t/Java` |
 | **List**          | `list`                                                                                                                                                                                           |
 | **Help**          | `help`                                                                                                                                                                                           |
 | **Switch sort**   | `switch-sort`                                                                                                                                                                                    |
