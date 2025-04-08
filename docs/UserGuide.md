@@ -96,7 +96,7 @@ Format: `help`
 
 ### Adding a candidate: `add`
 
-Adds a candidate to the RecruitTrackPro.
+Adds a candidate to the RecruitTrackPro. Names are trimmed of leading and trailing white spaces, and all spaces are replaced with a singular space. (e.g. <code>&nbsp;&nbsp;John&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Doe&nbsp;</code> is added as `John Doe`)
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [c/COMMENT]`
 
@@ -118,7 +118,7 @@ Format: `list`
 
 ### Editing a candidate: `edit`
 
-Edits an existing candidate in the RecruitTrackPro.
+Edits an existing candidate in the RecruitTrackPro. Names are trimmed and all spaces are replaced with singular spaces, in the same way as in `add`.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [c/COMMENT]`
 
