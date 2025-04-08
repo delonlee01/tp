@@ -265,17 +265,17 @@ Furthermore, certain edits can cause the RecruitTrackPro to behave in unexpected
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                               |
-|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [c/COMMENT]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/java t/python`                    |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                            |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [c/COMMENT]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                         |
-| **Add Tag(s)**    | `add-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `add-tags 1 t/Java Developer t/C# Developer`                                                                                                |
-| **Edit Tag**      | `edit-tag INDEX from/OLD_TAG to/NEW_TAG `<br> e.g., `edit-tag 1 from/Java Developer to/JavaScript Developer`                                                                                   |
-| **Remove Tag(s)** | `remove-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `remove-tags 1 t/JavaScript Developer t/C# Developer`                                                                                    |
-| **Find**          | `find OPTION [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/TAG MORE_TAG] [a/ADDRESS MORE_ADDRESS] [e/EMAIL MORE_EMAIL] [c/COMMENT MORE_COMMENT]`<br> e.g., `find -ca n/John t/Java` |
-| **List**          | `list`                                                                                                                                                                                         |
-| **Help**          | `help`                                                                                                                                                                                         |
-| **Switch sort**   | `switch-sort`                                                                                                                                                                                  |
-| **Clear**         | `clear`                                                                                                                                                                                        |
-| **Exit**          | `exit`                                                                                                                                                                                         |
+| Action            | Format, Examples                                                                                                                                                                                 |
+|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [c/COMMENT]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/java t/python`                      |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                              |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [c/COMMENT]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                           |
+| **Add Tag(s)**    | `add-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `add-tags 1 t/Java Developer t/C# Developer`                                                                                                  |
+| **Edit Tag**      | `edit-tag INDEX from/OLD_TAG to/NEW_TAG `<br> e.g., `edit-tag 1 from/Java Developer to/JavaScript Developer`                                                                                     |
+| **Remove Tag(s)** | `remove-tags INDEX t/TAG [t/MORE_TAGS]... `<br> e.g., `remove-tags 1 t/JavaScript Developer t/C# Developer`                                                                                      |
+| **Find**          | `find [Option] [n/NAME MORE_NAME] [p/PHONE_NUMBER MORE_PHONE_NUMBER] [t/TAG MORE_TAG] [a/ADDRESS MORE_ADDRESS] [e/EMAIL MORE_EMAIL] [c/COMMENT MORE_COMMENT]`<br> e.g., `find -ca n/John t/Java` |
+| **List**          | `list`                                                                                                                                                                                           |
+| **Help**          | `help`                                                                                                                                                                                           |
+| **Switch sort**   | `switch-sort`                                                                                                                                                                                    |
+| **Clear**         | `clear`                                                                                                                                                                                          |
+| **Exit**          | `exit`                                                                                                                                                                                           |
