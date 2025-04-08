@@ -573,6 +573,11 @@ handle partial matches for all the parameters.
 (e.g. `n/`, `a/`, `c/`). If the command parameter has a value that resembles a valid prefix, the parser will not be 
 able to parse it correctly (e.g. `n/Bob a/l John` is treated as `name=Bob`, `address=l John`). We plan to change the 
 format of command parameters to be enclosed in `{}` (e.g. `n/NAME` becomes `n{NAME}`).
+5. **Enforce names to be title case**: The current implementation allows users to input the `name` field in any case 
+format<br> (e.g. `aLeX yeOH`). However, the checking of duplicate candidates for `add` and `edit` is case-insensitive 
+(i.e. `Alex Yeoh` and `aLeX yeOH` would be flagged as the same person if they have matching phone numbers). We plan to 
+enforce names to be title case (i.e. all characters are lower case, only the first character of each word is upper case) 
+to reduce confusion in the user interface, and user experience.
 
 --------------------------------------------------------------------------------------------------------------------
 
