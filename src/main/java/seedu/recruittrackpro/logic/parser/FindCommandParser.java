@@ -46,6 +46,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
+        argMultimap.verifyNoDuplicatePrefixesFor(
+                PREFIX_NAME, PREFIX_TAG, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_COMMENT);
 
         Object[] nameKeywords = getKeywords(argMultimap, PREFIX_NAME);
         Object[] tagKeywords = getKeywords(argMultimap, PREFIX_TAG);
@@ -73,7 +75,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         Object[] keywordsArray = {prefix, new String[0]};
 
         if (containsPrefix(argMultimap, prefix)) {
-            argMultimap.verifyNoDuplicatePrefixesFor(prefix);
             String keywords = argMultimap.getValue(prefix).orElse("");
 
             if (keywords.isEmpty()) {
