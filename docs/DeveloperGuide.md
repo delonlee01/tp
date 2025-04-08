@@ -380,8 +380,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 **Extensions:**
-* 1a. User enters a missing required field (name, phone number, email, or address).
-    * 1a1. RecruitTrackPro displays an error message: “[parameter] cannot be empty.”
+* 1a. User did not enter all required fields (name, phone number, email, or address).
+    * 1a1. RecruitTrackPro displays an error message.
 
       Use case ends.
 
@@ -391,7 +391,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 * 1c. User enters a duplicate candidate – same name and phone number as an existing candidate. 
-    * 1c1. RecruitTrackPro displays an error message: “Contact with this name and phone number already exists.”
+    * 1c1. RecruitTrackPro displays an error message.
+
+      Use case ends.
+
+* 1d. User enters multiple values for the same field, excluding tag.
+    * 1d1. RecruitTrackPro displays an error message based on the duplicated fields.
+
+      Use case ends.
+
+* 1e. User enters the same tag multiple times.
+    * 1e1. RecruitTrackPro displays an error message that the tag is duplicated.
 
       Use case ends.
 
@@ -408,14 +418,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to remove a specified candidate from the address book.
+1. User requests to remove a specified candidate from RecruitTrackPro.
 2. RecruitTrackPro updates the displayed list accordingly.
    
    Use case ends.
 
 **Extensions**
 
-* 1a. User enters an invalid index (ie. not a positive integer).
+* 1a. User enters an invalid index (i.e. not a positive integer).
    * 1a1. RecruitTrackPro shows an error message.
    
      Use case ends.
@@ -445,19 +455,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. RecruitTrackPro shows an error message.
 
       Use case ends.
-  
-* 1c. User searches by phone number but enters an invalid phone number.
+
+* 1c. User enters an invalid option.
     * 1c1. RecruitTrackPro shows an error message.
 
       Use case ends.
 
-* 1d. User searches by email but enters an invalid email address.
-    * 1d1. RecruitTrackPro shows an error message. 
-
-      Use case ends.
-
-* 1e. User searches by tag but enters an invalid tag.
-    * 1e1. RecruitTrackPro shows an error message.
+* 1d. User enters multiple values for the same field.
+    * 1d1. RecruitTrackPro displays an error message based on the duplicated fields.
 
       Use case ends.
 
@@ -486,8 +491,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 1c. User enters a duplicate tag.
+* 1c. User enters a tag that is already associated with the candidate.
     * 1c1. RecruitTrackPro informs the user that the tag already exists for the candidate.
+
+      Use case ends.
+
+* 1d. User enters the same tag multiple times.
+    * 1d1. RecruitTrackPro notifies the user that the tag is duplicated.
 
       Use case ends.
 
@@ -509,6 +519,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. User enters an invalid format for any field.
     * 1b1. RecruitTrackPro displays an error message based on the invalid field.
+
+      Use case ends.
+
+* 1c. User enters a name and phone number that is the same as an existing candidate.
+    * 1c1. RecruitTrackPro displays an error message.
+
+      Use case ends.
+
+* 1d. User enters the same tag multiple times.
+    * 1d1. RecruitTrackPro displays an error message that the tag is duplicated.
+
+      Use case ends.
+
+* 1e. User enters multiple values for the same field, excluding tag.
+    * 1e1. RecruitTrackPro displays an error message based on the duplicated fields.
+
+      Use case ends.
+
+* 1f. User enters the same values for the corresponding fields of the specified candidate.
+    * 1f1. RecruitTrackPro notifies the user no changes were made.
 
       Use case ends.
 
