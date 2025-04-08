@@ -127,11 +127,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [c/COMME
 * Existing values will be updated to the input values.
 * If the input values are the same as the existing values, then no change will be made.
 * When editing tags, the existing tags of the candidate will be removed i.e. adding of tags is not cumulative.
-* You can remove all the candidate’s tags by typing `t/` without
-    specifying any tags after it.
+   * You can remove all the candidate’s tags by typing `t/` without specifying any tags after it.
+   * If the candidate has only one tag, editing it by replacing with one other tag will have the same behaviour as `edit-tag`.
 * When editing the comment, the existing comment of the candidate will be overwritten.
-* You can clear the candidate’s comment by typing `c/` without
-  specifying any comment after it.
+   * You can clear the candidate’s comment by typing `c/` without specifying any comment after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st candidate to be `91234567` and `johndoe@example.com` respectively.
