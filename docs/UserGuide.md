@@ -116,6 +116,8 @@ Shows a list of all candidates in the RecruitTrackPro.
 
 Format: `list`
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a candidate: `edit`
 
 Edits an existing candidate in the RecruitTrackPro. Names are trimmed and all spaces are replaced with singular spaces, in the same way as in `add`.
@@ -168,6 +170,8 @@ Format: `remove-tags INDEX t/TAG [t/MORE_TAGS]…`
 Examples:
 
 *  `remove-tags 1 t/Java Developer t/c++`  Removes the tags `Java Developer` and `c++` from the first candidate.
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a Tag of a Candidate: `edit-tag`
 
@@ -222,6 +226,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd candidate in the RecruitTrackPro.
 * `find Betsy` followed by `delete 1` deletes the 1st candidate in the results of the `find` command.
 
+<div style="page-break-after: always;"></div>
+
 ### Switching the sorting order: `switch-sort`
 
 Switches the sorting order of candidates between ascending (A to Z) and descending (Z to A). Sorting is done by case-insensitive lexicographical order. If candidates have identical names, they are then sorted by their phone number.
@@ -262,6 +268,8 @@ Furthermore, certain edits can cause the RecruitTrackPro to behave in unexpected
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
